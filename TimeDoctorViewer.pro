@@ -9,19 +9,22 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp
+    src/datapair.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/taskelement.cpp
 
 HEADERS += \
-    mainwindow.h
+    src/datapair.h \
+    src/mainwindow.h \
+    src/taskelement.h
 
 FORMS += \
-    mainwindow.ui
+    src/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    docs/model/classdiagram.qmodel
+DISTFILES +=

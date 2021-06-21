@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>304</x>
+      <y>704</y>
+      <w>304</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>DataModeller
+--
+_-rawdata : string;_
+_-threadList : ThreadModel_
+_-queueList: QueueModel_
+_-maskerList : MarkerModel_
+_-descriptorList : DesciptorModel_
+--
+_+processRawData(data : string[])_
+_-parseEntry()_
+_-createNewThread()_
+_-createNewQueue()_
+_-addTaskEntry()_
+_-addQueueEntry()_
+_-addMarker()_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>304</x>
+      <y>408</y>
+      <w>208</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>DataModeller
+--
+_-pathOfFile : string_
+_-readData :string_
+_-filePointer: QFile_
+
+--
+_-openFile(path: string)_
+_-readFile()_
+_-readNextLine()_
+_-checkLine()_
+_-passReadData()_
+_+setPathOfFile(newPath : string)_
+_+readTDVFile(path : string)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>600</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>600</y>
+      <w>224</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>DataAccessor
+--
+_+getThreads() : ThreadModel?_
+_+getQueues() : QueueModel? _
+_+getMarkers() : MarkerModel?_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>720</y>
+      <w>184</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;210.0;130.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1024</x>
+      <y>552</y>
+      <w>256</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>GraphicsViewDrawer
+--
+-amountOfTasksDrawn : quint32
+-amountOfQueuesDrawn: quint32
+-amountOfMarkersDrawn: quint32
+--
+_+prepareView()_
+_+finalizeView()_
+_+drawTimeLines()_
+_-drawNextTimeLine(lineToDraw : Template)_
+_-drawNextThread(threadToDraw : ThreadModel)_
+_-drawNextQueue(queueToDraw : QueueModel)_
+_-drawNextMarker(markerToDraw : MarkerModel)_
+_-drawIdleThread()_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1024</x>
+      <y>352</y>
+      <w>264</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>GraphicDrawer
+--
+--
+_+drawThreadEntry(entryToDraw, lineToDrawOn)_
+_+drawQueueEntry(entryTodraw, lineToDrawOn)_
+_+drawMarker(markerToDraw, lineToDrawOn)_
+_+drawAxis()_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1144</x>
+      <y>464</y>
+      <w>24</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>648</y>
+      <w>152</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>496</x>
+      <y>1016</y>
+      <w>192</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>TaskModel
+--
+-m_priority : string
+-m_lenght : quint64
+
+--
++setPriority(priority : string)
++getPriority() : string
++addStart(time : quint64)
++addStop(time : quint64)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>568</x>
+      <y>960</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>256</x>
+      <y>1016</y>
+      <w>184</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>QueueModel
+--
++addQueueHeight()
++removeQueueHeight()
++setQueueHeight()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>304</x>
+      <y>1456</y>
+      <w>392</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>DataPair
+--
+-m_startTime : quint64
+-m_endTime : quint64
+-m_lenght : quint64
+-m_height : quint16
+--
+DataPair(startTime : quint64, endTime : quint64) : void
++setStartTime(startTime : quint64)
++setEndTime(endTime : quint64)
++getStartTime() : quint64
++getEndTime() : quint64
++getLenght() : quint64
++setHeight(newHeight : quint16)
++addHeight() : void
++lowerHeight() : void
++getHeight() : quint16</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>960</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>752</y>
+      <w>200</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>MarkerModel
+--
+-m_name : string
+-m_position : quint64
+-m_colour : quint
+--
++setTime(toSet : quint64)
++getTime() : quin64
++setColour (toSet : quint32)
++getColour () : quint32
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>824</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>0</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>STATISTICS 
+AND 
+STUFF </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>368</x>
+      <y>1232</y>
+      <w>264</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>TaskElement
+--
+-m_name : string
+-m_entries : list&lt;DataPair&gt;
+--
++setName(toSet : string)
++getName() : string
++setTime(toSet : quint64)
++getTime() : quint64
++clearList()
++addToList(startTime : uint64, endTime : uint64)
++getList() : *list&lt;DataPair&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>1392</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>1176</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>1176</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
