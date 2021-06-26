@@ -12,12 +12,18 @@ SOURCES += \
     src/datapair.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/taskelement.cpp
+    src/markermodel.cpp \
+    src/queuemodel.cpp \
+    src/taskelement.cpp \
+    src/taskmodel.cpp
 
 HEADERS += \
     src/datapair.h \
     src/mainwindow.h \
-    src/taskelement.h
+    src/markermodel.h \
+    src/queuemodel.h \
+    src/taskelement.h \
+    src/taskmodel.h
 
 FORMS += \
     src/mainwindow.ui

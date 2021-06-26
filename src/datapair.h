@@ -5,7 +5,8 @@
 class DataPair
 {
 public:
-DataPair(quint64 startTime, quint64 endTime);
+DataPair(quint64 startTime, quint64 endTime, quint16 height = -1);
+
 void setStartTime(quint64 startTime);
 void setEndTime(quint64 endtime);
 void setHeight(quint16 newHeight);
