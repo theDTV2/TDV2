@@ -1,5 +1,5 @@
-#ifndef TASKELEMENT_H
-#define TASKELEMENT_H
+#ifndef VIEWELEMENT_H
+#define VIEWELEMENT_H
 #include <QtGlobal>
 #include <QString>
 #include <QList>
@@ -10,10 +10,10 @@
 
 
 using namespace std;
-class TaskElement
+class ViewElement
 {
 public:
-    TaskElement(QString name);
+    ViewElement(QString name);
 
     void setName (QString newName);
     void setTime(quint64 toSet);
@@ -35,4 +35,4 @@ private:
 
 };
 
-#endif // TASKELEMENT_H
+#endif // VIEWELEMENT_H

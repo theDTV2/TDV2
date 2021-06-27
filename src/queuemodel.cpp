@@ -1,7 +1,7 @@
 #include "queuemodel.h"
 
 QueueModel::QueueModel(QString name)
-    : TaskElement(name)
+    : ViewElement(name)
 {
 
 }

@@ -6,10 +6,9 @@
 #include <QSharedPointer>
 
 
-#include "datapair.h"
-#include "taskelement.h"
+#include "viewelement.h"
 
-class QueueModel : public TaskElement
+class QueueModel : public ViewElement
 {
 public:
     QueueModel(QString name);

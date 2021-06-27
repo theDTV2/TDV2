@@ -5,10 +5,10 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "taskelement.h"
+#include "viewelement.h"
 
 
-class TaskModel : public TaskElement
+class TaskModel : public ViewElement
 {
 public:
     TaskModel(QString name);

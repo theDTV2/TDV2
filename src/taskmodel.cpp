@@ -1,7 +1,7 @@
 #include "taskmodel.h"
 
 TaskModel::TaskModel(QString name)
-    : TaskElement(name)
+    : ViewElement(name)
 {
 }
 
