@@ -28,10 +28,17 @@ public:
 
     QList<DataPair>* getList();
 
+    void setCreationTime(quint64 creationTime);
+    quint64 getCreationTime();
+
+    void setTaskId(quint64 taskId);
+    quint16 getTaskId();
 
 private:
     QString m_name;
+    quint16 m_taskId;
     QList<DataPair> m_entries;
+    quint64 m_creationTime;
 
 };
 

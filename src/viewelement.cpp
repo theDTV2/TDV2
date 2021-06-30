@@ -37,3 +37,22 @@ QList<DataPair>* ViewElement::getList()
 {
     return &m_entries;
 }
+
+void ViewElement::setCreationTime(quint64 creationTime)
+{
+    m_creationTime = creationTime;
+}
+quint64 ViewElement::getCreationTime()
+{
+    return m_creationTime;
+}
+
+void ViewElement::setTaskId(quint64 taskId)
+{
+    m_taskId = taskId;
+}
+quint16 ViewElement::getTaskId()
+{
+    return m_taskId;
+}
+

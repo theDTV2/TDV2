@@ -9,7 +9,6 @@
 #include "taskmodel.h"
 #include "useragentmodel.h"
 #include "handlermodel.h"
-
 #include "markermodel.h"
 
 
@@ -23,21 +22,31 @@ public:
 
 private:
     static void parseEntry();
+    static void getNextLine();
 
     static void createNewTask();
     static void createNewQueue();
     static void createNewHandler();
     static void createNewUserAgent();
+    static void createMarker();
 
-    static void addTaskEntry();
-    static void addQueueEntry();
-    static void addMarker();
-    static void addHandlerEntry();
-    static void addUserAgentEntry();
+    static void addTaskEnter();
+    static void addTaskStop();
+    static void addQueueReg();
+    static void addQueueSend();
+    static void addQueueReceive();
+    static void addMarkerOccurance();
+    static void addMarkerProperty();
+    static void addHandlerEnter();
+    static void addHandlerExit();
+    static void addUserAgentEnter();
+    static void addUserAgentExit();
 
+    static void deleteTask();
+    static void deleteQueue();
 
     inline static QStringList s_rawData = QStringList();
-    static QString s_currentString;
+    inline static QString s_currentString;
 
     inline static QList<TaskModel> s_taskList = QList<TaskModel>();
     inline static QList<QueueModel> s_queueList = QList<QueueModel>();
@@ -45,7 +54,11 @@ private:
     inline static QList<UserAgentModel> s_userAgentList = QList<UserAgentModel>();
     inline static QList<HandlerModel> s_handlerModel = QList<HandlerModel>();
 
-    inline QSharedPointer<MarkerModel> s_lastMarker = QSharedPointer<MarkerModel>(nullptr);
+    //We save the last occured marker, as some operations reference it
+    QSharedPointer<MarkerModel> s_lastMarker = QSharedPointer<MarkerModel>(nullptr);
+
+
+
 
 };
 
