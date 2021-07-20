@@ -1,19 +1,26 @@
 #include "markermodel.h"
 
-MarkerModel::MarkerModel(QString name, quint64 position, QColor color, quint16 id)
-    :name_(name),position_(position),color_(color), id_(id)
+MarkerModel::MarkerModel(QString name, quint16 id)
+    :name_(name), id_(id)
 {
 
 }
 
 
-void MarkerModel::SetPosition(quint64 new_position)
+
+
+void MarkerModel::AddPosition(quint64 new_position)
 {
-    position_ = new_position;
+    positions_.append(new_position);
 }
-quint64 MarkerModel::GetPosition() const
+QList<quint64> MarkerModel::GetPositions()
 {
-    return position_;
+    return positions_;
+}
+
+void MarkerModel::ClearPositions()
+{
+    positions_.clear();
 }
 
 void MarkerModel::SetColor(QColor new_color)

@@ -4,6 +4,8 @@
 #include <QString>
 #include <QList>
 #include <QSharedPointer>
+#include <QPointer>
+
 
 #include "queuemodel.h"
 #include "taskmodel.h"
@@ -64,7 +66,7 @@ private:
     inline static bool tick_overflow_ = false;
 
     //We save the last occured marker, as some operations reference it
-    QSharedPointer<MarkerModel> last_marker_ = QSharedPointer<MarkerModel>(nullptr);
+    inline static MarkerModel* last_marker_;
 
 
 

@@ -95,7 +95,7 @@ void DataModeller::CreateNewTask()
 {
 
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
-    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
     GetNextLine();
     QString task_name = GetVariableAtPositionInCurrentEntry<QString>(3);
 
@@ -108,7 +108,7 @@ void DataModeller::CreateNewTask()
 void DataModeller::CreateNewQueue()
 {
      quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
-     quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
      QueueModel new_queue = QueueModel(queue_id,tick);
 
@@ -149,7 +149,7 @@ void DataModeller::CreateNewUserAgent()
 void DataModeller::AddTaskEnter()
 {
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
-    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
     TaskModel* element =  SearchHelper::FindInList(task_list_,task_id);
     element->AddStart(tick);
@@ -160,7 +160,7 @@ void DataModeller::AddTaskEnter()
 void DataModeller::AddTaskStop()
 {
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
-    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
     TaskModel* element =  SearchHelper::FindInList(task_list_,task_id);
     element->AddStop(tick);
@@ -170,28 +170,41 @@ void DataModeller::AddTaskStop()
 void DataModeller::AddQueueSend()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
-    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
     QueueModel* element =  SearchHelper::FindInList(queue_list_,queue_id);
     element->AddQueueHeight(tick);
 }
 
-//Queue Receive(+ISR):	STO 3 <queue_number> <tick> <messages_amount (always 1)>
+//Queue Receive(+ISR):	STO 3 <queue_id> <tick> <messages_amount (always 1)>
 void DataModeller::AddQueueReceive()
 {
+    quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
+    QueueModel* element =  SearchHelper::FindInList(queue_list_,queue_id);
+    element->RemoveQueueHeight(tick);
 }
 
-//Marker Create: 		NAM 7 <flag_number> <name>
+//Marker Create: 		NAM 7 <flag_id> <name>
 void DataModeller::CreateMarker()
 {
+    quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    QString name = GetVariableAtPositionInCurrentEntry<QString>(3);
 
+    MarkerModel* element = new MarkerModel(name, flag_id);
+    marker_list_.append(*element);
+    //last_marker_ = element;
 }
 
 //Marker Occurence:	OCC 7 <flag_number> <tick>
 void DataModeller::AddMarkerOccurance()
 {
+    quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
+    MarkerModel* element =  SearchHelper::FindInList(marker_list_,flag_id);
+    element->AddPosition(tick);
 }
 
 //Marker AddString			DSC 0 0 <string> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
@@ -199,32 +212,71 @@ void DataModeller::AddMarkerOccurance()
 //Marker AddColor      		DSC 3 3 <color> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
 void DataModeller::AddMarkerProperty()
 {
+    //No need to check both values (for now)
+    quint16 ident = GetVariableAtPositionInCurrentEntry<quint16>(1);
+    QString var;
+    qint32 num;
 
+    switch (ident) {
+    case 0:
+        var = GetVariableAtPositionInCurrentEntry<quint16>(3);
+
+        last_marker_->AddString(var);
+        break;
+    case 1:
+        num = GetVariableAtPositionInCurrentEntry<qint32>(3);
+        last_marker_->SetNumber(num);
+        break;
+
+    case 2:
+        num = GetVariableAtPositionInCurrentEntry<qint32>(3);
+        last_marker_->SetColor(QColor(num));
+        break;
+
+    }
 }
 
 //Handler Enter: 		STA 1 <irq> <tick>
 void DataModeller::AddHandlerEnter()
 {
+    quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
+
+    HandlerModel* element =  SearchHelper::FindInList(handler_list_,irq);
+    element->AddEnter(tick);
 
 }
 
 //Handler Exit:		STO 1 <irq> <tick>
 void DataModeller::AddHandlerExit()
 {
+    quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
+    HandlerModel* element =  SearchHelper::FindInList(handler_list_,irq);
+    element->AddExit(tick);
 }
 
 //User Agent Begin:  	STA 8 <id> <tick>
 void DataModeller::AddUserAgentEnter()
 {
+    quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
+    UserAgentModel* element =  SearchHelper::FindInList(userAgent_list_,id);
+    element->AddEnter(tick);
 }
 
 //User Agent End:   	STO 8 <id> <tick>
 void DataModeller::AddUserAgentExit()
 {
+    quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
+    UserAgentModel* element =  SearchHelper::FindInList(userAgent_list_,id);
+    element->AddExit(tick);
 }
+
 
 /*
  * Call getVariableAtPositionInGivenEntry() with our current entry

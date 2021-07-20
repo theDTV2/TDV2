@@ -9,10 +9,11 @@
 class MarkerModel
 {
 public:
-    MarkerModel(QString name, quint64 position, QColor color, quint16 id);
+    MarkerModel(QString name, quint16 id);
 
-    void SetPosition(quint64 newTime);
-    quint64 GetPosition() const;
+    void AddPosition(quint64 newTime);
+    QList<quint64> GetPositions();
+    void ClearPositions();
 
     void SetColor(QColor newColor);
     QColor GetColor() const;
@@ -35,7 +36,7 @@ public:
 private:
 
    QString name_;
-   quint64 position_;
+   QList<quint64> positions_;
    QColor  color_;
    quint64 number_;
    QStringList strings_;

@@ -63,6 +63,18 @@ qint64 EntryHelper::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quin
 
 }
 
+/*
+ * Get given Variable at position (stating at 0) from given entry
+ * specialized for qint32 (long )
+ */
+
+template<>
+qint32 EntryHelper::GetVariableAtPositionInGivenEntry<qint32>(QString entry,quint8 position)
+{
+
+    return GetStringAtPosition(entry, position).toLong();
+
+}
 QString EntryHelper::GetStringAtPosition(QString entry, quint8 positison)
 {
     //Iterate through Entry until we get to the desired variable
