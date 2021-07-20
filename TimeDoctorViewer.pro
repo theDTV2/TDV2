@@ -16,6 +16,7 @@ SOURCES += \
     src/mainwindow.cpp \
     src/markermodel.cpp \
     src/queuemodel.cpp \
+    src/searchhelper.cpp \
     src/useragentmodel.cpp \
     src/viewelement.cpp \
     src/taskmodel.cpp
@@ -27,6 +28,7 @@ HEADERS += \
     src/mainwindow.h \
     src/markermodel.h \
     src/queuemodel.h \
+    src/searchhelper.h \
     src/useragentmodel.h \
     src/viewelement.h \
     src/taskmodel.h
