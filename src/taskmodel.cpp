@@ -5,6 +5,11 @@ TaskModel::TaskModel(QString name)
 {
 }
 
+TaskModel::TaskModel(QString name, quint16 task_id, quint64 creation_time)
+    : ViewElement(name, task_id, creation_time)
+{
+}
+
 void TaskModel::SetPriority(QString new_priority)
 {
     priority_ = new_priority;

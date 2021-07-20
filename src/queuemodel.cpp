@@ -1,7 +1,7 @@
 #include "queuemodel.h"
 
-QueueModel::QueueModel(QString name)
-    : ViewElement(name)
+QueueModel::QueueModel(quint16 id, quint64 creation_time)
+    : ViewElement(id,creation_time)
 {
 
 }

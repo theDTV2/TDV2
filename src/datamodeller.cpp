@@ -93,17 +93,26 @@ void DataModeller::GetNextLine()
 //                          NAM 0 <task_number> <task_name>
 void DataModeller::CreateNewTask()
 {
-     // quint64 startTick
-    //TaskModel()
 
+    quint16 task_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
+    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+    GetNextLine();
+    QString task_name = GetVariableAtPositionInCurrentEntry<QString>(3);
 
+    TaskModel new_task = TaskModel(task_name,task_id,tick);
 
+    task_list_.append(new_task);
 }
 
 //Queue Create:             CRE 3 <queue_number> <tick>
 void DataModeller::CreateNewQueue()
 {
+     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
+     quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
 
+     QueueModel new_queue = QueueModel(queue_id,tick);
+
+     queue_list_.append(new_queue);
 }
 
 //Queue Registry Add:       NAM 3 <queue_number> <queue_name>
@@ -124,37 +133,37 @@ void DataModeller::CreateNewUserAgent()
 
 }
 
-//DONE Task Enter:          STA 0 <task_number> <tick>
+//Task Enter:          STA 0 <task_number> <tick>
 void DataModeller::AddTaskEnter()
 {
 
 }
 
-//DONE Task Stop:           STO 0 <task_number> <tick>
+//Task Stop:           STO 0 <task_number> <tick>
 void DataModeller::AddTaskStop()
 {
 
 }
 
-//DONE Queue Send (+ISR):   STA 3 <queue_number> <tick> <messages_amount (always 1)>
+//Queue Send (+ISR):   STA 3 <queue_number> <tick> <messages_amount (always 1)>
 void DataModeller::AddQueueSend()
 {
 
 }
 
-//DONE Queue Receive(+ISR):	STO 3 <queue_number> <tick> <messages_amount (always 1)>
+//Queue Receive(+ISR):	STO 3 <queue_number> <tick> <messages_amount (always 1)>
 void DataModeller::AddQueueReceive()
 {
 
 }
 
-//DONE Marker Create: 		NAM 7 <flag_number> <name>
+//Marker Create: 		NAM 7 <flag_number> <name>
 void DataModeller::CreateMarker()
 {
 
 }
 
-//DONE Marker Occurence:	OCC 7 <flag_number> <tick>
+//Marker Occurence:	OCC 7 <flag_number> <tick>
 void DataModeller::AddMarkerOccurance()
 {
 
@@ -168,25 +177,25 @@ void DataModeller::AddMarkerProperty()
 
 }
 
-//DONE Handler Enter: 		STA 1 <irq> <tick>
+//Handler Enter: 		STA 1 <irq> <tick>
 void DataModeller::AddHandlerEnter()
 {
 
 }
 
-//DONE Handler Exit:		STO 1 <irq> <tick>
+//Handler Exit:		STO 1 <irq> <tick>
 void DataModeller::AddHandlerExit()
 {
 
 }
 
-//DONE User Agent Begin:  	STA 8 <id> <tick>
+//User Agent Begin:  	STA 8 <id> <tick>
 void DataModeller::AddUserAgentEnter()
 {
 
 }
 
-//DONE User Agent End:   	STO 8 <id> <tick>
+//User Agent End:   	STO 8 <id> <tick>
 void DataModeller::AddUserAgentExit()
 {
 
@@ -197,48 +206,44 @@ void DataModeller::AddUserAgentExit()
  *
  */
 template<class T>
-bool DataModeller::GetVariableAtPositionInCurrentEntry(quint8 position, T *read_variable)
+T DataModeller::GetVariableAtPositionInCurrentEntry(quint8 position)
 {
-    return GetVariableAtPositionInGivenEntry(current_string_,position,read_variable);
+    return GetVariableAtPositionInGivenEntry<T>(current_string_,position);
 }
 
 /*
- * Get given Variable at position from given entry
+ * Get given Variable at position (stating at 0) from given entry
  * specialized for QString
  */
 template<>
-bool DataModeller::GetVariableAtPositionInGivenEntry<QString>(QString entry,quint8 position, QString *read_variable)
+QString DataModeller::GetVariableAtPositionInGivenEntry<QString>(QString entry,quint8 position)
 {
 
-    *read_variable = GetStringAtPosition(entry, position);
-
-    return true;
+    return GetStringAtPosition(entry, position);
 }
 
 /*
- * Get given Variable at position from given entry
+ * Get given Variable at position (stating at 0) from given entry
  * specialized for quint64
  */
 template<>
-bool DataModeller::GetVariableAtPositionInGivenEntry<quint64>(QString entry,quint8 position, quint64 *read_variable)
+quint64 DataModeller::GetVariableAtPositionInGivenEntry<quint64>(QString entry,quint8 position)
 {
 
-    *read_variable = GetStringAtPosition(entry, position).toULongLong();
+    return GetStringAtPosition(entry, position).toULongLong();
 
-    return true;
 }
 
 /*
- * Get given Variable at position from given entry
+ * Get given Variable at position (stating at 0) from given entry
  * specialized for qint64
  */
 template<>
-bool DataModeller::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quint8 position, qint64 *read_variable)
+qint64 DataModeller::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quint8 position)
 {
 
-    *read_variable = GetStringAtPosition(entry, position).toLongLong();
+    return GetStringAtPosition(entry, position).toLongLong();
 
-    return true;
 }
 
 QString DataModeller::GetStringAtPosition(QString entry,quint8 position)
@@ -253,12 +258,30 @@ QString DataModeller::GetStringAtPosition(QString entry,quint8 position)
         current_position_In_Entry ++;
     }
 
-    QString readVar = "";
+    QString read_var = "";
 
     while (current_variable_position != entry.length() || entry[current_variable_position] != ' ')
     {
-        readVar.append(entry[current_variable_position]);
+        read_var.append(entry[current_variable_position]);
         current_variable_position++;
     }
-    return readVar;
+    return read_var;
+}
+
+quint64 DataModeller::ParseTick(quint64 tick)
+{
+    //If we already had a overflow, return the adjusted value here
+    if (tick_overflow_)
+        return numeric_limits<quint32>::max()+ tick;
+
+    //Detect overflow here
+    if (tick < last_tick_read_)
+    {
+        tick_overflow_ = true;
+        return numeric_limits<quint32>::max()+ tick;
+    }
+
+    //If we arrive here, everything is fine, and we just return the normal tick
+    last_tick_read_ = tick;
+    return tick;
 }

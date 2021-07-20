@@ -42,14 +42,15 @@ private:
     static void AddUserAgentEnter();
     static void AddUserAgentExit();
 
+    static quint64 ParseTick(quint64 tick);
     static void DeleteTask();
     static void DeleteQueue();
 
     template<class T>
-    static bool GetVariableAtPositionInCurrentEntry(quint8 position, T *read_variable);
+    static T GetVariableAtPositionInCurrentEntry(quint8 position);
 
     template<class T>
-    static bool GetVariableAtPositionInGivenEntry(QString entry,quint8 position, T *read_variable);
+    static T GetVariableAtPositionInGivenEntry(QString entry,quint8 position);
 
     static QString GetStringAtPosition(QString entry,quint8 position);
 
@@ -61,6 +62,8 @@ private:
     inline static QList<MarkerModel> marker_list_ = QList<MarkerModel>();
     inline static QList<UserAgentModel> userAgent_list_ = QList<UserAgentModel>();
     inline static QList<HandlerModel> handler_list_ = QList<HandlerModel>();
+    inline static quint64 last_tick_read_ = 0;
+    inline static bool tick_overflow_ = false;
 
     //We save the last occured marker, as some operations reference it
     QSharedPointer<MarkerModel> last_marker_ = QSharedPointer<MarkerModel>(nullptr);

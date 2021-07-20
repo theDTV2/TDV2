@@ -13,6 +13,8 @@ class TaskModel : public ViewElement
 public:
     TaskModel(QString name);
 
+    TaskModel(QString name, quint16 task_id, quint64 creation_time);
+
     void SetPriority(QString new_priority);
     QString GetPrority();
 

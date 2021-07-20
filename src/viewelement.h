@@ -14,6 +14,8 @@ class ViewElement
 {
 public:
     ViewElement(QString name);
+    ViewElement(quint16 task_id, quint64 creation_time);
+    ViewElement(QString name, quint16 task_id, quint64 creation_time);
 
     void SetName (QString new_name);
     void GetTime(quint64 to_set);
@@ -39,7 +41,7 @@ private:
     quint16 task_id_;
     QList<DataPair> entries_;
     quint64 creation_time_;
-
+    bool int32_overflow = false;
 };
 
 #endif // VIEWELEMENT_H
