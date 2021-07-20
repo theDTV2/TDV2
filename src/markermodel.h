@@ -12,20 +12,20 @@ public:
     MarkerModel(QString name, quint64 position, QColor color);
 
     void SetPosition(quint64 newTime);
-    quint64 GetPosition();
+    quint64 GetPosition() const;
 
     void SetColor(QColor newColor);
-    QColor GetColor();
+    QColor GetColor() const;
 
     void SetName(QString newName);
-    QString GetName();
+    QString GetName() const;
 
     void AddString(QString string);
     void ClearStrings();
     QStringList* GetStrings();
 
     void SetNumber(quint64 number);
-    quint64 GetNumber();
+    quint64 GetNumber() const;
 
 
 private:

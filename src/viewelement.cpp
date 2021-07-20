@@ -22,7 +22,9 @@ void ViewElement::SetName (QString new_name)
 {
     name_ = new_name;
 }
-QString ViewElement::GetName()
+
+
+const QString ViewElement::GetName()
 {
     return name_;
 }
@@ -55,7 +57,7 @@ void ViewElement::SetCreationTime(quint64 creationTime)
 {
     creation_time_ = creationTime;
 }
-quint64 ViewElement::GetCreationTime()
+quint64 ViewElement::GetCreationTime() const
 {
     return creation_time_;
 }
@@ -64,7 +66,7 @@ void ViewElement::SetTaskId(quint64 task_id)
 {
     task_id_ = task_id;
 }
-quint16 ViewElement::GetTaskId()
+quint16 ViewElement::GetTaskId() const
 {
     return task_id_;
 }

@@ -24,18 +24,18 @@ void DataPair::SetHeight(quint16 newHeight)
 }
 
 
-quint64 DataPair::GetStartTime()
+quint64 DataPair::GetStartTime() const
 {
     return start_time_;
 }
 
-quint64 DataPair::GetEndTime()
+quint64 DataPair::GetEndTime() const
 {
     return end_time_;
 }
 
 
-quint64 DataPair::GetLenght()
+quint64 DataPair::GetLenght() const
 {
     return lenght_;
 }

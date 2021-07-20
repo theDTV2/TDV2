@@ -14,7 +14,7 @@ void TaskModel::SetPriority(QString new_priority)
 {
     priority_ = new_priority;
 }
-QString TaskModel::GetPrority()
+QString TaskModel::GetPrority() const
 {
     return priority_;
 }

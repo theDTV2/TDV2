@@ -18,10 +18,9 @@ public:
     ViewElement(QString name, quint16 task_id, quint64 creation_time);
 
     void SetName (QString new_name);
-    void GetTime(quint64 to_set);
 
-    QString GetName();
-    quint64 GetTime();
+
+    const QString GetName();
 
     void ClearList();
 
@@ -31,10 +30,10 @@ public:
     QList<DataPair>* GetList();
 
     void SetCreationTime(quint64 creation_time);
-    quint64 GetCreationTime();
+    quint64 GetCreationTime() const;
 
     void SetTaskId(quint64 taskId);
-    quint16 GetTaskId();
+    quint16 GetTaskId() const;
 
 private:
     QString name_;

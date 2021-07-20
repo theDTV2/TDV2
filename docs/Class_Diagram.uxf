@@ -478,16 +478,44 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>976</x>
-      <y>288</y>
-      <w>360</w>
-      <h>64</h>
+      <x>824</x>
+      <y>248</y>
+      <w>312</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>SearchHelper
 --
 
 --
-_+FindInListByIdentifier(list_to_search : QList&lt;T&gt; , id : quint64) : T_
+_+FindInList(list_to_search : QList&lt;T&gt; , id : quint64) : T_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>872</x>
+      <y>344</y>
+      <w>128</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>140.0;10.0;140.0;60.0;10.0;60.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>976</x>
+      <y>448</y>
+      <w>312</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>EntryHelper
+--
+
+--
+_+GetVariableAtPositionInGivenEntry(entry : QString, position :quint8) : T_
+_+GetStringAtPosition(entry : QString, position : quint8)_
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -495,11 +523,11 @@ _+FindInListByIdentifier(list_to_search : QList&lt;T&gt; , id : quint64) : T_
     <id>Relation</id>
     <coordinates>
       <x>928</x>
-      <y>344</y>
+      <y>544</y>
       <w>224</w>
-      <h>176</h>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>260.0;10.0;260.0;200.0;10.0;200.0</additional_attributes>
+    <additional_attributes>260.0;10.0;260.0;60.0;10.0;60.0</additional_attributes>
   </element>
 </diagram>

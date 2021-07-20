@@ -11,7 +11,7 @@ void MarkerModel::SetPosition(quint64 new_position)
 {
     position_ = new_position;
 }
-quint64 MarkerModel::GetPosition()
+quint64 MarkerModel::GetPosition() const
 {
     return position_;
 }
@@ -20,7 +20,7 @@ void MarkerModel::SetColor(QColor new_color)
 {
     color_ = new_color;
 }
-QColor MarkerModel::GetColor()
+QColor MarkerModel::GetColor() const
 {
     return color_;
 }
@@ -30,7 +30,7 @@ void MarkerModel::SetName(QString new_name)
     name_ = new_name;
 }
 
-QString MarkerModel::GetName()
+QString MarkerModel::GetName() const
 {
     return name_;
 }
@@ -45,7 +45,7 @@ void MarkerModel::ClearStrings()
     strings_.clear();
 }
 
-QStringList* MarkerModel::GetStrings()
+QStringList *MarkerModel::GetStrings()
 {
     return &strings_;
 }
@@ -55,7 +55,7 @@ void MarkerModel::SetNumber(quint64 number)
     number_ = number;
 }
 
-quint64 MarkerModel::GetNumber()
+quint64 MarkerModel::GetNumber() const
 {
     return number_;
 }

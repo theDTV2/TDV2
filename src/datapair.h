@@ -11,9 +11,9 @@ void SetStartTime(quint64 start_time);
 void SetEndTime(quint64 end_time);
 void SetHeight(quint16 new_height);
 
-quint64 GetStartTime();
-quint64 GetEndTime();
-quint64 GetLenght();
+quint64 GetStartTime() const;
+quint64 GetEndTime() const;
+quint64 GetLenght() const;
 void    AddHeight();
 void    LowerHeight();
 

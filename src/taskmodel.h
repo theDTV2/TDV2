@@ -16,7 +16,7 @@ public:
     TaskModel(QString name, quint16 task_id, quint64 creation_time);
 
     void SetPriority(QString new_priority);
-    QString GetPrority();
+    QString GetPrority() const;
 
     void AddStart(quint64 start_time);
     void AddStop(quint64 stop_time);

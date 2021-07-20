@@ -10,7 +10,8 @@
 #include "useragentmodel.h"
 #include "handlermodel.h"
 #include "markermodel.h"
-
+#include "searchhelper.h"
+#include "entryhelper.h"
 
 using namespace std;
 class DataModeller
@@ -47,12 +48,9 @@ private:
     static void DeleteQueue();
 
     template<class T>
-    static T GetVariableAtPositionInCurrentEntry(quint8 position);
+    static T GetVariableAtPositionInCurrentEntry(quint8 position) ;
 
-    template<class T>
-    static T GetVariableAtPositionInGivenEntry(QString entry,quint8 position);
 
-    static QString GetStringAtPosition(QString entry,quint8 position);
 
     inline static QStringList raw_data_ = QStringList();
     inline static QString current_string_;
