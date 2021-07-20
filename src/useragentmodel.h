@@ -13,12 +13,12 @@ class UserAgentModel : public ViewElement
 {
 public:
     UserAgentModel(QString name);
-    void addEnter(quint64 time);
-    void addExit(quint64 time);
+    void AddEnter(quint64 time);
+    void AddExit(quint64 time);
 
 
 private:
-    quint64 m_lastTime;
+    quint64 last_time_;
 };
 
 

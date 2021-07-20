@@ -1,61 +1,61 @@
 #include "markermodel.h"
 
 MarkerModel::MarkerModel(QString name, quint64 position, QColor color)
-    :m_name(name),m_position(position),m_color(color)
+    :name_(name),position_(position),color_(color)
 {
 
 }
 
 
-void MarkerModel::setPosition(quint64 newPosition)
+void MarkerModel::SetPosition(quint64 new_position)
 {
-    m_position = newPosition;
+    position_ = new_position;
 }
-quint64 MarkerModel::getPosition()
+quint64 MarkerModel::GetPosition()
 {
-    return m_position;
-}
-
-void MarkerModel::setColor(QColor newColor)
-{
-    m_color = newColor;
-}
-QColor MarkerModel::getColor()
-{
-    return m_color;
+    return position_;
 }
 
-void MarkerModel::setName(QString newName)
+void MarkerModel::SetColor(QColor new_color)
 {
-    m_name = newName;
+    color_ = new_color;
+}
+QColor MarkerModel::GetColor()
+{
+    return color_;
 }
 
-QString MarkerModel::getName()
+void MarkerModel::SetName(QString new_name)
 {
-    return m_name;
+    name_ = new_name;
 }
 
-void MarkerModel::addString(QString string)
+QString MarkerModel::GetName()
 {
-    m_strings.append(string);
+    return name_;
 }
 
-void MarkerModel::clearStrings()
+void MarkerModel::AddString(QString string)
 {
-    m_strings.clear();
+    strings_.append(string);
 }
 
-QStringList* MarkerModel::getStrings()
+void MarkerModel::ClearStrings()
 {
-    return &m_strings;
+    strings_.clear();
 }
 
-void MarkerModel::setNumber(quint64 number)
+QStringList* MarkerModel::GetStrings()
 {
-    m_number = number;
+    return &strings_;
 }
 
-quint64 MarkerModel::getNumber()
+void MarkerModel::SetNumber(quint64 number)
 {
-    return m_number;
+    number_ = number;
+}
+
+quint64 MarkerModel::GetNumber()
+{
+    return number_;
 }

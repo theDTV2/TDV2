@@ -15,30 +15,30 @@ class ViewElement
 public:
     ViewElement(QString name);
 
-    void setName (QString newName);
-    void setTime(quint64 toSet);
+    void SetName (QString new_name);
+    void GetTime(quint64 to_set);
 
-    QString getName();
-    quint64 getTime();
+    QString GetName();
+    quint64 GetTime();
 
-    void clearList();
+    void ClearList();
 
-    void addToList(quint64 startTime, quint64 endTime);
-    void addToList(quint64 startTime, quint64 endTime, quint16 height);
+    void AddToList(quint64 start_time, quint64 end_time);
+    void AddToList(quint64 start_time, quint64 end_time, quint16 height);
 
-    QList<DataPair>* getList();
+    QList<DataPair>* GetList();
 
-    void setCreationTime(quint64 creationTime);
-    quint64 getCreationTime();
+    void SetCreationTime(quint64 creation_time);
+    quint64 GetCreationTime();
 
-    void setTaskId(quint64 taskId);
-    quint16 getTaskId();
+    void SetTaskId(quint64 taskId);
+    quint16 GetTaskId();
 
 private:
-    QString m_name;
-    quint16 m_taskId;
-    QList<DataPair> m_entries;
-    quint64 m_creationTime;
+    QString name_;
+    quint16 task_id_;
+    QList<DataPair> entries_;
+    quint64 creation_time_;
 
 };
 

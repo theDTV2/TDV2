@@ -6,29 +6,29 @@ QueueModel::QueueModel(QString name)
 
 }
 
-void QueueModel::addQueueHeight(quint64 newTime)
+void QueueModel::AddQueueHeight(quint64 newTime)
 {
-    if (m_lastTime == 0)
+    if (last_time_ == 0)
     {
-        m_lastTime = newTime;
-        m_currentheight++;
+        last_time_ = newTime;
+        current_height_++;
         return;
     }
 
-    setQueueHeight(m_lastTime, newTime, m_currentheight);
-    m_currentheight++;
-    m_lastTime = newTime;
+    SetQueueHeight(last_time_, newTime, current_height_);
+    current_height_++;
+    last_time_ = newTime;
 
 }
-void QueueModel::remoteQueueHeight(quint64 newTime)
+void QueueModel::RemoveQueueHeight(quint64 newTime)
 {
-    setQueueHeight(m_lastTime, newTime, m_currentheight);
-    m_currentheight--;
-    m_lastTime = newTime;
+    SetQueueHeight(last_time_, newTime, current_height_);
+    current_height_--;
+    last_time_ = newTime;
 
 }
 
-void QueueModel::setQueueHeight(quint64 startTime, quint64 endTime, quint16 height)
+void QueueModel::SetQueueHeight(quint64 startTime, quint64 endTime, quint16 height)
 {
-    addToList(startTime,endTime,height);
+    AddToList(startTime,endTime,height);
 }

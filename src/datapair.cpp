@@ -1,54 +1,54 @@
 #include "datapair.h"
 
 DataPair::DataPair(quint64 startTime, quint64 endTime, quint16 height):
-    m_startTime(startTime),m_endTime(endTime),m_height(height)
+    start_time_(startTime),end_time_(endTime),height_(height)
 {
-m_lenght = endTime - startTime;
+lenght_ = endTime - startTime;
 
 }
 
 
-void DataPair::setStartTime(quint64 startTime)
+void DataPair::SetStartTime(quint64 start_time)
 {
-    m_startTime = startTime;
+    start_time_ = start_time;
 }
 
-void DataPair::setEndTime(quint64 endTime)
+void DataPair::SetEndTime(quint64 endTime)
 {
-    m_endTime = endTime;
+    end_time_ = endTime;
 }
 
-void DataPair::setHeight(quint16 newHeight)
+void DataPair::SetHeight(quint16 newHeight)
 {
-    m_height = newHeight;
-}
-
-
-quint64 DataPair::getStartTime()
-{
-    return m_startTime;
-}
-
-quint64 DataPair::getEndTime()
-{
-    return m_endTime;
+    height_ = newHeight;
 }
 
 
-quint64 DataPair::getLenght()
+quint64 DataPair::GetStartTime()
 {
-    return m_lenght;
+    return start_time_;
 }
 
-void DataPair::addHeight()
+quint64 DataPair::GetEndTime()
 {
-    m_lenght++;
+    return end_time_;
 }
 
-void DataPair::lowerHeight()
+
+quint64 DataPair::GetLenght()
 {
-    if (m_height > 0)
-      m_lenght--;
+    return lenght_;
+}
+
+void DataPair::AddHeight()
+{
+    lenght_++;
+}
+
+void DataPair::LowerHeight()
+{
+    if (height_ > 0)
+      --lenght_;
 }
 
 

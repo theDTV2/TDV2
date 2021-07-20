@@ -5,24 +5,24 @@ TaskModel::TaskModel(QString name)
 {
 }
 
-void TaskModel::setPriority(QString newPriority)
+void TaskModel::SetPriority(QString new_priority)
 {
-    m_priority = newPriority;
+    priority_ = new_priority;
 }
-QString TaskModel::getPrority()
+QString TaskModel::GetPrority()
 {
-    return m_priority;
+    return priority_;
 }
 
-void TaskModel::addStart(quint64 startTime)
+void TaskModel::AddStart(quint64 start_time)
 {
-    m_startTime = startTime;
+    start_time_ = start_time;
 }
-void TaskModel::addStop(quint64 stopTime)
+void TaskModel::AddStop(quint64 stopTime)
 {
-    if (m_startTime == 0)
+    if (start_time_ == 0)
         return;
 
-    addToList(m_startTime,stopTime);
-    m_startTime = 0;
+    AddToList(start_time_,stopTime);
+    start_time_ = 0;
 }

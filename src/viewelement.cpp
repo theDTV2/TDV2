@@ -2,57 +2,57 @@
 
 ViewElement::ViewElement(QString name)
 {
-    m_name = name;
+    name_ = name;
 }
 
 
-void ViewElement::setName (QString newName)
+void ViewElement::SetName (QString new_name)
 {
-    m_name = newName;
+    name_ = new_name;
 }
-QString ViewElement::getName()
+QString ViewElement::GetName()
 {
-    return m_name;
-}
-
-void ViewElement::clearList()
-{
-    m_entries.clear();
+    return name_;
 }
 
-void ViewElement::addToList(quint64 startTime, quint64 endTime)
+void ViewElement::ClearList()
 {
-    DataPair newEntry = DataPair(startTime, endTime);
-
-    m_entries.append(newEntry);
-}
-void ViewElement::addToList(quint64 startTime, quint64 endTime, quint16 height)
-{
-    DataPair newEntry = DataPair(startTime, endTime, height);
-
-    m_entries.append(newEntry);
+    entries_.clear();
 }
 
-QList<DataPair>* ViewElement::getList()
+void ViewElement::AddToList(quint64 start_time, quint64 end_time)
 {
-    return &m_entries;
+    DataPair newEntry = DataPair(start_time, end_time);
+
+    entries_.append(newEntry);
+}
+void ViewElement::AddToList(quint64 start_time, quint64 endTime, quint16 height)
+{
+    DataPair newEntry = DataPair(start_time, endTime, height);
+
+    entries_.append(newEntry);
 }
 
-void ViewElement::setCreationTime(quint64 creationTime)
+QList<DataPair>* ViewElement::GetList()
 {
-    m_creationTime = creationTime;
-}
-quint64 ViewElement::getCreationTime()
-{
-    return m_creationTime;
+    return &entries_;
 }
 
-void ViewElement::setTaskId(quint64 taskId)
+void ViewElement::SetCreationTime(quint64 creationTime)
 {
-    m_taskId = taskId;
+    creation_time_ = creationTime;
 }
-quint16 ViewElement::getTaskId()
+quint64 ViewElement::GetCreationTime()
 {
-    return m_taskId;
+    return creation_time_;
+}
+
+void ViewElement::SetTaskId(quint64 task_id)
+{
+    task_id_ = task_id;
+}
+quint16 ViewElement::GetTaskId()
+{
+    return task_id_;
 }
 

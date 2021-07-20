@@ -1,22 +1,22 @@
 #include "useragentmodel.h"
 
 UserAgentModel::UserAgentModel(QString name)
-    :ViewElement(name), m_lastTime(0)
+    :ViewElement(name), last_time_(0)
 {
 }
 
 
-void UserAgentModel::addEnter(quint64 time)
+void UserAgentModel::AddEnter(quint64 time)
 {
-    m_lastTime = time;
+    last_time_ = time;
     return;
 }
 
-void UserAgentModel::addExit(quint64 time)
+void UserAgentModel::AddExit(quint64 time)
 {
-    if (m_lastTime == 0)
+    if (last_time_ == 0)
         return;
 
-    m_lastTime = 0;
+    AddToList(last_time_,time);
     return;
 }

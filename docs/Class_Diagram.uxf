@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>7</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>441</x>
-      <y>399</y>
-      <w>266</w>
-      <h>434</h>
+      <x>464</x>
+      <y>448</y>
+      <w>472</w>
+      <h>512</h>
     </coordinates>
     <panel_attributes>DataModeller
 --
-_-s_rawdata : QStringList;_
-_-s_taskList : QList&lt;TaskModel&gt;_
-_-s_queueList: QList&lt;QueueModel&gt;_
-_-s_maskerList : QList&lt;MarkerModel&gt;_
-_-s_userAgentList : QList&lt;UserAgentModel&gt;_
-_-s_handlerList : QList&lt;HandlerModel&gt;_
-_-s_lastMarker : QPointer&lt;MarkerModel&gt;_
-_-s_currentString: QString_
+_-raw_data_ : QStringList;_
+_-task_list_ : QList&lt;TaskModel&gt;_
+_-queue_list_: QList&lt;QueueModel&gt;_
+_-masker_list_ : QList&lt;MarkerModel&gt;_
+_-userAgent_list_ : QList&lt;UserAgentModel&gt;_
+_-handler_list_ : QList&lt;HandlerModel&gt;_
+_-last_marker_ : QPointer&lt;MarkerModel&gt;_
+_-current_string_: QString_
 
 --
 _+setDataToProcess(data : QStringList) : void_
 _+processRawData() : void_
-_-parseEntry() : void_
-_createNewTask() : void_
-_createNewQueue() : void_
-_createNewHandler() : void_
-_createNewUserAgent() : void_
-_createMarker() : void_
+_-ParseEntry() : void_
+_-CreateNewTask() : void_
+_-CreateNewQueue() : void_
+_-CreateNewHandler() : void_
+_-CreateNewUserAgent() : void_
+_-CreateMarker() : void_
 
-_addTaskEnter() : void_
-_addTaskStop() : void_
-_addQueueReg() : void_
-_addQueueSend() : void_
-_addQueueReceive() : void_
-_addMarkerOccurance() : void_
-_addMarkerProperty() : void_
-_addHandlerEnter() : void_
-_addHandlerExit() : void_
-_addUserAgentEnter() : void_
-_addUserAgentExit() : void_
+_-AddTaskEnter() : void_
+_-AddTaskStop() : void_
+_-AddQueueReg() : void_
+_-AddQueueSend() : void_
+_-AddQueueReceive() : void_
+_-AddMarkerOccurance() : void_
+_-AddMarkerProperty() : void_
+_-AddHandlerEnter() : void_
+_-AddHandlerExit() : void_
+_-AddUserAgentEnter() : void_
+_-AddUserAgentExit() : void_
 
-_deleteTask() : void_
-_deleteQueue() : void_</panel_attributes>
+_-DeleteTask() : void_
+_-DeleteQueue() : void_
+
+_-GetVariableAtPositionInCurrentEntry(position : quint8, readVariable : template) : bool_
+_-GetVariableAtPositionInGivenEntry(position : quint8, readVariable : template) : bool_
+_-GetStringAtPosition(entry : QString, position: quint8) : QString_
+_-GarseTick_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>476</x>
-      <y>196</y>
-      <w>182</w>
-      <h>175</h>
+      <x>544</x>
+      <y>224</y>
+      <w>208</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>DataReader
 --
@@ -73,21 +78,21 @@ _+readTDVFile(path : string)_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>364</y>
-      <w>21</w>
-      <h>49</h>
+      <x>640</x>
+      <y>416</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>840</x>
-      <y>525</y>
-      <w>196</w>
-      <h>112</h>
+      <x>1880</x>
+      <y>608</y>
+      <w>224</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>DataAccessor
 --
@@ -102,21 +107,21 @@ _+getHanglers() : QList&lt;HandlerModel&gt;_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>630</y>
-      <w>238</w>
-      <h>105</h>
+      <x>928</x>
+      <y>728</y>
+      <w>1064</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;130.0;320.0;130.0;320.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;1310.0;110.0;1310.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1148</x>
-      <y>483</y>
-      <w>224</w>
-      <h>175</h>
+      <x>2232</x>
+      <y>560</y>
+      <w>256</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>GraphicsViewDrawer
 --
@@ -138,10 +143,10 @@ _-drawIdleThread()_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1148</x>
-      <y>308</y>
-      <w>231</w>
-      <h>105</h>
+      <x>2232</x>
+      <y>360</y>
+      <w>264</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>GraphicDrawer
 --
@@ -155,10 +160,10 @@ _+drawAxis()_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1253</x>
-      <y>406</y>
-      <w>21</w>
-      <h>91</h>
+      <x>2352</x>
+      <y>472</y>
+      <w>24</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
@@ -166,10 +171,10 @@ _+drawAxis()_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1029</x>
-      <y>567</y>
-      <w>133</w>
-      <h>21</h>
+      <x>2096</x>
+      <y>656</y>
+      <w>152</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
@@ -177,146 +182,147 @@ _+drawAxis()_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>889</y>
-      <w>168</w>
-      <h>147</h>
+      <x>720</x>
+      <y>1016</y>
+      <w>192</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>TaskModel
 --
--m_priority : QString
--m_lenght : quint64
--m_startTime : quint64
+-priority_ : QString
+-lenght_ : quint64
+-start_time_ : quint64
 
 --
-TaskModel(newName : QString)
-+setPriority(priority : QString) : void
-+getPriority() : QString
-+addStart(time : quint64) : void
-+addStop(time : quint64) : void
+TaskModel(new_name : QString)
++SetPriority(priority : QString) : void
++GetPriority() : QString
++AddStart(time : quint64) : void
++AddStop(time : quint64) : void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>651</x>
-      <y>826</y>
-      <w>21</w>
-      <h>77</h>
+      <x>744</x>
+      <y>952</y>
+      <w>24</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>399</x>
-      <y>889</y>
-      <w>203</w>
-      <h>147</h>
+      <x>456</x>
+      <y>1016</y>
+      <w>232</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>QueueModel
 --
-m_lastTime : quint64
+last_time_ : quint64
+current_height : quint16_
 --
-QueueModel(newName : QString)
-+addQueueHeight(time : quint64) : void
-+removeQueueHeight(time : quint64) : void 
--setQueueHeight(startTime : quint64) : void</panel_attributes>
+QueueModel(new_name : QString)
++AddQueueHeight(time : quint64) : void
++RemoveQueueHeight(time : quint64) : void 
+-SetQueueHeight(start_time : quint64, end_time : quint64, height : quint16) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>441</x>
-      <y>1330</y>
-      <w>343</w>
-      <h>189</h>
+      <x>504</x>
+      <y>1520</y>
+      <w>392</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>DataPair
 --
--m_startTime : quint64
--m_endTime : quint64
--m_lenght : quint64
--m_height : quint16
+-start_time_ : quint64
+-end_time_ : quint64
+-lenght_ : quint64
+-height_ : quint16
 --
-DataPair(startTime : quint64, endTime : quint64) : void
-+setStartTime(startTime : quint64)
-+setEndTime(endTime : quint64)
-+getStartTime() : quint64
-+getEndTime() : quint64
-+getLenght() : quint64
-+setHeight(newHeight : quint16)
-+addHeight() : void
-+lowerHeight() : void
-+getHeight() : quint16</panel_attributes>
+DataPair(start_time : quint64, end_time : quint64) : void
++SetStartTime(start_time : quint64)
++SetEndTime(end_time : quint64)
++GetStartTime() : quint64
++GetEndTime() : quint64
++GetLenght() : quint64
++SetHeight(new_height : quint16)
++AddHeight() : void
++LowerHeight() : void
++GetHeight() : quint16</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>532</x>
-      <y>826</y>
-      <w>21</w>
-      <h>77</h>
+      <x>568</x>
+      <y>952</y>
+      <w>24</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>581</y>
-      <w>294</w>
-      <h>273</h>
+      <y>656</y>
+      <w>336</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>MarkerModel
 --
--m_name : QString
--m_number : quint64
--m_strings : QStringList
--m_position : quint64
--m_color : QColor
+-name_ : QString
+-number_ : quint64
+-strings_ : QStringList
+-position_ : quint64
+-color_ : QColor
 --
 MarkerModel(name : QString, position : quint64, color : QColor)
-+setPosition(newPosition : quint64) : void
-+getPosition() : quin64
-+setColour (newColor : QColor) : void
-+getColour() : QColor
-+setName(newName : QString) : void
-+getName() : QString
++SetPosition(new_position : quint64) : void
++GetPosition() : quin64
++SetColour (new_color : QColor) : void
++GetColour() : QColor
++SetName(new_name : QString) : void
++GetName() : QString
 
-+addString(string : QString) : void
-+clearStrings() : QString
-+getStrings() : QStringList*
++AddString(string : QString) : void
++ClearStrings() : QString
++GetStrings() : QStringList*
 
-+setNumber(number : quint64) : void
-+getNumber() : quint64</panel_attributes>
++SetNumber(number : quint64) : void
++GetNumber() : quint64</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>287</x>
-      <y>644</y>
-      <w>168</w>
-      <h>28</h>
+      <x>328</x>
+      <y>728</y>
+      <w>152</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>220.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>245</x>
+      <x>280</x>
       <y>0</y>
-      <w>147</w>
-      <h>133</h>
+      <w>168</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>STATISTICS 
 AND 
@@ -326,38 +332,38 @@ STUFF </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>455</x>
-      <y>1078</y>
-      <w>301</w>
-      <h>210</h>
+      <x>520</x>
+      <y>1232</y>
+      <w>344</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>ViewElement
 --
--m_name : QString
--m_entries : QList&lt;DataPair&gt;
--m_taskId: quint16
--m_creationTime : quint64
+-name_ : QString
+-entries_ : QList&lt;DataPair&gt;
+-task_id_: quint16
+-creation_time_ : quint64
 --
-ViewElement(newName : QString)
-+setName(newName : QString) : void
-+getName() : QString)
-+clearList() : void
-+addToList(startTime : quint64, endTime : quint64)
-+addToList(startTime : quint64, endTime : quint64, height : quint16)
-+getList() : QSharedPointer&lt;QList&lt;DataPair&gt;&gt;
-+setCreationTime(startTime : quint64) : void
-+getCreationTime() : quint64
-+setTaskId(taskId : quint16) : void
-+getTaskId() : quint16</panel_attributes>
+ViewElement(new_name : QString)
++SetName(new_name : QString) : void
++GetName() : QString)
++ClearList() : void
++AddToList(start_time : quint64, end_time : quint64)
++AddToList(start_time : quint64, end_time : quint64, height : quint16)
++GetList() : QSharedPointer&lt;QList&lt;DataPair&gt;&gt;
++SetCreationTime(start_time : quint64) : void
++GetCreationTime() : quint64
++SetTaskId(taskId : quint16) : void
++GetTaskId() : quint16</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>525</x>
-      <y>1029</y>
-      <w>21</w>
-      <h>63</h>
+      <x>600</x>
+      <y>1176</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
@@ -365,10 +371,10 @@ ViewElement(newName : QString)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>1029</y>
-      <w>21</w>
-      <h>63</h>
+      <x>768</x>
+      <y>1176</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
@@ -376,10 +382,10 @@ ViewElement(newName : QString)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>602</x>
-      <y>1281</y>
-      <w>21</w>
-      <h>63</h>
+      <x>688</x>
+      <y>1464</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
@@ -388,40 +394,40 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
-      <y>889</y>
-      <w>182</w>
-      <h>147</h>
+      <x>208</x>
+      <y>1016</y>
+      <w>208</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>HandlerModel
 --
-m_lastTime : quint64
+last_time_ : quint64
 --
 HandlerModel(newName : QString)
-+addEnter(time : quint64) : void
-+addExit(time : quint64) : void
++AddEnter(time : quint64) : void
++AddExit(time : quint64) : void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>357</x>
-      <y>798</y>
-      <w>98</w>
-      <h>105</h>
+      <x>408</x>
+      <y>952</y>
+      <w>72</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>70.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>833</x>
-      <y>889</y>
-      <w>182</w>
-      <h>147</h>
+      <x>952</x>
+      <y>1016</y>
+      <w>208</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>UserAgentModel
 --
@@ -436,10 +442,10 @@ UserAgentModel(newName : QString)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>357</x>
-      <y>1029</y>
-      <w>112</w>
-      <h>84</h>
+      <x>408</x>
+      <y>1176</y>
+      <w>128</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>140.0;100.0;10.0;10.0</additional_attributes>
@@ -447,10 +453,10 @@ UserAgentModel(newName : QString)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>749</x>
-      <y>1029</y>
-      <w>112</w>
-      <h>84</h>
+      <x>856</x>
+      <y>1176</y>
+      <w>128</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;100.0;140.0;10.0</additional_attributes>
@@ -458,13 +464,13 @@ UserAgentModel(newName : QString)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>805</y>
-      <w>147</w>
-      <h>98</h>
+      <x>928</x>
+      <y>936</y>
+      <w>40</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;190.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;30.0;100.0</additional_attributes>
   </element>
 </diagram>

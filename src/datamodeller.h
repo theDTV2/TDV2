@@ -12,50 +12,58 @@
 #include "markermodel.h"
 
 
-
+using namespace std;
 class DataModeller
 {
 public:
-    static void setDataToProcess(QStringList string);
-    static void processRawData();
+    static void SetDataToProcess(QStringList string);
+    static void ProcessRawData();
 
 
 private:
-    static void parseEntry();
-    static void getNextLine();
+    static void ParseEntry();
+    static void GetNextLine();
 
-    static void createNewTask();
-    static void createNewQueue();
-    static void createNewHandler();
-    static void createNewUserAgent();
-    static void createMarker();
+    static void CreateNewTask();
+    static void CreateNewQueue();
+    static void CreateNewHandler();
+    static void CreateNewUserAgent();
+    static void CreateMarker();
 
-    static void addTaskEnter();
-    static void addTaskStop();
-    static void addQueueReg();
-    static void addQueueSend();
-    static void addQueueReceive();
-    static void addMarkerOccurance();
-    static void addMarkerProperty();
-    static void addHandlerEnter();
-    static void addHandlerExit();
-    static void addUserAgentEnter();
-    static void addUserAgentExit();
+    static void AddTaskEnter();
+    static void AddTaskStop();
+    static void AddQueueReg();
+    static void AddQueueSend();
+    static void AddQueueReceive();
+    static void AddMarkerOccurance();
+    static void AddMarkerProperty();
+    static void AddHandlerEnter();
+    static void AddHandlerExit();
+    static void AddUserAgentEnter();
+    static void AddUserAgentExit();
 
-    static void deleteTask();
-    static void deleteQueue();
+    static void DeleteTask();
+    static void DeleteQueue();
 
-    inline static QStringList s_rawData = QStringList();
-    inline static QString s_currentString;
+    template<class T>
+    static bool GetVariableAtPositionInCurrentEntry(quint8 position, T *read_variable);
 
-    inline static QList<TaskModel> s_taskList = QList<TaskModel>();
-    inline static QList<QueueModel> s_queueList = QList<QueueModel>();
-    inline static QList<MarkerModel> s_markerList = QList<MarkerModel>();
-    inline static QList<UserAgentModel> s_userAgentList = QList<UserAgentModel>();
-    inline static QList<HandlerModel> s_handlerModel = QList<HandlerModel>();
+    template<class T>
+    static bool GetVariableAtPositionInGivenEntry(QString entry,quint8 position, T *read_variable);
+
+    static QString GetStringAtPosition(QString entry,quint8 position);
+
+    inline static QStringList raw_data_ = QStringList();
+    inline static QString current_string_;
+
+    inline static QList<TaskModel> task_list_ = QList<TaskModel>();
+    inline static QList<QueueModel> queue_list_ = QList<QueueModel>();
+    inline static QList<MarkerModel> marker_list_ = QList<MarkerModel>();
+    inline static QList<UserAgentModel> userAgent_list_ = QList<UserAgentModel>();
+    inline static QList<HandlerModel> handler_list_ = QList<HandlerModel>();
 
     //We save the last occured marker, as some operations reference it
-    QSharedPointer<MarkerModel> s_lastMarker = QSharedPointer<MarkerModel>(nullptr);
+    QSharedPointer<MarkerModel> last_marker_ = QSharedPointer<MarkerModel>(nullptr);
 
 
 

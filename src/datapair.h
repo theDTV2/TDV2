@@ -7,22 +7,22 @@ class DataPair
 public:
 DataPair(quint64 startTime, quint64 endTime, quint16 height = -1);
 
-void setStartTime(quint64 startTime);
-void setEndTime(quint64 endtime);
-void setHeight(quint16 newHeight);
+void SetStartTime(quint64 start_time);
+void SetEndTime(quint64 end_time);
+void SetHeight(quint16 new_height);
 
-quint64 getStartTime();
-quint64 getEndTime();
-quint64 getLenght();
-void    addHeight();
-void    lowerHeight();
+quint64 GetStartTime();
+quint64 GetEndTime();
+quint64 GetLenght();
+void    AddHeight();
+void    LowerHeight();
 
 
 private:
-quint64 m_startTime;
-quint64 m_endTime;
-quint64 m_lenght;
-quint16 m_height;
+quint64 start_time_;
+quint64 end_time_;
+quint64 lenght_;
+quint16 height_;
 
 };
 

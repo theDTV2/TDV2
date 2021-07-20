@@ -13,17 +13,17 @@ class TaskModel : public ViewElement
 public:
     TaskModel(QString name);
 
-    void setPriority(QString newPriority);
-    QString getPrority();
+    void SetPriority(QString new_priority);
+    QString GetPrority();
 
-    void addStart(quint64 startTime);
-    void addStop(quint64 stopTime);
+    void AddStart(quint64 start_time);
+    void AddStop(quint64 stop_time);
 
 private:
-    QString m_priority;
-    quint64 m_lenght;
+    QString priority_;
+    quint64 lenght_;
 
-    quint64 m_startTime = 0;
+    quint64 start_time_ = 0;
 };
 
 #endif // TASKMODEL_H

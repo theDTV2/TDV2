@@ -14,12 +14,12 @@ class HandlerModel : public ViewElement
 {
 public:
     HandlerModel(QString name);
-    void addEnter(quint64 time);
-    void addExit(quint64 time);
+    void AddEnter(quint64 time);
+    void AddExit(quint64 time);
 
 
 private:
-    quint64 m_lastTime;
+    quint64 last_time_;
 };
 
 #endif // HANDLERMODEL_H

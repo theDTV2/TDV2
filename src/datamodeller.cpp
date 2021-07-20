@@ -1,159 +1,161 @@
-#include "datamodeller.h"
+﻿#include "datamodeller.h"
 
 
 
 
-void DataModeller::setDataToProcess(QStringList string)
+void DataModeller::SetDataToProcess(QStringList string)
 {
-    s_rawData = string;
+    raw_data_ = string;
 }
 
-void DataModeller::processRawData()
+void DataModeller::ProcessRawData()
 {
     bool done = false;
 
     while(!done)
     {
-        parseEntry();
+        ParseEntry();
 
-        if (s_rawData.empty())
+        if (raw_data_.empty())
             done = true;
 
     }
 
 }
-void DataModeller::parseEntry()
+void DataModeller::ParseEntry()
 {
-    getNextLine();
+    GetNextLine();
 
 
-    if (s_currentString.startsWith("CRE 0"))
-        return createNewTask();
+    if (current_string_.startsWith("CRE 0"))
+        return CreateNewTask();
 
-    if (s_currentString.startsWith("CRE 3"))
-        return createNewQueue();
+    if (current_string_.startsWith("CRE 3"))
+        return CreateNewQueue();
 
-    if (s_currentString.startsWith("NAM 3"))
-        return addQueueReg();
+    if (current_string_.startsWith("NAM 3"))
+        return AddQueueReg();
 
-    if (s_currentString.startsWith("CRE 3"))
-        return createNewQueue();
+    if (current_string_.startsWith("CRE 3"))
+        return CreateNewQueue();
 
-    if (s_currentString.startsWith("NAM 1"))
-        return createNewHandler();
+    if (current_string_.startsWith("NAM 1"))
+        return CreateNewHandler();
 
-    if (s_currentString.startsWith("NAM 8"))
-        return createNewUserAgent();
+    if (current_string_.startsWith("NAM 8"))
+        return CreateNewUserAgent();
 
-    if (s_currentString.startsWith("STA 0"))
-        return addTaskEnter();
+    if (current_string_.startsWith("STA 0"))
+        return AddTaskEnter();
 
-    if (s_currentString.startsWith("STO 0"))
-        return addTaskStop();
+    if (current_string_.startsWith("STO 0"))
+        return AddTaskStop();
 
-    if (s_currentString.startsWith("STA 3"))
-        return addQueueSend();
+    if (current_string_.startsWith("STA 3"))
+        return AddQueueSend();
 
-    if (s_currentString.startsWith("STO 3"))
-        return addQueueReceive();
+    if (current_string_.startsWith("STO 3"))
+        return AddQueueReceive();
 
-    if (s_currentString.startsWith("NAM 7"))
-        return createMarker();
+    if (current_string_.startsWith("NAM 7"))
+        return CreateMarker();
 
-    if (s_currentString.startsWith("OCC 7"))
-        return addMarkerOccurance();
+    if (current_string_.startsWith("OCC 7"))
+        return AddMarkerOccurance();
 
-    if (s_currentString.startsWith("DSC"))
-        return addMarkerProperty();
+    if (current_string_.startsWith("DSC"))
+        return AddMarkerProperty();
 
-    if (s_currentString.startsWith("STA 1"))
-        return addHandlerEnter();
+    if (current_string_.startsWith("STA 1"))
+        return AddHandlerEnter();
 
-    if (s_currentString.startsWith("STO 1"))
-        return addHandlerExit();
+    if (current_string_.startsWith("STO 1"))
+        return AddHandlerExit();
 
-    if (s_currentString.startsWith("STA 8"))
-        return addUserAgentEnter();
+    if (current_string_.startsWith("STA 8"))
+        return AddUserAgentEnter();
 
-    if (s_currentString.startsWith("STO 8"))
-        return addUserAgentExit();
+    if (current_string_.startsWith("STO 8"))
+        return AddUserAgentExit();
 
 
     //If we arrive here, we have an disallowed input
 
 }
 
-void DataModeller::getNextLine()
+void DataModeller::GetNextLine()
 {
-    s_currentString = s_rawData.takeFirst();
+    current_string_ = raw_data_.takeFirst();
 }
 
 
 //Task Create : 			CRE 0 <task_number> <tick>
 //                          NAM 0 <task_number> <task_name>
-void DataModeller::createNewTask()
+void DataModeller::CreateNewTask()
 {
-  //  quint64 startTick
+     // quint64 startTick
     //TaskModel()
+
+
 
 }
 
 //Queue Create:             CRE 3 <queue_number> <tick>
-void DataModeller::createNewQueue()
+void DataModeller::CreateNewQueue()
 {
 
 }
 
 //Queue Registry Add:       NAM 3 <queue_number> <queue_name>
-void DataModeller::addQueueReg()
+void DataModeller::AddQueueReg()
 {
 
 }
 
 //Handler Create:           NAM 1 <irq> <name>
-void DataModeller::createNewHandler()
+void DataModeller::CreateNewHandler()
 {
 
 }
 
 //User Agent Create:        NAM 8 <id> <name>
-void DataModeller::createNewUserAgent()
+void DataModeller::CreateNewUserAgent()
 {
 
 }
 
 //DONE Task Enter:          STA 0 <task_number> <tick>
-void DataModeller::addTaskEnter()
+void DataModeller::AddTaskEnter()
 {
 
 }
 
 //DONE Task Stop:           STO 0 <task_number> <tick>
-void DataModeller::addTaskStop()
+void DataModeller::AddTaskStop()
 {
 
 }
 
 //DONE Queue Send (+ISR):   STA 3 <queue_number> <tick> <messages_amount (always 1)>
-void DataModeller::addQueueSend()
+void DataModeller::AddQueueSend()
 {
 
 }
 
 //DONE Queue Receive(+ISR):	STO 3 <queue_number> <tick> <messages_amount (always 1)>
-void DataModeller::addQueueReceive()
+void DataModeller::AddQueueReceive()
 {
 
 }
 
 //DONE Marker Create: 		NAM 7 <flag_number> <name>
-void DataModeller::createMarker()
+void DataModeller::CreateMarker()
 {
 
 }
 
 //DONE Marker Occurence:	OCC 7 <flag_number> <tick>
-void DataModeller::addMarkerOccurance()
+void DataModeller::AddMarkerOccurance()
 {
 
 }
@@ -161,31 +163,102 @@ void DataModeller::addMarkerOccurance()
 //Marker AddString			DSC 0 0 <string> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
 //Marker AddNumber	 		DSC 1 1 <number> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
 //Marker AddColor      		DSC 3 3 <color> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
-void DataModeller::addMarkerProperty()
+void DataModeller::AddMarkerProperty()
 {
 
 }
 
 //DONE Handler Enter: 		STA 1 <irq> <tick>
-void DataModeller::addHandlerEnter()
+void DataModeller::AddHandlerEnter()
 {
 
 }
 
 //DONE Handler Exit:		STO 1 <irq> <tick>
-void DataModeller::addHandlerExit()
+void DataModeller::AddHandlerExit()
 {
 
 }
 
 //DONE User Agent Begin:  	STA 8 <id> <tick>
-void DataModeller::addUserAgentEnter()
+void DataModeller::AddUserAgentEnter()
 {
 
 }
 
 //DONE User Agent End:   	STO 8 <id> <tick>
-void DataModeller::addUserAgentExit()
+void DataModeller::AddUserAgentExit()
 {
 
+}
+
+/*
+ * Call getVariableAtPositionInGivenEntry() with our current entry
+ *
+ */
+template<class T>
+bool DataModeller::GetVariableAtPositionInCurrentEntry(quint8 position, T *read_variable)
+{
+    return GetVariableAtPositionInGivenEntry(current_string_,position,read_variable);
+}
+
+/*
+ * Get given Variable at position from given entry
+ * specialized for QString
+ */
+template<>
+bool DataModeller::GetVariableAtPositionInGivenEntry<QString>(QString entry,quint8 position, QString *read_variable)
+{
+
+    *read_variable = GetStringAtPosition(entry, position);
+
+    return true;
+}
+
+/*
+ * Get given Variable at position from given entry
+ * specialized for quint64
+ */
+template<>
+bool DataModeller::GetVariableAtPositionInGivenEntry<quint64>(QString entry,quint8 position, quint64 *read_variable)
+{
+
+    *read_variable = GetStringAtPosition(entry, position).toULongLong();
+
+    return true;
+}
+
+/*
+ * Get given Variable at position from given entry
+ * specialized for qint64
+ */
+template<>
+bool DataModeller::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quint8 position, qint64 *read_variable)
+{
+
+    *read_variable = GetStringAtPosition(entry, position).toLongLong();
+
+    return true;
+}
+
+QString DataModeller::GetStringAtPosition(QString entry,quint8 position)
+{
+    //Iterate through Entry until we get to the desired variable
+    int current_variable_position = 0;
+    int current_position_In_Entry = 0;
+    while(current_variable_position < position)
+    {
+        if (entry[current_position_In_Entry] == ' ')
+            current_variable_position++;
+        current_position_In_Entry ++;
+    }
+
+    QString readVar = "";
+
+    while (current_variable_position != entry.length() || entry[current_variable_position] != ' ')
+    {
+        readVar.append(entry[current_variable_position]);
+        current_variable_position++;
+    }
+    return readVar;
 }

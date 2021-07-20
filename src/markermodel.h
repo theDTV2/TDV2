@@ -11,29 +11,29 @@ class MarkerModel
 public:
     MarkerModel(QString name, quint64 position, QColor color);
 
-    void setPosition(quint64 newTime);
-    quint64 getPosition();
+    void SetPosition(quint64 newTime);
+    quint64 GetPosition();
 
-    void setColor(QColor newColor);
-    QColor getColor();
+    void SetColor(QColor newColor);
+    QColor GetColor();
 
-    void setName(QString newName);
-    QString getName();
+    void SetName(QString newName);
+    QString GetName();
 
-    void addString(QString string);
-    void clearStrings();
-    QStringList* getStrings();
+    void AddString(QString string);
+    void ClearStrings();
+    QStringList* GetStrings();
 
-    void setNumber(quint64 number);
-    quint64 getNumber();
+    void SetNumber(quint64 number);
+    quint64 GetNumber();
 
 
 private:
-   QString m_name;
-   quint64 m_position;
-   QColor  m_color;
-   quint64 m_number;
-   QStringList m_strings;
+   QString name_;
+   quint64 position_;
+   QColor  color_;
+   quint64 number_;
+   QStringList strings_;
 
 };
 
