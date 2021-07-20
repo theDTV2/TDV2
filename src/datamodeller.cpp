@@ -20,7 +20,7 @@ void DataModeller::ProcessRawData()
             done = true;
 
     }
-
+//Maybe do some post stuff here
 }
 void DataModeller::ParseEntry()
 {

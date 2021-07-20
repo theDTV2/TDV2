@@ -75,24 +75,24 @@ qint32 EntryHelper::GetVariableAtPositionInGivenEntry<qint32>(QString entry,quin
     return GetStringAtPosition(entry, position).toLong();
 
 }
-QString EntryHelper::GetStringAtPosition(QString entry, quint8 positison)
+QString EntryHelper::GetStringAtPosition(QString entry, quint8 position)
 {
     //Iterate through Entry until we get to the desired variable
     int current_variable_position = 0;
     int current_position_In_Entry = 0;
-    while(current_variable_position < positison)
+    while(current_variable_position < position)
     {
         if (entry[current_position_In_Entry] == ' ')
             current_variable_position++;
-        current_position_In_Entry ++;
+        current_position_In_Entry++;
     }
 
     QString read_var = "";
 
-    while (current_variable_position != entry.length() || entry[current_variable_position] != ' ')
+    while (current_position_In_Entry != entry.length() && entry[current_position_In_Entry] != ' ')
     {
-        read_var.append(entry[current_variable_position]);
-        current_variable_position++;
+        read_var.append(entry[current_position_In_Entry]);
+        current_position_In_Entry++;
     }
     return read_var;
 }
