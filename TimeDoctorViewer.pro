@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     src/datamodeller.cpp \
     src/datapair.cpp \
+    src/datareader.cpp \
     src/entryhelper.cpp \
     src/handlermodel.cpp \
     src/main.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     src/datamodeller.h \
     src/datapair.h \
+    src/datareader.h \
     src/entryhelper.h \
     src/handlermodel.h \
     src/mainwindow.h \
