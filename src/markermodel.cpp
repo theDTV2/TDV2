@@ -1,7 +1,7 @@
 #include "markermodel.h"
 
-MarkerModel::MarkerModel(QString name, quint64 position, QColor color)
-    :name_(name),position_(position),color_(color)
+MarkerModel::MarkerModel(QString name, quint64 position, QColor color, quint16 id)
+    :name_(name),position_(position),color_(color), id_(id)
 {
 
 }
@@ -58,4 +58,14 @@ void MarkerModel::SetNumber(quint64 number)
 quint64 MarkerModel::GetNumber() const
 {
     return number_;
+}
+
+void MarkerModel::SetId(quint64 id)
+{
+    id_ = id;
+}
+
+quint64 MarkerModel::GetId() const
+{
+    return id_;
 }

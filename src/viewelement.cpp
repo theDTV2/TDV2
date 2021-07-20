@@ -10,12 +10,15 @@ ViewElement::ViewElement(QString name, quint16 task_id, quint64 creation_time):
 {
 }
 
-
 ViewElement::ViewElement(quint16 task_id, quint64 creation_time):
     task_id_(task_id),creation_time_(creation_time)
 {
 }
 
+ViewElement::ViewElement(QString name, quint16 task_id):
+    name_(name), task_id_(task_id)
+{
+}
 
 
 void ViewElement::SetName (QString new_name)

@@ -1,7 +1,12 @@
 #include "useragentmodel.h"
 
 UserAgentModel::UserAgentModel(QString name)
-    :ViewElement(name), last_time_(0)
+    :ViewElement(name)
+{
+}
+
+UserAgentModel::UserAgentModel(QString name, quint16 id)
+    :ViewElement(name, id)
 {
 }
 

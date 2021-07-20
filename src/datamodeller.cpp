@@ -118,37 +118,62 @@ void DataModeller::CreateNewQueue()
 //Queue Registry Add:       NAM 3 <queue_number> <queue_name>
 void DataModeller::AddQueueReg()
 {
-    quint16 queue_number = GetVariableAtPositionInCurrentEntry<quint64>(2);
+    quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    QString queue_name = GetVariableAtPositionInCurrentEntry<QString>(3);
+
+    QueueModel* element =  SearchHelper::FindInList(queue_list_,queue_id);
+    element->SetName(queue_name);
 }
 
 //Handler Create:           NAM 1 <irq> <name>
 void DataModeller::CreateNewHandler()
 {
+    quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    QString handler_name = GetVariableAtPositionInCurrentEntry<QString>(3);
+
+    HandlerModel new_handler = HandlerModel(handler_name,irq);
+    handler_list_.append(new_handler);
 
 }
 
 //User Agent Create:        NAM 8 <id> <name>
 void DataModeller::CreateNewUserAgent()
 {
+    quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    QString name = GetVariableAtPositionInCurrentEntry<QString>(3);
 
+    UserAgentModel new_agent = UserAgentModel(name,id);
 }
 
 //Task Enter:          STA 0 <task_number> <tick>
 void DataModeller::AddTaskEnter()
 {
+    quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
+
+    TaskModel* element =  SearchHelper::FindInList(task_list_,task_id);
+    element->AddStart(tick);
 
 }
 
 //Task Stop:           STO 0 <task_number> <tick>
 void DataModeller::AddTaskStop()
 {
+    quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
 
+    TaskModel* element =  SearchHelper::FindInList(task_list_,task_id);
+    element->AddStop(tick);
 }
 
-//Queue Send (+ISR):   STA 3 <queue_number> <tick> <messages_amount (always 1)>
+//Queue Send (+ISR):   STA 3 <queue_id> <tick> <messages_amount (always 1)>
 void DataModeller::AddQueueSend()
 {
+    quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
+    quint64 tick = GetVariableAtPositionInCurrentEntry<quint64>(3);
 
+    QueueModel* element =  SearchHelper::FindInList(queue_list_,queue_id);
+    element->AddQueueHeight(tick);
 }
 
 //Queue Receive(+ISR):	STO 3 <queue_number> <tick> <messages_amount (always 1)>

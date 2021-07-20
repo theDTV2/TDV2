@@ -14,6 +14,7 @@ class ViewElement
 {
 public:
     ViewElement(QString name);
+    ViewElement(QString name, quint16 task_id);
     ViewElement(quint16 task_id, quint64 creation_time);
     ViewElement(QString name, quint16 task_id, quint64 creation_time);
 

@@ -14,7 +14,7 @@ QString EntryHelper::GetVariableAtPositionInGivenEntry<QString>(QString entry,qu
 
 /*
  * Get given Variable at position (stating at 0) from given entry
- * specialized for quint64
+ * specialized for quint64 (u long long)
  */
 template<>
 quint64 EntryHelper::GetVariableAtPositionInGivenEntry<quint64>(QString entry,quint8 position)
@@ -26,8 +26,35 @@ quint64 EntryHelper::GetVariableAtPositionInGivenEntry<quint64>(QString entry,qu
 
 /*
  * Get given Variable at position (stating at 0) from given entry
- * specialized for qint64
+ * specialized for quint32 (uint)
  */
+template<>
+quint32 EntryHelper::GetVariableAtPositionInGivenEntry<quint32>(QString entry,quint8 position)
+{
+
+    return GetStringAtPosition(entry, position).toULong();
+
+}
+
+/*
+ * Get given Variable at position (stating at 0) from given entry
+ * specialized for quint16 (ushort)
+ */
+template<>
+quint16 EntryHelper::GetVariableAtPositionInGivenEntry<quint16>(QString entry,quint8 position)
+{
+
+    return GetStringAtPosition(entry, position).toUShort();
+
+}
+
+
+
+/*
+ * Get given Variable at position (stating at 0) from given entry
+ * specialized for qint64 (long long)
+ */
+
 template<>
 qint64 EntryHelper::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quint8 position)
 {
