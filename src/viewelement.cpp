@@ -65,11 +65,11 @@ quint64 ViewElement::GetCreationTime() const
     return creation_time_;
 }
 
-void ViewElement::SetTaskId(quint64 task_id)
+void ViewElement::SetElementId(quint64 task_id)
 {
     task_id_ = task_id;
 }
-quint16 ViewElement::GetTaskId() const
+quint16 ViewElement::GetElementId() const
 {
     return task_id_;
 }

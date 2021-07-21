@@ -12,31 +12,34 @@ class SearchHelper
 public:
 
     template<class T>
-    inline static T* FindInList(QList<T> list_to_search, quint64 id)
+    inline static T* FindInList(QList<T>* list_to_search, quint64 id)
     {
-        auto it = find_if(list_to_search.begin(),list_to_search.end(), [&id](const ViewElement& element) {
-            return element.GetTaskId() == id;
-        });
+        int i = 0;
+        while ((*list_to_search)[i].GetElementId() != id)
+        {
+            i++;
 
-        if (list_to_search.end() != it)
-            return it;
+        }
+        return static_cast<T*>(&(*list_to_search)[i]);
 
-        //TODO: Implement proper Exception Class
-        throw "ERROR";
+
+        //TODO: Implement proper Error Handling
+        //  throw "ERROR";
     }
 
 
 
-    inline static MarkerModel* FindInList(QList<MarkerModel> list_to_search, quint64 id)
+
+    inline static MarkerModel* FindInList(QList<MarkerModel>* list_to_search, quint64 id)
     {
-        auto it = find_if(list_to_search.begin(),list_to_search.end(), [id](const MarkerModel& element) {
+        auto it = find_if(list_to_search->begin(),list_to_search->end(), [id](MarkerModel element) {
             return element.GetNumber() == id;
         });
 
-        if (list_to_search.end() != it)
+        if (list_to_search->end() != it)
             return it;
 
-        //TODO: Implement proper Exception Class
+        //TODO: Implement proper Error Handling
         throw "ERROR";
     }
 

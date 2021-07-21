@@ -33,8 +33,8 @@ public:
     void SetCreationTime(quint64 creation_time);
     quint64 GetCreationTime() const;
 
-    void SetTaskId(quint64 taskId);
-    quint16 GetTaskId() const;
+    void SetElementId(quint64 taskId);
+    quint16 GetElementId() const;
 
 private:
     QString name_;

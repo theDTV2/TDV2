@@ -1,7 +1,7 @@
 #include "handlermodel.h"
 
 HandlerModel::HandlerModel(QString name, quint16 irq)
-    :ViewElement(name)
+    :ViewElement(name, irq)
 {
 }
 

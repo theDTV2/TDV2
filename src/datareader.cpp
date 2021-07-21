@@ -2,7 +2,7 @@
 
 void DataReader::ReadFile()
 {
-    QFile inputFile("C:\\Cloud\\HTW Bachelorarbeit\\Traces\\trace1.tdi");
+    QFile inputFile("C:\\Cloud\\HTW Bachelorarbeit\\Traces\\trace5.tdi");
 
     if (inputFile.open(QIODevice::ReadOnly))
     {
