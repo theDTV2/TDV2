@@ -5,6 +5,7 @@
 #include <QString>
 #include <QList>
 #include <QString>
+#include <QFileDialog>
 
 #include "datamodeller.h"
 
@@ -12,14 +13,17 @@
 class DataReader
 {
 public:
-
-static void ReadFile();
+    static void SetPathOfFile(QString new_path);
+    static void ReadTDVFile();
 
 
 private:
-inline static QDir path_of_file_;
-inline static QList<QString> read_data_;
-inline static QFile file_;
+
+    static bool CheckLine();
+
+    inline static QString path_of_file_;
+    inline static QList<QString> read_data_;
+    inline static QFile file_;
 };
 
 #endif // DATAREADER_H

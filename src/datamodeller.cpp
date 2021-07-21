@@ -143,6 +143,7 @@ void DataModeller::CreateNewUserAgent()
     QString name = GetVariableAtPositionInCurrentEntry<QString>(3);
 
     UserAgentModel new_agent = UserAgentModel(name,id);
+    userAgent_list_.append(new_agent);
 }
 
 //Task Enter:          STA 0 <task_number> <tick>
@@ -194,7 +195,9 @@ void DataModeller::CreateMarker()
 
     MarkerModel* element = new MarkerModel(name, flag_id);
     marker_list_.append(*element);
-    //last_marker_ = element;
+
+    //Needed for DSC 0 0, 1 1 and 3 3
+    last_marker_ = element;
 }
 
 //Marker Occurence:	OCC 7 <flag_number> <tick>

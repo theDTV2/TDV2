@@ -17,6 +17,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_loadTDV_clicked()
 {
-    DataReader::ReadFile();
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    "Choose TimeDoctor File",
+                                                    QDir::homePath(),
+                                                    "*.txt *.tdi");
+
+    if (fileName.isEmpty())
+        return;
+
+    DataReader::SetPathOfFile(fileName);
+    DataReader::ReadTDVFile();
 }
 

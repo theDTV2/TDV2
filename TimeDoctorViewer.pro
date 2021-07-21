@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/dataaccessor.cpp \
     src/datamodeller.cpp \
     src/datapair.cpp \
     src/datareader.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
     src/taskmodel.cpp
 
 HEADERS += \
+    src/dataaccessor.h \
     src/datamodeller.h \
     src/datapair.h \
     src/datareader.h \
