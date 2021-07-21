@@ -22,6 +22,34 @@ void DataModeller::ProcessRawData()
     }
 //Maybe do some post stuff here
 }
+
+QList<TaskModel> DataModeller::GetTasks()
+{
+    return task_list_;
+}
+
+QList<QueueModel> DataModeller::GetQueues()
+{
+    return queue_list_;
+}
+
+QList<MarkerModel> DataModeller::GetMarkers()
+{
+    return marker_list_;
+}
+
+QList<UserAgentModel> DataModeller::GetUserAgents()
+{
+    return userAgent_list_;
+}
+
+QList<HandlerModel> DataModeller::GetHandlers()
+{
+    return handler_list_;
+}
+
+
+
 void DataModeller::ParseEntry()
 {
     GetNextLine();

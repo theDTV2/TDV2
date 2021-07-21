@@ -23,6 +23,17 @@ public:
     static void ProcessRawData();
 
 
+    /*
+     * Return by given type
+     */
+
+    static QList<TaskModel> GetTasks();
+    static QList<QueueModel> GetQueues();
+    static QList<MarkerModel> GetMarkers();
+    static QList<UserAgentModel> GetUserAgents();
+    static QList<HandlerModel> GetHandlers();
+
+
 private:
     static void ParseEntry();
     static void GetNextLine();
