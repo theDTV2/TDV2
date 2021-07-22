@@ -1,6 +1,7 @@
 #ifndef GRAPHICSVIEWDRAWER_H
 #define GRAPHICSVIEWDRAWER_H
 #include "mousezoomhandler.h"
+#include <QGraphicsTextItem>
 
 class GraphicsViewDrawer
 {
