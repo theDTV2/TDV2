@@ -21,7 +21,14 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
+    <item row="0" column="0">
+     <widget class="QGraphicsView" name="mainView">
+      <property name="dragMode">
+       <enum>QGraphicsView::ScrollHandDrag</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
      <widget class="QFrame" name="lowerFrame">
       <property name="minimumSize">
        <size>
@@ -42,25 +49,6 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="loadTDV">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>load .TDV</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="2">
         <spacer name="horizontalSpacer">
          <property name="orientation">
@@ -76,6 +64,25 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="debugData">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>debugData</string>
+         </property>
+        </widget>
        </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="connectCOM">
@@ -102,12 +109,12 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="debugData">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="loadTDV">
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>20</height>
+           <width>100</width>
+           <height>25</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -117,17 +124,23 @@
           </size>
          </property>
          <property name="text">
-          <string>debugData</string>
+          <string>load .TDV</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QGraphicsView" name="graphicsView">
-      <property name="dragMode">
-       <enum>QGraphicsView::ScrollHandDrag</enum>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="testingButton">
+      <property name="maximumSize">
+       <size>
+        <width>50</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>test</string>
       </property>
      </widget>
     </item>

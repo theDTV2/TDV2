@@ -122,33 +122,35 @@ _+GetHandlers() : QList&lt;HandlerModel&gt;_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2864</x>
-      <y>664</y>
-      <w>256</w>
+      <x>3088</x>
+      <y>656</y>
+      <w>296</w>
       <h>200</h>
     </coordinates>
     <panel_attributes>GraphicsViewDrawer
 --
--amountOfTasksDrawn : quint32
--amountOfQueuesDrawn: quint32
--amountOfMarkersDrawn: quint32
+----amountOfTasksDrawn : quint32
+----amountOfQueuesDrawn: quint32
+----amountOfMarkersDrawn: quint32
 --
-_+prepareView()_
-_+finalizeView()_
-_+drawTimeLines()_
-_-drawNextTimeLine(lineToDraw : Template)_
-_-drawNextThread(threadToDraw : ThreadModel)_
-_-drawNextQueue(queueToDraw : QueueModel)_
-_-drawNextMarker(markerToDraw : MarkerModel)_
-_-drawIdleThread()_
+_+SetupScene(*view_to_setup : QGraphicView) : void_
+
+
+----+finalizeView()_
+----+drawTimeLines()_
+----drawNextTimeLine(lineToDraw : Template)_
+-----drawNextThread(threadToDraw : ThreadModel)_
+-----drawNextQueue(queueToDraw : QueueModel)_
+-----drawNextMarker(markerToDraw : MarkerModel)_
+-----drawIdleThread()_
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2864</x>
-      <y>464</y>
+      <x>3232</x>
+      <y>456</y>
       <w>264</w>
       <h>120</h>
     </coordinates>
@@ -164,8 +166,8 @@ _+drawAxis()_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2984</x>
-      <y>576</y>
+      <x>3352</x>
+      <y>568</y>
       <w>24</w>
       <h>104</h>
     </coordinates>
@@ -176,12 +178,12 @@ _+drawAxis()_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2136</x>
-      <y>760</y>
-      <w>744</w>
-      <h>120</h>
+      <y>752</y>
+      <w>968</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;130.0;390.0;130.0;390.0;10.0;910.0;10.0</additional_attributes>
+    <additional_attributes>10.0;140.0;390.0;140.0;390.0;20.0;1190.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -589,5 +591,68 @@ TODO</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>960.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2584</x>
+      <y>200</y>
+      <w>368</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>MouseZoomHelper
+--
+(*func_away_)(void) : void
+(*func_towards_)(void) : void
+
+--
+/#eventFilter(QObject *obj, QEvent *event) : bool override/
++SetAwayFunction(away_function : (*func_away_)(void)) : void
++SetTowardFunction(toward_function : (*toward_function)(void)) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2856</x>
+      <y>368</y>
+      <w>304</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>MouseZoomHandler
+--
+current_zoom_x_ : qreal
+current_zoom_y_ : qreal
+
+_handled_view : *QGraphicsView_
+--
+_ResetZoomToDefault() : void_
+_ZoomIn() : void_
+_ZoomOut() : void_
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3096</x>
+      <y>528</y>
+      <w>24</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2736</x>
+      <y>320</y>
+      <w>136</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0;150.0;140.0</additional_attributes>
   </element>
 </diagram>

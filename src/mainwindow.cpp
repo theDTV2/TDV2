@@ -29,3 +29,11 @@ void MainWindow::on_loadTDV_clicked()
     DataReader::ReadTDVFile();
 }
 
+
+void MainWindow::on_testingButton_clicked()
+{
+
+GraphicsViewDrawer::SetupScene(ui->mainView);
+
+}
+

@@ -14,10 +14,13 @@ SOURCES += \
     src/datapair.cpp \
     src/datareader.cpp \
     src/entryhelper.cpp \
+    src/graphicsviewdrawer.cpp \
     src/handlermodel.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/markermodel.cpp \
+    src/mousezoomhandler.cpp \
+    src/mousezoomhelper.cpp \
     src/queuemodel.cpp \
     src/searchhelper.cpp \
     src/useragentmodel.cpp \
@@ -30,9 +33,12 @@ HEADERS += \
     src/datapair.h \
     src/datareader.h \
     src/entryhelper.h \
+    src/graphicsviewdrawer.h \
     src/handlermodel.h \
     src/mainwindow.h \
     src/markermodel.h \
+    src/mousezoomhandler.h \
+    src/mousezoomhelper.h \
     src/queuemodel.h \
     src/searchhelper.h \
     src/useragentmodel.h \
