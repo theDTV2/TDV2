@@ -11,6 +11,8 @@ static void SetupScene(QGraphicsView *view_to_setup);
 
 private:
 
+static void DrawAxis();
+
 };
 
 #endif // GRAPHICSVIEWDRAWER_H

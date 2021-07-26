@@ -17,6 +17,7 @@ SOURCES += \
     src/graphicdrawer.cpp \
     src/graphicsviewdrawer.cpp \
     src/handlermodel.cpp \
+    src/line.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/markermodel.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     src/graphicdrawer.h \
     src/graphicsviewdrawer.h \
     src/handlermodel.h \
+    src/line.h \
     src/mainwindow.h \
     src/markermodel.h \
     src/mousezoomhandler.h \
