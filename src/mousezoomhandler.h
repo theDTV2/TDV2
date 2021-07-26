@@ -14,9 +14,8 @@ public:
     static void ZoomOut();
     static void SetHandlerView(QGraphicsView* view_to_handle);
     static QVector2D GetLastZoomStep();
+    static void RecenterView();
 
-    inline static qreal zoom_speed_x = 0.1;
-    inline static qreal zoom_speed_y = 0;
 private:
     static void AddToZoomStep(qreal x, qreal y);
 
@@ -24,8 +23,8 @@ private:
     inline static double current_zoom_x = 1;
     inline static qreal current_zoom_y = 1;
 
-    //inline static qreal zoom_speed_x = 0.1;
-   // inline static qreal zoom_speed_y = 0;
+    inline static qreal zoom_speed_x = 0.05;
+    inline static qreal zoom_speed_y = 0;
 
     inline static QVector2D last_zoom_ = QVector2D(1,1);
 

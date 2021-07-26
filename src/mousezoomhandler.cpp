@@ -22,6 +22,7 @@ void MouseZoomHandler::ZoomIn()
 
     qDebug("Reset Zoom: %f  %f", current_zoom_x,current_zoom_y);
 
+    RecenterView();
 }
 
 void MouseZoomHandler::ZoomOut()
@@ -32,6 +33,8 @@ void MouseZoomHandler::ZoomOut()
     AddToZoomStep(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
 
     qDebug("Reset Zoom: %f  %f", current_zoom_x ,current_zoom_y);
+
+    RecenterView();
 }
 
 void MouseZoomHandler::SetHandlerView(QGraphicsView* view_to_handle)
@@ -54,4 +57,16 @@ void MouseZoomHandler::AddToZoomStep(qreal x, qreal y)
 {
     last_zoom_.setX(1 / x);
     last_zoom_.setY(1 / y);
+}
+
+
+void MouseZoomHandler::RecenterView()
+{
+    //We recenter the view on the middle of the screen
+    handled_view->centerOn(
+                handled_view->mapToScene(
+                    handled_view->viewport()->rect().center()
+                    )
+                );
+
 }
