@@ -173,7 +173,7 @@ _+DrawHandlers(line_to_draw_on : Line) : *Line_
 
 
 _+DrawAxis() : void_
-_+AdjustStaticObjects() : void_
+_+AdjustNonResizableElements() : void_
 _+AddElementsToNonResizableList(elements : *QGraphicsItem, ...) : void_
 </panel_attributes>
     <additional_attributes/>
@@ -181,7 +181,7 @@ _+AddElementsToNonResizableList(elements : *QGraphicsItem, ...) : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3344</x>
+      <x>3312</x>
       <y>544</y>
       <w>24</w>
       <h>128</h>
@@ -611,7 +611,7 @@ TODO</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2584</x>
-      <y>184</y>
+      <y>168</y>
       <w>368</w>
       <h>128</h>
     </coordinates>
@@ -652,7 +652,7 @@ _ZoomOut() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3096</x>
+      <x>3112</x>
       <y>528</y>
       <w>24</w>
       <h>144</h>
@@ -663,19 +663,19 @@ _ZoomOut() : void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2736</x>
-      <y>304</y>
-      <w>136</w>
-      <h>144</h>
+      <x>2752</x>
+      <y>288</y>
+      <w>120</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0;150.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0;130.0;180.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>3376</x>
-      <y>728</y>
+      <y>768</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
@@ -695,7 +695,7 @@ m2=*</panel_attributes>
 --
 -left_point_ : qreal
 -lenght_ : qreal
--displayed_elements_ : QList&lt;ViewElement&gt;
+-displayed_element_ : QList&lt;ViewElement&gt;
 
 --
 SetLeftPoint(to_set : qreal) : void
@@ -713,7 +713,7 @@ SetDisplayedElements(to_set : QList&lt;ViewElement&gt;)
     <id>Relation</id>
     <coordinates>
       <x>3152</x>
-      <y>464</y>
+      <y>456</y>
       <w>72</w>
       <h>24</h>
     </coordinates>
@@ -724,11 +724,11 @@ SetDisplayedElements(to_set : QList&lt;ViewElement&gt;)
     <id>Relation</id>
     <coordinates>
       <x>3584</x>
-      <y>504</y>
-      <w>64</w>
-      <h>168</h>
+      <y>464</y>
+      <w>104</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>60.0;190.0;60.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>110.0;240.0;110.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

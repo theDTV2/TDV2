@@ -14,6 +14,7 @@ SOURCES += \
     src/datapair.cpp \
     src/datareader.cpp \
     src/entryhelper.cpp \
+    src/graphicdrawer.cpp \
     src/graphicsviewdrawer.cpp \
     src/handlermodel.cpp \
     src/main.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     src/datapair.h \
     src/datareader.h \
     src/entryhelper.h \
+    src/graphicdrawer.h \
     src/graphicsviewdrawer.h \
     src/handlermodel.h \
     src/mainwindow.h \
