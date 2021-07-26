@@ -32,6 +32,15 @@ void GraphicDrawer::DrawAxis()
 
 void GraphicDrawer::AdjustNonResizableElements()
 {
+    QVector2D last_zoom_step = MouseZoomHandler::GetLastZoomStep();
+
+    QTransform i_transform;
+            for (auto i : non_resizable_elements_)
+    {
+        i_transform = i->transform();
+        i_transform.scale(last_zoom_step.x(),last_zoom_step.y());
+        i->setTransform(i_transform);
+    }
 
 }
 
@@ -45,8 +54,12 @@ void GraphicDrawer::ResetNonResizableElements()
     non_resizable_elements_.clear();
 }
 
-void GraphicDrawer::RemoveElementFromResizableElements(QGraphicsItem *elements)
+void GraphicDrawer::RemoveElementFromResizableElements(QGraphicsItem *element)
 {
-//TODO
+
+    //TODO: Test if this works properly (e.g. operator==()- Overload is correct)
+    if (non_resizable_elements_.contains(element))
+            non_resizable_elements_.removeAll(element);
+
     return;
 }

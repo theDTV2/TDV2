@@ -5,26 +5,33 @@ void MouseZoomHandler::ResetZoomToDefault()
 {
 
     current_zoom_x = current_zoom_x * (1. / current_zoom_x);
-    current_zoom_y = current_zoom_y * (1. / current_zoom_x);
+    current_zoom_y = current_zoom_y * (1. / current_zoom_y);
     handled_view->scale(current_zoom_x,current_zoom_y);
+    AddToZoomStep(current_zoom_x,current_zoom_y);
     //qDebug("Reset Zoom: %f  %f", current_zoom_x * (1. / current_zoom_x), current_zoom_y);
+
+
 }
 
 void MouseZoomHandler::ZoomIn()
 {
-    current_zoom_x *= 1 +  zoom_speed_x;
-    current_zoom_y *= 1 +  zoom_speed_y;
-    handled_view->scale(1 + zoom_speed_x,1 + zoom_speed_y);
-    qDebug("Reset Zoom: %f  %f", current_zoom_x * (1. / current_zoom_x),current_zoom_y);
+    current_zoom_x *= 1 + zoom_speed_x;
+    current_zoom_y *= 1 + zoom_speed_y;
+    handled_view->scale(1 + zoom_speed_x, 1 + zoom_speed_y);
+    AddToZoomStep(1 + zoom_speed_x, 1 + zoom_speed_y);
+
+    qDebug("Reset Zoom: %f  %f", current_zoom_x,current_zoom_y);
 
 }
 
 void MouseZoomHandler::ZoomOut()
 {
-    current_zoom_x *= 1 - zoom_speed_x;
-    current_zoom_y *= 1 - zoom_speed_y;
-    handled_view->scale(1 - zoom_speed_x,1 - zoom_speed_y);
-    qDebug("Reset Zoom: %f  %f", current_zoom_x * (1. / current_zoom_x),current_zoom_y);
+    current_zoom_x *=  1 / (1 + zoom_speed_x);
+    current_zoom_y *= 1 / (1 + zoom_speed_y);
+    handled_view->scale(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
+    AddToZoomStep(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
+
+    qDebug("Reset Zoom: %f  %f", current_zoom_x ,current_zoom_y);
 }
 
 void MouseZoomHandler::SetHandlerView(QGraphicsView* view_to_handle)
@@ -36,4 +43,15 @@ void MouseZoomHandler::SetHandlerView(QGraphicsView* view_to_handle)
     handled_view = view_to_handle;
 }
 
-//IDEA: PASS callback function from GraphicsViewDrawer, and readjust height of text
+QVector2D MouseZoomHandler::GetLastZoomStep()
+{
+    QVector2D to_return = last_zoom_;
+
+    return to_return;
+}
+
+void MouseZoomHandler::AddToZoomStep(qreal x, qreal y)
+{
+    last_zoom_.setX(1 / x);
+    last_zoom_.setY(1 / y);
+}

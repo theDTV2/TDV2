@@ -15,6 +15,7 @@ bool MouseZoomHelper::eventFilter(QObject *obj, QEvent *event)
         if (mouse_event->angleDelta().y() > 0)
         {
             func_away_();
+            func_resize_();
             return true;
         }
 
@@ -37,7 +38,7 @@ void MouseZoomHelper::SetTowardFunction(void (*toward_function)(void))
     func_towards_ = toward_function;
 }
 
-void MouseZoomHelper::SetResizePrevention(void (*resize_function)())
+void MouseZoomHelper::SetResizeFunction(void (*resize_function)())
 {
     func_resize_ = resize_function;
 }

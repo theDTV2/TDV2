@@ -7,10 +7,12 @@
 class LineModel
 {
 public:
-    LineModel(qreal left_point, qreal lenght);
+    LineModel(qreal x, qreal y, qreal lenght);
 
-    void SetLeftPoint(qreal to_set);
-    qreal GetLeftPoint();
+    void SetOrigin(qreal x, qreal y);
+
+    qreal GetOriginX();
+    qreal GetOriginY();
 
     void SetLenght(qreal to_set);
     qreal GetLenght ();
@@ -20,7 +22,8 @@ public:
 
 
 private:
-    qreal left_point_;
+    qreal origin_x_;
+    qreal origin_y_;
     qreal lenght_;
     QList<ViewElement> displayed_elements_;
 

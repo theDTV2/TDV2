@@ -3,7 +3,6 @@
 
 #include <QGraphicsTextItem>
 
-#include "mousezoomhandler.h"
 #include "graphicdrawer.h"
 
 

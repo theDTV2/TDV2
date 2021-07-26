@@ -5,6 +5,7 @@
 #include <QList>
 
 #include "linemodel.h"
+#include "mousezoomhandler.h"
 
 class GraphicDrawer
 {

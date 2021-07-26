@@ -1,19 +1,25 @@
 #include "linemodel.h"
 
-LineModel::LineModel(qreal left_point, qreal lenght)
-    :left_point_(left_point), lenght_(lenght)
+LineModel::LineModel(qreal x, qreal y, qreal lenght)
+    :origin_x_(x),origin_y_(y),lenght_(lenght)
 {
 
 }
 
-void LineModel::SetLeftPoint(qreal to_set)
+void LineModel::SetOrigin(qreal x, qreal y)
 {
-    left_point_ = to_set;
+    origin_x_ = x;
+    origin_y_ = y;
 }
 
-qreal LineModel::GetLeftPoint()
+qreal LineModel::GetOriginX()
 {
-    return left_point_;
+    return origin_x_;
+}
+
+qreal LineModel::GetOriginY()
+{
+    return origin_y_;
 }
 
 void LineModel::SetLenght(qreal to_set)
