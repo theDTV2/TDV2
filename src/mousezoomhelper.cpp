@@ -19,6 +19,7 @@ bool MouseZoomHelper::eventFilter(QObject *obj, QEvent *event)
         }
 
         func_towards_();
+        func_resize_();
         return true;
     }
     else {
@@ -34,4 +35,9 @@ void MouseZoomHelper::SetAwayFunction(void (*away_function)(void))
 void MouseZoomHelper::SetTowardFunction(void (*toward_function)(void))
 {
     func_towards_ = toward_function;
+}
+
+void MouseZoomHelper::SetResizePrevention(void (*resize_function)())
+{
+    func_resize_ = resize_function;
 }

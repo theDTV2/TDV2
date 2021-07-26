@@ -13,6 +13,8 @@ public:
 
 static void SetupScene(QGraphicsView *view_to_setup);
 
+static void ResizeFunction();
+
 private:
 
 static void DrawAxis();

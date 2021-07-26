@@ -28,6 +28,7 @@ void GraphicsManager::SetupScene(QGraphicsView *view_to_setup)
     MouseZoomHandler::SetHandlerView(view_to_setup);
     e->SetAwayFunction(&MouseZoomHandler::ZoomIn);
     e->SetTowardFunction(&MouseZoomHandler::ZoomOut);
+    e->SetResizePrevention(&GraphicsManager::ResizeFunction);
 
     view_to_setup->installEventFilter(e);
 
