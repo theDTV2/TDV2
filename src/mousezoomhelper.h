@@ -14,14 +14,14 @@ public:
 
     void SetAwayFunction(void (*away_function)(void));
     void SetTowardFunction(void (*toward_function)(void));
-
+    void SetResizePrevention(void (*resize_function)(void));
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
 void (*func_away_)(void);
 void (*func_towards_)(void);
-
+void (*func_resize_)(void);
 
 signals:
 

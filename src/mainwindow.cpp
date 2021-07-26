@@ -33,7 +33,7 @@ void MainWindow::on_loadTDV_clicked()
 void MainWindow::on_testingButton_clicked()
 {
 
-GraphicsViewDrawer::SetupScene(ui->mainView);
+GraphicsManager::SetupScene(ui->mainView);
 
 }
 

@@ -1,6 +1,6 @@
-#include "graphicsviewdrawer.h"
+#include "graphicsmanager.h"
 
-void GraphicsViewDrawer::SetupScene(QGraphicsView *view_to_setup)
+void GraphicsManager::SetupScene(QGraphicsView *view_to_setup)
 {
 
     QGraphicsScene* scene = new QGraphicsScene(view_to_setup);
@@ -32,5 +32,9 @@ void GraphicsViewDrawer::SetupScene(QGraphicsView *view_to_setup)
     view_to_setup->installEventFilter(e);
 
 
+}
 
+void GraphicsManager::DrawAxis()
+{
+    GraphicDrawer::DrawAxis();
 }

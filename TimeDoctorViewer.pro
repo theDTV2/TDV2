@@ -15,9 +15,9 @@ SOURCES += \
     src/datareader.cpp \
     src/entryhelper.cpp \
     src/graphicdrawer.cpp \
-    src/graphicsviewdrawer.cpp \
+    src/graphicsmanager.cpp \
     src/handlermodel.cpp \
-    src/line.cpp \
+    src/linemodel.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/markermodel.cpp \
@@ -36,9 +36,9 @@ HEADERS += \
     src/datareader.h \
     src/entryhelper.h \
     src/graphicdrawer.h \
-    src/graphicsviewdrawer.h \
+    src/graphicsmanager.h \
     src/handlermodel.h \
-    src/line.h \
+    src/linemodel.h \
     src/mainwindow.h \
     src/markermodel.h \
     src/mousezoomhandler.h \
