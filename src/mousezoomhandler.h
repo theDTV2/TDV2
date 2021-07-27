@@ -16,15 +16,12 @@ public:
     static QVector2D GetLastZoomStep();
     static void RecenterView();
 
-    inline static qreal current_zoom_x = 1;
-    inline static qreal current_zoom_y = 1;
-
 private:
     static void AddToZoomStep(qreal x, qreal y);
 
 
-    //inline static qreal current_zoom_x = 1;
-    //inline static qreal current_zoom_y = 1;
+    inline static qreal current_zoom_x = 1;
+    inline static qreal current_zoom_y = 1;
 
     inline static qreal zoom_speed_x = 0.05;
     inline static qreal zoom_speed_y = 0;
