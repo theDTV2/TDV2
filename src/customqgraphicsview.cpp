@@ -8,6 +8,6 @@ customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * paren
 
 void customQGraphicsView::wheelEvent(QWheelEvent * event)
 {
-    //event->;
+
     QGraphicsView::wheelEvent(event);
 }
