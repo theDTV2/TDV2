@@ -10,7 +10,7 @@ class GraphicsManager
 {
 public:
 
-static void SetupScene(QGraphicsView *view_to_setup);
+static void SetupScene(QGraphicsView *main_view, QGraphicsView *label_view);
 
 static void ResizeFunction();
 

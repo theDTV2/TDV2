@@ -20,9 +20,9 @@ void MouseZoomHandler::ZoomIn()
     handled_view->scale(1 + zoom_speed_x, 1 + zoom_speed_y);
     AddToZoomStep(1 + zoom_speed_x, 1 + zoom_speed_y);
 
-    qDebug("Reset Zoom: %f  %f", current_zoom_x,current_zoom_y);
+   // qDebug("Reset Zoom: %f  %f", current_zoom_x,current_zoom_y);
 
-    RecenterView();
+    //RecenterView();
 }
 
 void MouseZoomHandler::ZoomOut()
@@ -32,9 +32,9 @@ void MouseZoomHandler::ZoomOut()
     handled_view->scale(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
     AddToZoomStep(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
 
-    qDebug("Reset Zoom: %f  %f", current_zoom_x ,current_zoom_y);
+    //qDebug("Reset Zoom: %f  %f", current_zoom_x ,current_zoom_y);
 
-    RecenterView();
+    //RecenterView();
 }
 
 void MouseZoomHandler::SetHandlerView(QGraphicsView* view_to_handle)
@@ -49,6 +49,7 @@ void MouseZoomHandler::SetHandlerView(QGraphicsView* view_to_handle)
 QVector2D MouseZoomHandler::GetLastZoomStep()
 {
     QVector2D to_return = last_zoom_;
+
 
     return to_return;
 }

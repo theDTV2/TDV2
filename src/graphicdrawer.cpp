@@ -40,7 +40,9 @@ void GraphicDrawer::AdjustNonResizableElements()
         i_transform = i->transform();
         i_transform.scale(last_zoom_step.x(),last_zoom_step.y());
         i->setTransform(i_transform);
+
     }
+
 
 }
 
