@@ -27,9 +27,6 @@ public:
 private:
     inline static QList<QGraphicsItem*> non_resizable_elements_ = QList<QGraphicsItem*>();
 
-    inline static qreal text_spacing_left_ = 25;
-    inline static qreal text_spacing_right_ = 25;
-    inline static qreal text_label_width_ = 300;
 };
 
 #endif // GRAPHICDRAWER_H
