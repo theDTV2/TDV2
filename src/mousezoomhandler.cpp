@@ -20,8 +20,11 @@ void MouseZoomHandler::ZoomIn()
     handled_view->scale(1 + zoom_speed_x, 1 + zoom_speed_y);
     AddToZoomStep(1 + zoom_speed_x, 1 + zoom_speed_y);
 
+    AxisManager::UpdateSpacing();
 
-    //RecenterView();
+    //qDebug("Left x: %f Right x %f",  handled_view->mapToScene(handled_view->rect().topLeft()).x() ,handled_view->rect().topRight().x());
+    qDebug("Scale: %f", handled_view->transform().m11());
+
 }
 
 void MouseZoomHandler::ZoomOut()
@@ -31,7 +34,7 @@ void MouseZoomHandler::ZoomOut()
     handled_view->scale(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
     AddToZoomStep(1 / (1 + zoom_speed_x),1 / (1 + zoom_speed_y));
 
-    //qDebug("Reset Zoom: %f  %f", current_zoom_x ,current_zoom_y);
+    AxisManager::UpdateSpacing();
 
     //RecenterView();
 }
@@ -62,6 +65,8 @@ void MouseZoomHandler::AddToZoomStep(qreal x, qreal y)
 
 void MouseZoomHandler::RecenterView()
 {
+
+
     //We recenter the view on the middle of the screen
     handled_view->centerOn(
                 handled_view->mapToScene(

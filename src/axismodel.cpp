@@ -10,6 +10,11 @@ AxisModel::AxisModel(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsView* used
 
 void AxisModel::UpdateSpacing()
 {
+
+    if (!enable_spacing)
+        return;
+
+
     //used_view_->viewport()
     //TODO: GET Viewport, calculate lines, place them accordingly on axis
 
@@ -21,15 +26,36 @@ void AxisModel::UpdateSpacing()
         delete e;
     }
 
-    QVector2D source = QVector2D(this->line().x1(),this->line().x2());
+    spacer_list_.clear();
+    qDebug("Amount: %f", spacer_list_.count());
+    QVector2D source = QVector2D(this->line().x1(),this->line().y1());
 
-   // used_view_->rect()
+    int current = 0;
+
+    while(current < direction_vector_.length())
+    {
+        auto item = new QGraphicsLineItem(this->line().x1() + current,this->line().y1() - 10,this->line().x1() + current,this->line().y1() + 10);
+        used_view_->scene()->addItem(item);
+        spacer_list_.append(item);
+
+        current += distance_ * used_view_->transform().m11();
+
+
+        //auto text_item = new QGraphicsTextItem(QString::number(current));
+       // text_item->setPos(this->line().x1() + current,this->line().y1() + 15);
+       // used_view_->scene()->addItem(text_item);
+    }
+
+
+
+
 
 }
 
 void AxisModel::SetDistance(qreal dist)
 {
     distance_ = dist;
+    UpdateSpacing();
 }
 
 qreal AxisModel::GetDistance()

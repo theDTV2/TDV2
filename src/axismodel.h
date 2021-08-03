@@ -5,7 +5,9 @@
 #include <QGraphicsItem>
 #include <QGraphicsView>
 #include <QGraphicsLineItem>
+#include <QGraphicsTextItem>
 #include <QVector2D>
+#include <QString>
 #include <QObject>
 
 class AxisModel : public QGraphicsLineItem
@@ -27,6 +29,8 @@ private:
     QVector2D direction_vector_;
 
     QList<QGraphicsLineItem*> spacer_list_;
+
+    bool enable_spacing = true;
 };
 
 #endif // AXISMODEL_H

@@ -6,6 +6,7 @@
 
 #include <QEvent>
 
+
 class MouseZoomHelper : public QObject
 {
     Q_OBJECT
