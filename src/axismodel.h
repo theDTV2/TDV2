@@ -4,6 +4,8 @@
 #include <QGraphicsLineItem>
 #include <QGraphicsItem>
 #include <QGraphicsView>
+#include <QGraphicsLineItem>
+#include <QVector2D>
 #include <QObject>
 
 class AxisModel : public QGraphicsLineItem
@@ -22,6 +24,7 @@ public:
 private:
     QGraphicsView* used_view_;
     qreal distance_;
+    QVector2D direction_vector_;
 
     QList<QGraphicsLineItem*> spacer_list_;
 };

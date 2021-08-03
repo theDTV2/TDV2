@@ -33,6 +33,7 @@ void GraphicDrawer::SetView(QGraphicsView *view)
 void GraphicDrawer::DrawAxis()
 {
     AxisManager::SetOrigin(QVector2D(0,0));
+    AxisManager::SetLineDistance(10);
 
     AddElementsToNonResizableList(AxisManager::SetXAxis(5000,view_));
     AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_));
