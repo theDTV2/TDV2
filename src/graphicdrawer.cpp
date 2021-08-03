@@ -25,9 +25,17 @@ void GraphicDrawer::DrawHandlers(LineModel line_to_draw)
 
 }
 
+void GraphicDrawer::SetView(QGraphicsView *view)
+{
+    view_ = view;
+}
+
 void GraphicDrawer::DrawAxis()
 {
+    AxisManager::SetOrigin(QVector2D(0,0));
 
+    AddElementsToNonResizableList(AxisManager::SetXAxis(5000,view_));
+    AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_));
 }
 
 void GraphicDrawer::AdjustNonResizableElements()

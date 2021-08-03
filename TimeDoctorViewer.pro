@@ -9,6 +9,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/axismanager.cpp \
+    src/axismodel.cpp \
     src/customqgraphicsview.cpp \
     src/dataaccessor.cpp \
     src/datamodeller.cpp \
@@ -31,6 +33,8 @@ SOURCES += \
     src/taskmodel.cpp
 
 HEADERS += \
+    src/axismanager.h \
+    src/axismodel.h \
     src/customqgraphicsview.h \
     src/dataaccessor.h \
     src/datamodeller.h \

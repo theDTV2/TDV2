@@ -20,7 +20,6 @@ void MouseZoomHandler::ZoomIn()
     handled_view->scale(1 + zoom_speed_x, 1 + zoom_speed_y);
     AddToZoomStep(1 + zoom_speed_x, 1 + zoom_speed_y);
 
-   // qDebug("Reset Zoom: %f  %f", current_zoom_x,current_zoom_y);
 
     //RecenterView();
 }
