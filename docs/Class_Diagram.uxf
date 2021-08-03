@@ -866,12 +866,12 @@ bg=orange
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>4059</x>
+      <x>4203</x>
       <y>450</y>
-      <w>513</w>
-      <h>189</h>
+      <w>369</w>
+      <h>423</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>550.0;10.0;10.0;10.0;10.0;190.0</additional_attributes>
+    <additional_attributes>390.0;10.0;10.0;10.0;10.0;450.0</additional_attributes>
   </element>
 </diagram>
