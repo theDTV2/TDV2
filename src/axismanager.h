@@ -16,8 +16,8 @@ public:
 
 
     static void SetOrigin(QVector2D origin);
-    static AxisModel* SetXAxis(qreal lenght, QGraphicsView* view);
-    static AxisModel* SetYAxis(qreal lenght, QGraphicsView* view);
+    static AxisModel* SetXAxis(qreal lenght, QGraphicsView* view, bool disable_spacing = false);
+    static AxisModel* SetYAxis(qreal lenght, QGraphicsView* view, bool disable_spacing = false);
     static void SetPenThickness(qreal var);
     static void UpdateSpacing();
     static void SetLineDistance(qreal dist);

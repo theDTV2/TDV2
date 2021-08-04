@@ -35,9 +35,9 @@ void GraphicDrawer::DrawAxis()
     AxisManager::SetOrigin(QVector2D(0,0));
 
 
-    AddElementsToNonResizableList(AxisManager::SetXAxis(5000,view_));
-    AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_));
-    AxisManager::SetLineDistance(200);
+    AxisManager::SetXAxis(5000,view_);
+    AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_,true));
+    AxisManager::SetLineDistance(100);
 }
 
 void GraphicDrawer::AdjustNonResizableElements()

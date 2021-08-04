@@ -21,7 +21,7 @@ public:
     void SetDistance(qreal dist);
     qreal GetDistance();
 
-
+    bool enable_spacing_ = true;
 
 private:
     QGraphicsView* used_view_;
@@ -30,7 +30,7 @@ private:
 
     QList<QGraphicsLineItem*> spacer_list_;
 
-    bool enable_spacing = true;
+
 };
 
 #endif // AXISMODEL_H

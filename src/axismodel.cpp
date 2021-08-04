@@ -11,7 +11,7 @@ AxisModel::AxisModel(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsView* used
 void AxisModel::UpdateSpacing()
 {
 
-    if (!enable_spacing)
+    if (!enable_spacing_)
         return;
 
 
@@ -27,28 +27,27 @@ void AxisModel::UpdateSpacing()
     }
 
     spacer_list_.clear();
-    qDebug("Amount: %f", spacer_list_.count());
+
     QVector2D source = QVector2D(this->line().x1(),this->line().y1());
 
     int current = 0;
 
     while(current < direction_vector_.length())
     {
-        auto item = new QGraphicsLineItem(this->line().x1() + current,this->line().y1() - 10,this->line().x1() + current,this->line().y1() + 10);
+        auto item = new QGraphicsLineItem(this->line().x1() + current,this->line().y1() - 10,this->line().x1() + current,this->line().y1() + 10,this);
         used_view_->scene()->addItem(item);
         spacer_list_.append(item);
 
-        current += distance_ * used_view_->transform().m11();
+        current += distance_ * (1 / used_view_->transform().m11());
 
 
-        //auto text_item = new QGraphicsTextItem(QString::number(current));
-       // text_item->setPos(this->line().x1() + current,this->line().y1() + 15);
-       // used_view_->scene()->addItem(text_item);
+        auto text_item = new QGraphicsTextItem(QString::number(current),item);
+        text_item->setPos(this->line().x1() + current,this->line().y1() + 15);
+
+
+        text_item->setTransform(text_item->transform().scale(1/used_view_->transform().m11(),1));
+        used_view_->scene()->addItem(text_item);
     }
-
-
-
-
 
 }
 

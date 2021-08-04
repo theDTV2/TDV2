@@ -26,12 +26,6 @@ void GraphicsManager::SetupScene(QGraphicsView *main_view, QGraphicsView *label_
 
 
 
-
-
-
-
-
-
     //LabelView Placeholder
     QGraphicsScene* scene2 = new QGraphicsScene(label_view);
 
