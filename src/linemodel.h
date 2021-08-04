@@ -11,7 +11,7 @@
 class LineModel
 {
 public:
-    LineModel(qreal x, qreal y, QString label, QList<ViewElement> elements, QGraphicsView* view);
+    LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view);
 
     void SetOrigin(qreal x, qreal y);
 

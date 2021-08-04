@@ -34,6 +34,7 @@ void GraphicsManager::SetupScene(QGraphicsView *main_view, QGraphicsView *label_
 
 
 
+
 }
 
 

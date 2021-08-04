@@ -38,6 +38,8 @@ void GraphicDrawer::DrawAxis()
     AxisManager::SetXAxis(5000,view_);
     AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_,true));
     AxisManager::SetLineDistance(100);
+
+
 }
 
 void GraphicDrawer::AdjustNonResizableElements()

@@ -19,7 +19,8 @@ static QList<HandlerModel> GetHandlers();
 
 static qreal GetXAxisLenght();
 
-static qreal GetYAxlisHeight();
+static qreal GetYAxisLenght();
+
 };
 
 #endif // DATAACCESSOR_H
