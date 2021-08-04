@@ -16,6 +16,10 @@ static QList<UserAgentModel> GetUserAgents();
 
 static QList<HandlerModel> GetHandlers();
 
+
+static qreal GetXAxisLenght();
+
+static qreal GetYAxlisHeight();
 };
 
 #endif // DATAACCESSOR_H

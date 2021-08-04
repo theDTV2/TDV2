@@ -1,9 +1,9 @@
 #include "linemodel.h"
 
-LineModel::LineModel(qreal x, qreal y, qreal lenght)
-    :origin_x_(x),origin_y_(y),lenght_(lenght)
+LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view)
+    :origin_x_(x),origin_y_(y), label_(label),to_be_displayed_element_(element), used_view_(view)
 {
-
+    RefreshDrawnItems();
 }
 
 void LineModel::SetOrigin(qreal x, qreal y)
@@ -22,22 +22,35 @@ qreal LineModel::GetOriginY()
     return origin_y_;
 }
 
-void LineModel::SetLenght(qreal to_set)
+
+void LineModel::SetDisplayedElement(ViewElement to_set)
 {
-    lenght_ = to_set;
+    to_be_displayed_element_ = to_set;
 }
 
-qreal LineModel::GetLenght()
+ViewElement LineModel::GetDisplayedElement()
 {
-    return lenght_;
+    return to_be_displayed_element_;
 }
 
-void LineModel::SetDisplayedElement(QList<ViewElement> to_set)
+void LineModel::RefreshDrawnItems()
 {
-    displayed_elements_ = to_set;
-}
+    for(auto &e : drawn_elements_)
+    {
+        delete e;
+    }
 
-QList<ViewElement> LineModel::GetDisplayedElement()
-{
-    return displayed_elements_;
+    QList<DataPair>* list = to_be_displayed_element_.GetList();
+
+   // QGraphicsRectItem* new_item;
+
+   // for(auto e : *list)
+    {
+        //new_item = new QGraphicsRectItem()
+
+
+
+
+    }
+
 }
