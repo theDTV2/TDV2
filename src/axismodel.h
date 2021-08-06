@@ -31,7 +31,7 @@ private:
 
     QList<QGraphicsLineItem*> spacer_list_;
 
-    inline static qreal old_pos;
+    qreal old_pos_;
 
 };
 

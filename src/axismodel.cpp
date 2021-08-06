@@ -24,9 +24,9 @@ void AxisModel::UpdateSpacing()
     qreal adjusted_distance = distance_ * (1 / used_view_->transform().m11());
 
     //If moved distance is too small, we cancel here
-    if (qAbs((old_pos - right)) < adjusted_distance)
+    if (qAbs((old_pos_ - right)) < adjusted_distance)
         return;
-    old_pos = right;
+    old_pos_ = right;
 
 
 
