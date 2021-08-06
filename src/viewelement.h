@@ -19,8 +19,6 @@ public:
     ViewElement(QString name, quint16 task_id, quint64 creation_time);
 
     void SetName (QString new_name);
-
-
     const QString GetName();
 
     void ClearList();
@@ -36,6 +34,7 @@ public:
     void SetElementId(quint64 taskId);
     quint16 GetElementId() const;
 
+    quint64 GetLargestEndTime();
 private:
     QString name_;
     quint16 task_id_;

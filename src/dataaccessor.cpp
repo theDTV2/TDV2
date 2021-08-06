@@ -28,6 +28,9 @@ QList<HandlerModel> DataAccessor::GetHandlers()
 
 qreal DataAccessor::GetXAxisLenght()
 {
+
+    return GetMaxInList(GetTasks(),GetQueues(),GetUserAgents(),GetHandlers());
+
 }
 
 qreal DataAccessor::GetYAxisLenght()
@@ -48,3 +51,5 @@ qreal DataAccessor::GetYAxisLenght()
 
     return value;
 }
+
+

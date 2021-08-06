@@ -74,3 +74,17 @@ quint16 ViewElement::GetElementId() const
     return task_id_;
 }
 
+quint64 ViewElement::GetLargestEndTime()
+{
+    /*Theoretically we could just take the end time of the last element, but it is
+     * not guaranteed by design, that that this is the largest element
+    */
+
+    quint64 max = 0;
+    for (auto &e : entries_)
+        if (e.GetEndTime() > max)
+            max = e.GetEndTime();
+
+    return max;
+}
+

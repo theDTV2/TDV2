@@ -21,6 +21,42 @@ static qreal GetXAxisLenght();
 
 static qreal GetYAxisLenght();
 
+
+private:
+
+
+template<typename T, typename ... rest>
+static qreal GetMaxInList(QList<T> list_to_search, rest... lists)
+{
+    //Iterate over each element
+    quint64 max_time = 0;
+
+    for (auto &e : list_to_search)
+    {
+       max_time = e.GetLargestEndTime();
+    }
+
+    //Is our value larger/smaller than the next one in the parameter pack?
+    quint64 new_max = (GetMaxInList(lists...));
+    if (max_time > new_max)
+        return max_time;
+    return new_max;
+}
+
+
+template<typename T>
+static qreal GetMaxInList(QList<T> list_to_search)
+{
+    //Base case
+    quint64 max_time = 0;
+
+    for (auto &e : list_to_search)
+    {
+       max_time = e.GetLargestEndTime();
+    }
+    return max_time;
+}
+
 };
 
 #endif // DATAACCESSOR_H
