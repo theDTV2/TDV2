@@ -10,6 +10,7 @@
 #include <QString>
 #include <QObject>
 
+
 class AxisModel : public QGraphicsLineItem
 {
 public:
@@ -30,6 +31,7 @@ private:
 
     QList<QGraphicsLineItem*> spacer_list_;
 
+    inline static qreal old_pos;
 
 };
 

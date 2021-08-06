@@ -50,6 +50,7 @@ void AxisManager::UpdateSpacing()
 {
     if (x_axis_line_ != nullptr)
     {
+
         x_axis_line_->UpdateSpacing();
         y_axis_line_->UpdateSpacing();
     }

@@ -15,6 +15,21 @@ void AxisModel::UpdateSpacing()
         return;
 
 
+    //Calculate left/right borders of viewport
+    qreal left = used_view_->mapToScene(used_view_->rect().topLeft()).x();
+    qreal right = used_view_->mapToScene(used_view_->rect().topRight()).x();
+
+
+    //adjusted distance by scale
+    qreal adjusted_distance = distance_ * (1 / used_view_->transform().m11());
+
+    //If moved distance is too small, we cancel here
+    if (qAbs((old_pos - right)) < adjusted_distance)
+        return;
+    old_pos = right;
+
+
+
     //used_view_->viewport()
     //TODO: GET Viewport, calculate lines, place them accordingly on axis
 
@@ -30,23 +45,27 @@ void AxisModel::UpdateSpacing()
 
     QVector2D source = QVector2D(this->line().x1(),this->line().y1());
 
-    int current = 0;
 
-    while(current < direction_vector_.length())
+    //set Min/Max right and left of viewport. (Improves performance on large viewports)
+    qreal current = qMax(0.f,left - adjusted_distance);
+    qreal right_max = qMin(right + adjusted_distance, direction_vector_.length());
+
+
+
+    while(current < right_max)
     {
         auto item = new QGraphicsLineItem(this->line().x1() + current,this->line().y1() - 10,this->line().x1() + current,this->line().y1() + 10,this);
-        used_view_->scene()->addItem(item);
+
         spacer_list_.append(item);
+        current += adjusted_distance;
 
-        current += distance_ * (1 / used_view_->transform().m11());
 
-
-        auto text_item = new QGraphicsTextItem(QString::number(current),item);
+        auto text_item = new QGraphicsTextItem(QString::number(qFloor(current)),item);
         text_item->setPos(this->line().x1() + current,this->line().y1() + 15);
 
 
         text_item->setTransform(text_item->transform().scale(1/used_view_->transform().m11(),1));
-        used_view_->scene()->addItem(text_item);
+
     }
 
 }

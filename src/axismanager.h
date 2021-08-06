@@ -28,6 +28,7 @@ private:
     inline static QVector2D origin_point_ = QVector2D(0,0);
     inline static QPen pen_;
 
+
 };
 
 #endif // AXISMANAGER_H

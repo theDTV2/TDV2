@@ -3,6 +3,8 @@
 
 #include <QGraphicsView>
 #include <QWheelEvent>
+#include "axismanager.h"
+
 
 class customQGraphicsView : public QGraphicsView
 {
@@ -11,7 +13,10 @@ public:
     customQGraphicsView(QGraphicsScene * scene, QWidget * parent = nullptr);
 
 protected:
-    virtual void wheelEvent(QWheelEvent * event);
+    virtual void wheelEvent(QWheelEvent * event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+
+   // virtual void move
 };
 
 #endif // CUSTOMQGRAPHICSVIEW_H
