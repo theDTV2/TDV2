@@ -1,6 +1,6 @@
 #include "graphicsmanager.h"
 
-void GraphicsManager::SetupScene(QGraphicsView *main_view, QGraphicsView *label_view)
+void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphicsView *label_view)
 {
 
 
@@ -21,12 +21,11 @@ void GraphicsManager::SetupScene(QGraphicsView *main_view, QGraphicsView *label_
 
 
     //TODO refactor & place somewhere else
-    MouseZoomHelper *e = new MouseZoomHelper(main_view);
+
     MouseZoomHandler::SetHandlerView(main_view);
-    e->SetAwayFunction(&MouseZoomHandler::ZoomIn);
-    e->SetTowardFunction(&MouseZoomHandler::ZoomOut);
-    e->SetResizeFunction(&GraphicsManager::ResizeFunction);
-    main_view->installEventFilter(e);
+    main_view->SetAwayFunction(&MouseZoomHandler::ZoomIn);
+    main_view->SetTowardFunction(&MouseZoomHandler::ZoomOut);
+    main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
 
 
 

@@ -10,8 +10,25 @@ void customQGraphicsView::wheelEvent(QWheelEvent * event)
 {
     AxisManager::UpdateSpacing(true);
 
+
+    if (event->type() == QEvent::Wheel)
+    {
+        QWheelEvent *mouse_event = static_cast<QWheelEvent*> (event);
+        //qDebug("Ate key press %i %i", mouse_event->angleDelta().x(), mouse_event->angleDelta().y());
+
+        if (mouse_event->angleDelta().y() > 0)
+        {
+            func_away_();
+            func_resize_();
+
+        }
+
+        func_towards_();
+        func_resize_();
+
+    }
     //MouseZoomHelper::eventFilter(())
-    QGraphicsView::wheelEvent(event);
+   // QGraphicsView::wheelEvent(event);
 }
 
 void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
@@ -28,3 +45,16 @@ void customQGraphicsView::resizeEvent(QResizeEvent *event)
     QGraphicsView::resizeEvent(event);
 }
 
+void customQGraphicsView::SetAwayFunction(void (*away_function)(void))
+{
+    func_away_ = away_function;
+}
+void customQGraphicsView::SetTowardFunction(void (*toward_function)(void))
+{
+    func_towards_ = toward_function;
+}
+
+void customQGraphicsView::SetResizeFunction(void (*resize_function)())
+{
+    func_resize_ = resize_function;
+}

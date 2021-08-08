@@ -5,13 +5,13 @@
 
 #include "graphicdrawer.h"
 #include "axismanager.h"
-
+#include "customqgraphicsview.h"
 
 class GraphicsManager
 {
 public:
 
-static void SetupScene(QGraphicsView *main_view, QGraphicsView *label_view);
+static void SetupScene(customQGraphicsView *main_view, customQGraphicsView *label_view);
 
 static void ResizeFunction();
 

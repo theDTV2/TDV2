@@ -3,7 +3,6 @@
 
 #include <QGraphicsView>
 #include <QDebug>
-#include "mousezoomhelper.h"
 #include "axismanager.h"
 
 class MouseZoomHandler

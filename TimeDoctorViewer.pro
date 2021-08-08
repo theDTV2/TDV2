@@ -25,7 +25,6 @@ SOURCES += \
     src/mainwindow.cpp \
     src/markermodel.cpp \
     src/mousezoomhandler.cpp \
-    src/mousezoomhelper.cpp \
     src/queuemodel.cpp \
     src/searchhelper.cpp \
     src/useragentmodel.cpp \
@@ -48,7 +47,6 @@ HEADERS += \
     src/mainwindow.h \
     src/markermodel.h \
     src/mousezoomhandler.h \
-    src/mousezoomhelper.h \
     src/queuemodel.h \
     src/searchhelper.h \
     src/useragentmodel.h \
