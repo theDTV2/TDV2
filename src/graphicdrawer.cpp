@@ -1,28 +1,10 @@
 #include "graphicdrawer.h"
 
-void GraphicDrawer::DrawTask(LineModel line_to_draw)
+
+
+void GraphicDrawer::DrawMarkers()
 {
-
-}
-
-void GraphicDrawer::DrawQueue(LineModel line_to_draw)
-{
-
-}
-
-void GraphicDrawer::DrawUserAgent(LineModel line_to_draw)
-{
-
-}
-
-void GraphicDrawer::DrawMarkers(LineModel line_to_draw)
-{
-
-}
-
-void GraphicDrawer::DrawHandlers(LineModel line_to_draw)
-{
-
+    current_y_ += 150;
 }
 
 void GraphicDrawer::SetView(QGraphicsView *view)
@@ -38,7 +20,19 @@ void GraphicDrawer::DrawAxis()
     AxisManager::SetXAxis(DataAccessor::GetXAxisLenght(),view_);
     AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_,true));
     AxisManager::SetLineDistance(100);
+    MouseZoomHandler::SetMaxScale(DataAccessor::GetXAxisLenght());
 
+}
+
+void GraphicDrawer::DrawData()
+{
+    DrawViewElementList(DataAccessor::GetTasks());
+    current_y_ += 55;
+    DrawViewElementList(DataAccessor::GetHandlers());
+    current_y_ += 55;
+    DrawViewElementList(DataAccessor::GetQueues());
+    current_y_ += 55;
+    DrawViewElementList(DataAccessor::GetUserAgents());
 
 }
 

@@ -16,6 +16,9 @@ public:
     static void SetHandlerView(QGraphicsView* view_to_handle);
     static QVector2D GetLastZoomStep();
     static void RecenterView();
+    static void SetMinScale(qreal min);
+    static void SetMaxScale(qreal max = 0);
+
 
 private:
     static void AddToZoomStep(qreal x, qreal y);
@@ -29,6 +32,8 @@ private:
 
     inline static QVector2D last_zoom_ = QVector2D(1,1);
 
+    inline static qreal min_scale_ = 2;
+    inline static qreal max_viewport_width_ = std::numeric_limits<qreal>::max();
 
 
     inline static QGraphicsView *handled_view;

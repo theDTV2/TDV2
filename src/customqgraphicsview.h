@@ -4,7 +4,7 @@
 #include <QGraphicsView>
 #include <QWheelEvent>
 #include "axismanager.h"
-
+#include "mousezoomhelper.h"
 
 class customQGraphicsView : public QGraphicsView
 {

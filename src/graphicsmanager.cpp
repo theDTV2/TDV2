@@ -3,15 +3,20 @@
 void GraphicsManager::SetupScene(QGraphicsView *main_view, QGraphicsView *label_view)
 {
 
+
+
     QGraphicsScene* scene = new QGraphicsScene(main_view);
     main_view->setDragMode(QGraphicsView::DragMode::ScrollHandDrag);
     main_view->setResizeAnchor(QGraphicsView::ViewportAnchor::AnchorUnderMouse);
     main_view->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     main_view->setScene(scene);
-    scene->addText("Hello World");
+
 
     GraphicDrawer::SetView(main_view);
     GraphicDrawer::DrawAxis();
+
+    GraphicDrawer::DrawData();
+
 
 
 
@@ -21,7 +26,6 @@ void GraphicsManager::SetupScene(QGraphicsView *main_view, QGraphicsView *label_
     e->SetAwayFunction(&MouseZoomHandler::ZoomIn);
     e->SetTowardFunction(&MouseZoomHandler::ZoomOut);
     e->SetResizeFunction(&GraphicsManager::ResizeFunction);
-
     main_view->installEventFilter(e);
 
 

@@ -33,6 +33,11 @@ ViewElement LineModel::GetDisplayedElement()
     return to_be_displayed_element_;
 }
 
+void LineModel::SetBrush(QBrush new_brush)
+{
+    used_brush_ = new_brush;
+}
+
 void LineModel::RefreshDrawnItems()
 {
     for(auto &e : drawn_elements_)
@@ -42,15 +47,23 @@ void LineModel::RefreshDrawnItems()
 
     QList<DataPair>* list = to_be_displayed_element_.GetList();
 
-   // QGraphicsRectItem* new_item;
 
-   // for(auto e : *list)
+
+    for(auto e : *list)
     {
-        //new_item = new QGraphicsRectItem()
+        auto new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
+                                              origin_y_ - 25,
+                                              e.GetLenght(),
+                                              50);
+
+        new_item->setBrush(used_brush_);
+        used_view_->scene()->addItem(new_item);
 
 
-
-
+    //qDebug("%f %f",e.GetStartTime(),e.GetLenght() );
     }
+
+
+
 
 }

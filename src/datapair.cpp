@@ -16,6 +16,7 @@ void DataPair::SetStartTime(quint64 start_time)
 void DataPair::SetEndTime(quint64 endTime)
 {
     end_time_ = endTime;
+    lenght_ = endTime - start_time_;
 }
 
 void DataPair::SetHeight(quint16 newHeight)

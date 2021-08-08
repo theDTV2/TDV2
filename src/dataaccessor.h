@@ -33,7 +33,8 @@ static qreal GetMaxInList(QList<T> list_to_search, rest... lists)
 
     for (auto &e : list_to_search)
     {
-       max_time = e.GetLargestEndTime();
+
+       max_time = qMax(e.GetLargestEndTime(),max_time);
     }
 
     //Is our value larger/smaller than the next one in the parameter pack?
@@ -52,7 +53,7 @@ static qreal GetMaxInList(QList<T> list_to_search)
 
     for (auto &e : list_to_search)
     {
-       max_time = e.GetLargestEndTime();
+      max_time = qMax(e.GetLargestEndTime(),max_time);
     }
     return max_time;
 }

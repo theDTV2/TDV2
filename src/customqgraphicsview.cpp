@@ -9,6 +9,8 @@ customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * paren
 void customQGraphicsView::wheelEvent(QWheelEvent * event)
 {
     AxisManager::UpdateSpacing(true);
+
+    //MouseZoomHelper::eventFilter(())
     QGraphicsView::wheelEvent(event);
 }
 
