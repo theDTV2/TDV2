@@ -19,7 +19,7 @@ public:
     static AxisModel* SetXAxis(qreal lenght, QGraphicsView* view, bool disable_spacing = false);
     static AxisModel* SetYAxis(qreal lenght, QGraphicsView* view, bool disable_spacing = false);
     static void SetPenThickness(qreal var);
-    static void UpdateSpacing();
+    static void UpdateSpacing(bool ignore_check = false);
     static void SetLineDistance(qreal dist);
 
 private:

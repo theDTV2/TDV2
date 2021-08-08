@@ -57,6 +57,8 @@ HEADERS += \
 
 FORMS += \
     src/mainwindow.ui
+	
+INCLUDEPATH += $$PWD/src
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

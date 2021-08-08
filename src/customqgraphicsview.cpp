@@ -8,18 +8,21 @@ customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * paren
 
 void customQGraphicsView::wheelEvent(QWheelEvent * event)
 {
-
+    AxisManager::UpdateSpacing(true);
     QGraphicsView::wheelEvent(event);
 }
 
 void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
 
-    if (event->buttons() & Qt::LeftButton)
-    {
-        AxisManager::UpdateSpacing();
-    }
-
+    AxisManager::UpdateSpacing();
     QGraphicsView::mouseMoveEvent(event);
 
 }
+
+void customQGraphicsView::resizeEvent(QResizeEvent *event)
+{
+    AxisManager::UpdateSpacing();
+    QGraphicsView::resizeEvent(event);
+}
+

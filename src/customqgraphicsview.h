@@ -16,6 +16,9 @@ protected:
     virtual void wheelEvent(QWheelEvent * event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
 
+    virtual void resizeEvent(QResizeEvent *event) override;
+
+
 
 };
 

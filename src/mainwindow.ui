@@ -140,7 +140,7 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontal_Layout">
       <item>
-       <widget class="QGraphicsView" name="labelView">
+       <widget class="customQGraphicsView" name="labelView">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -165,7 +165,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QGraphicsView" name="mainView">
+       <widget class="customQGraphicsView" name="mainView">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -173,6 +173,9 @@
          </size>
         </property>
         <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAsNeeded</enum>
         </property>
         <property name="dragMode">

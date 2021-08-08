@@ -17,7 +17,7 @@ public:
     AxisModel(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsView* used_view, QGraphicsItem* parent = nullptr);
 
 
-    void UpdateSpacing();
+    void UpdateSpacing(bool ignore_check = false);
 
     void SetDistance(qreal dist);
     qreal GetDistance();

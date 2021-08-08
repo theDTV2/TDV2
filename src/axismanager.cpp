@@ -46,13 +46,12 @@ void AxisManager::SetPenThickness(qreal var)
     pen_ = QPen(Qt::black, var);
 }
 
-void AxisManager::UpdateSpacing()
+void AxisManager::UpdateSpacing(bool ignore_check)
 {
     if (x_axis_line_ != nullptr)
     {
+        x_axis_line_->UpdateSpacing(ignore_check);
 
-        x_axis_line_->UpdateSpacing();
-        y_axis_line_->UpdateSpacing();
     }
 }
 
