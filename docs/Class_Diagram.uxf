@@ -601,27 +601,6 @@ TODO</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2856</x>
-      <y>469</y>
-      <w>336</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>MouseZoomHelper
---
--(*func_away_)(void) : void
--(*func_towards_)(void) : void
--(*func_resize_)(void) : void
-
---
-/#eventFilter(QObject *obj, QEvent *event) : bool override/
-+SetAwayFunction(away_function : (*func_away_)(void)) : void
-+SetTowardFunction(toward_function : (*toward_function)(void)) : void
-+SetResizeFunction(toward_function : (*toward_function)(void)) : void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>3073</x>
       <y>651</y>
       <w>280</w>
@@ -647,6 +626,7 @@ _+GetLastZoomStep() : QVector2D_
 _-AddToZoomStep(x : qreal, y : qreal) : void_
 _SetMinScale(min : qreal) : void_
 _SetMaxScale(max : qreal) : void_
+_SetCurrentZoomToMax() : void_
 
 </panel_attributes>
     <additional_attributes/>
@@ -666,12 +646,12 @@ _SetMaxScale(max : qreal) : void_
     <id>Relation</id>
     <coordinates>
       <x>3003</x>
-      <y>588</y>
+      <y>595</y>
       <w>84</w>
-      <h>147</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;190.0;100.0;190.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0;100.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -728,13 +708,13 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3185</x>
+      <x>3192</x>
       <y>546</y>
-      <w>259</w>
+      <w>252</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;350.0;10.0;350.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;340.0;10.0;340.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -754,14 +734,16 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2324</x>
+      <x>2835</x>
       <y>399</y>
       <w>364</w>
       <h>196</h>
     </coordinates>
     <panel_attributes>QCustomGraphicsView
 --
-
+-(*func_away_)(void) : void
+-(*func_towards_)(void) : void
+-(*func_resize_)(void) : void
 --
 customQGraphicsView(parent : QWidget*)
 customQGraphicsView(scene : QGraphicsScene* ,parent : QWidget*)
@@ -769,7 +751,10 @@ customQGraphicsView(scene : QGraphicsScene* ,parent : QWidget*)
 #wheelEvent(event : QWheelEvent*) : void override
 #mouseMoveEvent(event : QMouseEvent) : void override
 
-</panel_attributes>
+/#eventFilter(QObject *obj, QEvent *event) : bool override/
++SetAwayFunction(away_function : (*func_away_)(void)) : void
++SetTowardFunction(toward_function : (*toward_function)(void)) : void
++SetResizeFunction(toward_function : (*toward_function)(void)) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

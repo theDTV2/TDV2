@@ -18,7 +18,7 @@ public:
     static void SetMinScale(qreal min);
     static void SetMaxScale(qreal max = 0);
 
-
+    static void SetCurrentZoomToMax();
 private:
     static void AddToZoomStep(qreal x, qreal y);
 

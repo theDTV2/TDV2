@@ -21,7 +21,7 @@ void GraphicDrawer::DrawAxis()
     AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_,true));
     AxisManager::SetLineDistance(100);
     MouseZoomHandler::SetMaxScale(DataAccessor::GetXAxisLenght() / 5);
-
+    MouseZoomHandler::SetCurrentZoomToMax();
 }
 
 void GraphicDrawer::DrawData()

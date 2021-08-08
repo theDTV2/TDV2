@@ -38,7 +38,7 @@ void MouseZoomHandler::ZoomIn()
 
 void MouseZoomHandler::ZoomOut()
 {
-    //
+
    auto width = qAbs(handled_view->mapToScene((handled_view->rect().topLeft())).x() - handled_view->mapToScene(handled_view->rect().topRight()).x());
    //qDebug("Width: %f",width);
    if (width >= max_viewport_width_)
@@ -103,4 +103,15 @@ void MouseZoomHandler::SetMaxScale(qreal max)
 
     if (max == 0)
         max_viewport_width_ = std::numeric_limits<qreal>::max();
+}
+
+void MouseZoomHandler::SetCurrentZoomToMax()
+{
+
+
+    qDebug("%f sss",handled_view->rect().height());
+    handled_view->fitInView(0,0,max_viewport_width_,handled_view->rect().height());
+    zoom_speed_x = 1;
+    AxisManager::UpdateSpacing();
+
 }

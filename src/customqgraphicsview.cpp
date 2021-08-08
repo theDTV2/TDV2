@@ -8,13 +8,10 @@ customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * paren
 
 void customQGraphicsView::wheelEvent(QWheelEvent * event)
 {
-    AxisManager::UpdateSpacing(true);
-
 
     if (event->type() == QEvent::Wheel)
     {
         QWheelEvent *mouse_event = static_cast<QWheelEvent*> (event);
-        //qDebug("Ate key press %i %i", mouse_event->angleDelta().x(), mouse_event->angleDelta().y());
 
         if (mouse_event->angleDelta().y() > 0)
         {
@@ -27,8 +24,9 @@ void customQGraphicsView::wheelEvent(QWheelEvent * event)
         func_resize_();
 
     }
-    //MouseZoomHelper::eventFilter(())
-   // QGraphicsView::wheelEvent(event);
+    AxisManager::UpdateSpacing(true);
+
+
 }
 
 void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)

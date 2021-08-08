@@ -12,7 +12,14 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
     main_view->setScene(scene);
 
 
+    //TODO refactor & place somewhere else
     GraphicDrawer::SetView(main_view);
+    MouseZoomHandler::SetHandlerView(main_view);
+    main_view->SetAwayFunction(&MouseZoomHandler::ZoomIn);
+    main_view->SetTowardFunction(&MouseZoomHandler::ZoomOut);
+    main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
+    //END OF TODO
+
     GraphicDrawer::DrawAxis();
 
     GraphicDrawer::DrawData();
@@ -20,12 +27,6 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
 
 
 
-    //TODO refactor & place somewhere else
-
-    MouseZoomHandler::SetHandlerView(main_view);
-    main_view->SetAwayFunction(&MouseZoomHandler::ZoomIn);
-    main_view->SetTowardFunction(&MouseZoomHandler::ZoomOut);
-    main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
 
 
 
