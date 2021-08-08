@@ -11,6 +11,9 @@ void customQGraphicsView::wheelEvent(QWheelEvent * event)
 
     if (event->type() == QEvent::Wheel)
     {
+        if (!func_away_)
+            return;
+
         QWheelEvent *mouse_event = static_cast<QWheelEvent*> (event);
 
         if (mouse_event->angleDelta().y() > 0)
@@ -22,8 +25,9 @@ void customQGraphicsView::wheelEvent(QWheelEvent * event)
 
         func_towards_();
         func_resize_();
-
     }
+
+    GraphicDrawer::AdjustLabelViewPosition();
     AxisManager::UpdateSpacing(true);
 
 
@@ -32,7 +36,10 @@ void customQGraphicsView::wheelEvent(QWheelEvent * event)
 void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
 
+
     AxisManager::UpdateSpacing();
+    GraphicDrawer::AdjustLabelViewPosition();
+
     QGraphicsView::mouseMoveEvent(event);
 
 }
@@ -40,6 +47,8 @@ void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
 void customQGraphicsView::resizeEvent(QResizeEvent *event)
 {
     AxisManager::UpdateSpacing();
+    GraphicDrawer::AdjustLabelViewPosition();
+
     QGraphicsView::resizeEvent(event);
 }
 

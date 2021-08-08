@@ -19,6 +19,7 @@ public:
     static void SetMaxScale(qreal max = 0);
 
     static void SetCurrentZoomToMax();
+
 private:
     static void AddToZoomStep(qreal x, qreal y);
 
@@ -35,7 +36,8 @@ private:
     inline static qreal max_viewport_width_ = std::numeric_limits<qreal>::max();
 
 
-    inline static QGraphicsView *handled_view;
+    inline static QGraphicsView *main_view;
+    inline static QGraphicsView *label_view;
 };
 
 #endif // MOUSEZOOMHANDLER_H

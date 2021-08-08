@@ -21,6 +21,8 @@ public:
     void SetDisplayedElement(ViewElement to_set);
     ViewElement GetDisplayedElement();
 
+    QString GetLabel();
+
     void SetBrush(QBrush new_brush);
 
     void RefreshDrawnItems();
@@ -32,7 +34,7 @@ private:
     QString label_;
     ViewElement to_be_displayed_element_;
     QList<QGraphicsItem*> drawn_elements_;
-    QBrush used_brush_ = Qt::black;
+    QBrush used_brush_ = Qt::blue;
     QGraphicsView* used_view_;
 
 };

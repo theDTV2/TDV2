@@ -33,6 +33,11 @@ ViewElement LineModel::GetDisplayedElement()
     return to_be_displayed_element_;
 }
 
+QString LineModel::GetLabel()
+{
+    return label_;
+}
+
 void LineModel::SetBrush(QBrush new_brush)
 {
     used_brush_ = new_brush;
@@ -46,8 +51,6 @@ void LineModel::RefreshDrawnItems()
     }
 
     QList<DataPair>* list = to_be_displayed_element_.GetList();
-
-
 
     for(auto e : *list)
     {

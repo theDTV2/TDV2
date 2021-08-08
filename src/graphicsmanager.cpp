@@ -24,23 +24,9 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
 
     GraphicDrawer::DrawData();
 
-
-
-
-
-
-
-    //LabelView Placeholder
-    QGraphicsScene* scene2 = new QGraphicsScene(label_view);
-
-    scene2->addText("Hello Label!");
-    label_view->setScene(scene2);
-
-
-
+    GraphicDrawer::DrawLabels(label_view);
 
 }
-
 
 
 

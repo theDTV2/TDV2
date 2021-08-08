@@ -3,7 +3,7 @@
 
 #include <QGraphicsView>
 #include <QWheelEvent>
-#include "axismanager.h"
+#include "graphicdrawer.h"
 
 
 class customQGraphicsView : public QGraphicsView
@@ -25,9 +25,9 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
 
 private:
-    void (*func_away_)(void);
-    void (*func_towards_)(void);
-    void (*func_resize_)(void);
+    void (*func_away_)(void) = NULL;
+    void (*func_towards_)(void) = NULL;
+    void (*func_resize_)(void) = NULL;
 
 
 };

@@ -131,15 +131,15 @@ _-GetMaxInList(list_to_search : QList&lt;T&gt;) : qreal_
     <coordinates>
       <x>3297</x>
       <y>1015</y>
-      <w>357</w>
+      <w>434</w>
       <h>273</h>
     </coordinates>
     <panel_attributes>GraphicsManager
 --
-_-drawn_elements : QList&lt;LineModel*&gt;_
+
 --
 
-_+SetupScene(*main_view : QGraphicView,*label_view : QGraphicView) : void_
+_+SetupScene(*main_view : customQGraphicView,*label_view : customQGraphicView) : void_
 
 
 
@@ -164,14 +164,19 @@ _-current_y_ : qreal_
 --
 _-DrawViewElementList() : void_
 _-DrawMarkers() : void_
+_-DrawViewElementList(list : QList&lt;LineModel*&gt;) : void_
 
 _+SetView(view : QGraphicsView*) : void_
 _+DrawAxis() : void_
-_+DrawData() : QList&lt;LineModel*&gt;
+_+DrawData() : QList&lt;LineModel*&gt;_
 _+AdjustNonResizableElements() : void_
 _+AddElementsToNonResizableList(element : *QGraphicsItem) : void_
 _+ResetNonResizableElements() : void_
-_+RemoveElementFromResizableElements(element: *QGraphicsItem) : void_</panel_attributes>
+_+RemoveElementFromResizableElements(element: *QGraphicsItem) : void_
+_+DrawLabels(label_view : customQGraphicsView*) : void_
+_+AdjustLabelViewPosition() : void_
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -659,7 +664,7 @@ _SetCurrentZoomToMax() : void_
       <x>3878</x>
       <y>672</y>
       <w>392</w>
-      <h>217</h>
+      <h>238</h>
     </coordinates>
     <panel_attributes>LineModel
 --
@@ -675,6 +680,7 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
 +SetOrigin(qreal x,qreal y) : void
 +GetOriginX() : qreal
 +GetOriginY() : qreal
++GetLabel() : QString
 +SetDisplayedElement(to_set : ViewElement)
 +GetDisplayedElement() : ViewElement)
 +SetBrush(new_brush : QBrush) : void
@@ -719,21 +725,6 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3878</x>
-      <y>490</y>
-      <w>259</w>
-      <h>119</h>
-    </coordinates>
-    <panel_attributes>LabelDrawer
---
-Mal die Labels im 2 Fenster
-
-bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>2835</x>
       <y>399</y>
       <w>364</w>
@@ -762,7 +753,7 @@ customQGraphicsView(scene : QGraphicsScene* ,parent : QWidget*)
     <coordinates>
       <x>3542</x>
       <y>259</y>
-      <w>427</w>
+      <w>392</w>
       <h>182</h>
     </coordinates>
     <panel_attributes>AxisManager
@@ -841,17 +832,6 @@ bg=orange
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>390.0;10.0;10.0;10.0;10.0;450.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>3717</x>
-      <y>560</y>
-      <w>175</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>230.0;10.0;10.0;10.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
