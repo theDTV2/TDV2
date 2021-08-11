@@ -8,6 +8,7 @@
 #include "mousezoomhandler.h"
 #include "axismanager.h"
 #include "dataaccessor.h"
+#include "customqgraphicsview.h"
 
 class GraphicDrawer
 {
@@ -30,7 +31,6 @@ private:
 
     static void DrawMarkers();
     static void DrawViewElementsList(QList<LineModel*> to_draw);
-
 
 
     inline static QList<QGraphicsItem*> non_resizable_elements_ = QList<QGraphicsItem*>();

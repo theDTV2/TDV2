@@ -91,6 +91,10 @@ void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
     label_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     label_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+
+    ((customQGraphicsView*)label_view)->SetEnableKeyboardControls(false);
+
+
     label_view_ = label_view;
 
     label_view->scene()->addLine(-700,-1000,-700,1000);
@@ -105,11 +109,6 @@ void GraphicDrawer::AdjustLabelViewPosition()
 {
     if (label_view_ == nullptr)
         return;
-
-    qDebug("%f ",view_->rect().height());
-
-   // label_view_->sceneRect().f
-
 
     label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() +25,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
 
