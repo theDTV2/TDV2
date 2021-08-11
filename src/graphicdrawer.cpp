@@ -38,11 +38,11 @@ void GraphicDrawer::DrawAxis()
 void GraphicDrawer::DrawData()
 {
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetTasks()));
-    current_y_ += 55;
+    current_y_ += 50;
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetHandlers()));
-    current_y_ += 55;
+    current_y_ += 50;
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetQueues()));
-    current_y_ += 55;
+    current_y_ += 50;
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents()));
 
 }
@@ -85,13 +85,20 @@ void GraphicDrawer::RemoveElementFromResizableElements(QGraphicsItem *element)
 void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
 {
 
-    label_view->setScene(view_->scene());
+    label_view->setScene(new QGraphicsScene());
     label_view->setInteractive(false);
     label_view->setAlignment(Qt::AlignTop);
+    label_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    label_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     label_view_ = label_view;
 
+    label_view->scene()->addLine(-700,-1000,-700,1000);
+    label_view->scene()->addLine(700,-1000,700,1000);
+    label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() + 25,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
+
     DrawViewElementsList(drawn_elements_);
-    label_view_->fitInView(-500,0,100,500);
+
 }
 
 void GraphicDrawer::AdjustLabelViewPosition()
@@ -99,15 +106,15 @@ void GraphicDrawer::AdjustLabelViewPosition()
     if (label_view_ == nullptr)
         return;
 
-   /*//main_view->mapToScene((main_view->rect().topLeft())).x() - main_view->mapToScene(main_view->rect().topRight()).x();
+    qDebug("%f ",view_->rect().height());
 
-    qDebug("%f",view_->mapToScene(view_->rect().topLeft()).y());
+   // label_view_->sceneRect().f
 
-    auto rect = view_->sceneRect();
-    rect.setWidth(100);
-    rect.setX(-500);
-    label_view_->setSceneRect(rect);
-    label_view_->centerOn(rect.center());
-*/
+
+    label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() +25,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
+
+
+
+
 }
 

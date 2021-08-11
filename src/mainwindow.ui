@@ -140,7 +140,7 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontal_Layout">
       <item>
-       <widget class="customQGraphicsView" name="labelView">
+       <widget class="customQGraphicsView" name="labelView" native="true">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -156,14 +156,8 @@
           <height>16777215</height>
          </size>
         </property>
-        <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="interactive">
-         <bool>false</bool>
+        <property name="interactive" stdset="0">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
