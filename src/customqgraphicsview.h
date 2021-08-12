@@ -24,8 +24,8 @@ protected:
     virtual void wheelEvent(QWheelEvent * event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
-
     virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void scrollContentsBy(int dx, int dy) override;
 
 private:
     void (*func_away_)(void) = NULL;

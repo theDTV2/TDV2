@@ -40,8 +40,6 @@ void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
     AxisManager::UpdateSpacing();
     GraphicDrawer::AdjustLabelViewPosition();
 
-
-
 }
 
 void customQGraphicsView::resizeEvent(QResizeEvent *event)
@@ -56,9 +54,6 @@ void customQGraphicsView::resizeEvent(QResizeEvent *event)
 void customQGraphicsView::keyPressEvent(QKeyEvent *event)
 {
 
-
-
-
     if (enable_keyboard_controls_)
     {
         QGraphicsView::keyPressEvent(event);
@@ -67,6 +62,17 @@ void customQGraphicsView::keyPressEvent(QKeyEvent *event)
     }
 
 }
+
+void customQGraphicsView::scrollContentsBy(int dx, int dy)
+{
+
+    //AxisManager::UpdateSpacing();
+    //GraphicDrawer::AdjustLabelViewPosition();
+
+    QGraphicsView::scrollContentsBy(dx,dy);
+}
+
+
 
 void customQGraphicsView::SetAwayFunction(void (*away_function)(void))
 {

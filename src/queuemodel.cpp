@@ -32,3 +32,15 @@ void QueueModel::SetQueueHeight(quint64 startTime, quint64 endTime, quint16 heig
 {
     AddToList(startTime,endTime,height);
 }
+
+quint16 QueueModel::GetMaxHeight()
+{
+    quint16 height = 0;
+
+    for (auto e : *GetList())
+    {
+        if (e.GetHeight() > height)
+            height = e.GetHeight();
+    }
+    return height;
+}

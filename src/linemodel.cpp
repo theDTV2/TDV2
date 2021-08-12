@@ -1,9 +1,9 @@
 #include "linemodel.h"
 
-LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view,  QBrush brush)
+LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view,  QBrush brush, bool use_height)
     :origin_x_(x),origin_y_(y), label_(label),to_be_displayed_element_(element), used_view_(view), used_brush_(brush)
 {
-    RefreshDrawnItems();
+    RefreshDrawnItems(use_height);
 }
 
 void LineModel::SetOrigin(qreal x, qreal y)
@@ -43,7 +43,7 @@ void LineModel::SetBrush(QBrush new_brush)
     used_brush_ = new_brush;
 }
 
-void LineModel::RefreshDrawnItems()
+void LineModel::RefreshDrawnItems(bool use_height)
 {
     for(auto &e : drawn_elements_)
     {
@@ -58,7 +58,6 @@ void LineModel::RefreshDrawnItems()
                                               origin_y_ - 30,
                                               e.GetLenght(),
                                               50);
-
         new_item->setBrush(used_brush_);
         used_view_->scene()->addItem(new_item);
 

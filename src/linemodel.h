@@ -11,7 +11,7 @@
 class LineModel
 {
 public:
-    LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view, QBrush brush = Qt::black);
+    LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view, QBrush brush = Qt::black, bool use_height = false);
 
     void SetOrigin(qreal x, qreal y);
 
@@ -25,7 +25,7 @@ public:
 
     void SetBrush(QBrush new_brush);
 
-    void RefreshDrawnItems();
+    void RefreshDrawnItems(bool use_height);
 
 private:
 

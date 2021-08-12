@@ -13,15 +13,15 @@ void DataPair::SetStartTime(quint64 start_time)
     start_time_ = start_time;
 }
 
-void DataPair::SetEndTime(quint64 endTime)
+void DataPair::SetEndTime(quint64 end_time)
 {
-    end_time_ = endTime;
-    lenght_ = endTime - start_time_;
+    end_time_ = end_time;
+    lenght_ = end_time - start_time_;
 }
 
-void DataPair::SetHeight(quint16 newHeight)
+void DataPair::SetHeight(quint16 new_height)
 {
-    height_ = newHeight;
+    height_ = new_height;
 }
 
 
@@ -41,15 +41,20 @@ quint64 DataPair::GetLenght() const
     return lenght_;
 }
 
+quint16 DataPair::GetHeight() const
+{
+    return height_;
+}
+
 void DataPair::AddHeight()
 {
-    lenght_++;
+    height_++;
 }
 
 void DataPair::LowerHeight()
 {
     if (height_ > 0)
-      --lenght_;
+      --height_;
 }
 
 

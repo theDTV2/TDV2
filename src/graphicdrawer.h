@@ -59,6 +59,23 @@ private:
     }
 
 
+    template <class T>
+    static QList<LineModel*> DrawViewElementListWithHeight(T list, QBrush brush = Qt::black)
+    {
+        LineModel* model;
+        QList<LineModel*> return_list;
+
+        for (auto &e : list)
+        {
+            model = new LineModel(0,current_y_,e.GetName(),e,view_, brush);
+            return_list.append(model);
+            current_y_ += 55;
+        }
+        return return_list;
+    }
+
+
+
 
 
 
