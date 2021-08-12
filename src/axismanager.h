@@ -21,6 +21,7 @@ public:
     static void SetPenThickness(qreal var);
     static void UpdateSpacing(bool ignore_check = false);
     static void SetLineDistance(qreal dist);
+    static qreal GetXAxisLenght();
 
 private:
     inline static AxisModel* x_axis_line_ = nullptr;

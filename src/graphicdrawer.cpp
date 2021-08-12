@@ -2,10 +2,6 @@
 
 
 
-void GraphicDrawer::DrawMarkers()
-{
-    current_y_ += 150;
-}
 
 void GraphicDrawer::DrawViewElementsList(QList<LineModel *> to_draw)
 {
@@ -14,6 +10,12 @@ void GraphicDrawer::DrawViewElementsList(QList<LineModel *> to_draw)
         auto text_item = label_view_->scene()->addText(e->GetLabel());
         text_item->setPos(-500 + label_view_->rect().width()/2,e->GetOriginY());
     }
+
+    //Adding the Markers Label manually, as it is a seperate class of item
+    auto text_item = label_view_->scene()->addText("Markers");
+
+    text_item->setPos(-500 + label_view_->rect().width()/2,current_y_);
+
 
 }
 
@@ -26,8 +28,6 @@ void GraphicDrawer::SetView(QGraphicsView *view)
 void GraphicDrawer::DrawAxis()
 {
     AxisManager::SetOrigin(QVector2D(0,0));
-
-
     AxisManager::SetXAxis(DataAccessor::GetXAxisLenght(),view_);
     AddElementsToNonResizableList(AxisManager::SetYAxis(500,view_,true));
     AxisManager::SetLineDistance(100);
@@ -47,6 +47,10 @@ void GraphicDrawer::DrawData()
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true));
     current_y_ += 50;
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::yellow));
+    current_y_ += 150;
+    DrawMarkers();
+
+    AxisManager::SetYAxis(current_y_,view_,true);
 
 }
 
@@ -76,7 +80,6 @@ void GraphicDrawer::ResetNonResizableElements()
 
 void GraphicDrawer::RemoveElementFromResizableElements(QGraphicsItem *element)
 {
-
     //TODO: Test if this works properly (e.g. operator==()- Overload is correct)
     if (non_resizable_elements_.contains(element))
         non_resizable_elements_.removeAll(element);
@@ -119,6 +122,61 @@ void GraphicDrawer::AdjustLabelViewPosition()
 
 
 
+
+}
+
+void GraphicDrawer::DrawMarkers()
+{
+
+    auto markers_to_draw = DataAccessor::GetMarkers();
+    QGraphicsEllipseItem* new_item = nullptr;
+
+    //Offset to draw multiple lines of markers. We support
+    qreal offset = 0;
+    QString tooltip = "";
+
+
+    for(auto e : markers_to_draw)
+    {
+        //Generate Tooltip
+        tooltip = "Marker: " + e.GetName() + '\n';
+
+        //Only if we have a number, we add it to the tooltip
+        if(e.GetNumber() != 0)
+            tooltip += "Number: " + QString::number(e.GetNumber()) + '\n';
+
+        //Add all strings in the list to the tooltip
+        if (!e.GetStrings()->isEmpty())
+        {
+            int i = 0;
+            for (const auto &s : *e.GetStrings())
+            {
+                tooltip += "String " + QString::number(i) + " :" + s + '\n';
+                i++;
+            }
+        }
+
+
+
+        //Draw all positions for the current marker
+        for (auto m : e.GetPositions())
+        {
+            new_item = new QGraphicsEllipseItem(m - 50,
+                                                current_y_ + offset,
+                                                AxisManager::GetXAxisLenght() / 500,
+                                                20);
+            new_item->setBrush(e.GetColor());
+            view_->scene()->addItem(new_item);
+
+            new_item->setToolTip(tooltip);
+
+
+        }
+        //advance offset
+        offset += 30;
+    }
+
+    current_y_+=offset;
 
 }
 

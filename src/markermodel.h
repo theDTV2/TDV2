@@ -35,11 +35,11 @@ public:
 
 private:
 
-   QString name_;
-   QList<quint64> positions_;
-   QColor  color_;
-   quint64 number_;
-   QStringList strings_;
+   QString name_ = "";
+   QList<quint64> positions_ = QList<quint64>();
+   QColor  color_ = Qt::black;
+   quint64 number_ = 0;
+   QStringList strings_ = QStringList();
    quint16 id_;
 
 };

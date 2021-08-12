@@ -23,6 +23,7 @@ SOURCES += \
     src/linemodel.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
+    src/markerentry.cpp \
     src/markermodel.cpp \
     src/mousezoomhandler.cpp \
     src/queuemodel.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     src/handlermodel.h \
     src/linemodel.h \
     src/mainwindow.h \
+    src/markerentry.h \
     src/markermodel.h \
     src/mousezoomhandler.h \
     src/queuemodel.h \

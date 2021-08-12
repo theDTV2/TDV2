@@ -21,6 +21,7 @@ public:
 
     void SetDistance(qreal dist);
     qreal GetDistance();
+    qreal GetLenght();
 
     bool enable_spacing_ = true;
 

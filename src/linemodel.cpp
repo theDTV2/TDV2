@@ -89,12 +89,11 @@ void LineModel::RefreshDrawnItems(bool use_height)
 
 
 
-            new_item->setToolTip("Amount of Queue Elements at this position: " + QString::number(e.GetHeight()));
+            new_item->setToolTip("Amount of queue elements at this position: " + QString::number(e.GetHeight()));
 
         }
 
         new_item->setBrush(used_brush_);
-       // new_item->
         used_view_->scene()->addItem(new_item);
 
     }

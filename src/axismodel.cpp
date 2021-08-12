@@ -33,10 +33,7 @@ void AxisModel::UpdateSpacing(bool ignore_check)
 
 
 
-    //used_view_->viewport()
-    //TODO: GET Viewport, calculate lines, place them accordingly on axis
 
-    //Remove old lines
     for(auto e : spacer_list_)
     {
         //After removing the item from the view, we gain ownership of it, and can safely delete it
@@ -92,6 +89,11 @@ void AxisModel::SetDistance(qreal dist)
 qreal AxisModel::GetDistance()
 {
     return distance_;
+}
+
+qreal AxisModel::GetLenght()
+{
+    return direction_vector_.length();
 }
 
 

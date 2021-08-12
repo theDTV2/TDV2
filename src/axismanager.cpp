@@ -6,8 +6,11 @@ void AxisManager::SetOrigin(QVector2D origin)
     origin_point_ = origin;
 }
 
- AxisModel* AxisManager::SetXAxis(qreal lenght, QGraphicsView* view, bool disable_spacing)
+AxisModel* AxisManager::SetXAxis(qreal lenght, QGraphicsView* view, bool disable_spacing)
 {
+    if (x_axis_line_)
+        view->scene()->removeItem(x_axis_line_);
+
     x_axis_line_ = new AxisModel(origin_point_.x(),
                                  origin_point_.y(),
                                  origin_point_.x() + lenght,
@@ -24,8 +27,11 @@ void AxisManager::SetOrigin(QVector2D origin)
     return x_axis_line_;
 }
 
- AxisModel* AxisManager::SetYAxis(qreal lenght, QGraphicsView* view, bool disable_spacing)
+AxisModel* AxisManager::SetYAxis(qreal lenght, QGraphicsView* view, bool disable_spacing)
 {
+    if (y_axis_line_)
+        view->scene()->removeItem(y_axis_line_);
+
     y_axis_line_ = new AxisModel(origin_point_.x(),
                                  origin_point_.y(),
                                  origin_point_.x(),
@@ -61,4 +67,12 @@ void AxisManager::SetLineDistance(qreal dist)
     y_axis_line_->SetDistance(dist);
 
 
+}
+
+qreal AxisManager::GetXAxisLenght()
+{
+    if (x_axis_line_)
+        return x_axis_line_->GetLenght();
+
+    return 0;
 }
