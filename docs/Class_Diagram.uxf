@@ -297,12 +297,11 @@ m2=*</panel_attributes>
     <panel_attributes>MarkerModel
 --
 -name_ : QString
--number_ : quint64
 -entries_ : QList&lt;MarkerEntry&gt;
-
 -id :quint16
+
 --
-MarkerModel(name : QString)
+MarkerModel(name : QString, id : quint16)
 +SetName(new_name : QString) : void
 +GetName() : QString
 +SetId(number : quint16) : void

@@ -138,40 +138,44 @@ void GraphicDrawer::DrawMarkers()
 
     for(auto e : markers_to_draw)
     {
-        //Generate Tooltip
-        tooltip = "Marker: " + e.GetName() + '\n';
 
-        //Only if we have a number, we add it to the tooltip
-        if(e.GetNumber() != 0)
-            tooltip += "Number: " + QString::number(e.GetNumber()) + '\n';
-
-        //Add all strings in the list to the tooltip
-        if (!e.GetStrings()->isEmpty())
+        for (auto m : e.GetEntries())
         {
-            int i = 0;
-            for (const auto &s : *e.GetStrings())
+            new_item = new QGraphicsEllipseItem(m.GetPosition() - 50,
+                                                current_y_ + offset,
+                                                AxisManager::GetXAxisLenght() / 500,
+                                                20);
+            new_item->setBrush(m.GetColor());
+            view_->scene()->addItem(new_item);
+
+            //Generate Tooltip
+            tooltip = "Marker: " + e.GetName() + '\n';
+            tooltip += "pos: " + QString::number(m.GetPosition()) + '\n';
+            //Only if we have a number, we add it to the tooltip
+            if(m.GetNumber() != 0)
+                tooltip += "Number: " + QString::number(m.GetNumber()) + '\n';
+
+
+            //Add all strings in the list to the tooltip
+            if (!m.GetStrings()->isEmpty())
             {
-                tooltip += "String " + QString::number(i) + " :" + s + '\n';
-                i++;
+                int i = 0;
+                for (const auto &s : *m.GetStrings())
+                {
+                    tooltip += "String " + QString::number(i) + " :" + s + '\n';
+                    i++;
+                }
+
+                new_item->setToolTip(tooltip);
+
             }
+
         }
 
 
 
         //Draw all positions for the current marker
-        for (auto m : e.GetPositions())
-        {
-            new_item = new QGraphicsEllipseItem(m - 50,
-                                                current_y_ + offset,
-                                                AxisManager::GetXAxisLenght() / 500,
-                                                20);
-            new_item->setBrush(e.GetColor());
-            view_->scene()->addItem(new_item);
 
-            new_item->setToolTip(tooltip);
-
-
-        }
         //advance offset
         offset += 30;
     }

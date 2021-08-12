@@ -40,6 +40,8 @@ void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
     AxisManager::UpdateSpacing();
     GraphicDrawer::AdjustLabelViewPosition();
 
+    qDebug("%f",event->scenePosition().x());
+
 }
 
 void customQGraphicsView::resizeEvent(QResizeEvent *event)

@@ -6,6 +6,11 @@ MarkerEntry::MarkerEntry(quint64 position)
 
 }
 
+quint64 MarkerEntry::GetPosition()
+{
+    return position_;
+}
+
 void MarkerEntry::AddString(QString string)
 {
     strings_.append(string);

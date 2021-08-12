@@ -9,9 +9,11 @@ class MarkerEntry
 public:
     MarkerEntry(quint64 position);
 
+    quint64 GetPosition();
+
     void AddString(QString string);
     void ClearStrings();
-    QStringList* GetStrings();
+    QStringList *GetStrings();
 
     void SetColor(QColor new_color);
     QColor GetColor();

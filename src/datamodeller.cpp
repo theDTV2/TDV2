@@ -235,8 +235,9 @@ void DataModeller::AddMarkerOccurance()
     quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
-    MarkerModel* element =  SearchHelper::FindInList(&marker_list_,flag_id);
-    element->AddPosition(tick);
+    last_marker_ =  SearchHelper::FindInList(&marker_list_,flag_id);
+    last_marker_->AddEntry(tick);
+
 }
 
 //Marker AddString			DSC 0 0 <string> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
@@ -251,18 +252,18 @@ void DataModeller::AddMarkerProperty()
 
     switch (ident) {
     case 0:
-        var = GetVariableAtPositionInCurrentEntry<quint16>(3);
+        var = GetVariableAtPositionInCurrentEntry<QString>(3);
 
-        last_marker_->AddString(var);
+        last_marker_->AddStringToLast(var);
         break;
     case 1:
         num = GetVariableAtPositionInCurrentEntry<qint32>(3);
-        last_marker_->SetNumber(num);
+        last_marker_->SetNumberOfLast(num);
         break;
 
     case 2:
         num = GetVariableAtPositionInCurrentEntry<qint32>(3);
-        last_marker_->SetColor(QColor(num));
+        last_marker_->SetColorOfLast(QColor(num));
         break;
 
     }
