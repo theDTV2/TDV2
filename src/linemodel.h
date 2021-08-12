@@ -15,13 +15,13 @@ public:
 
     void SetOrigin(qreal x, qreal y);
 
-    qreal GetOriginX();
-    qreal GetOriginY();
+    qreal GetOriginX() const;
+    qreal GetOriginY() const;
 
     void SetDisplayedElement(ViewElement to_set);
     ViewElement GetDisplayedElement();
 
-    QString GetLabel();
+    QString GetLabel() const;
 
     void SetBrush(QBrush new_brush);
 

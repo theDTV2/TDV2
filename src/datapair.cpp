@@ -43,6 +43,7 @@ quint64 DataPair::GetLenght() const
 
 quint16 DataPair::GetHeight() const
 {
+
     return height_;
 }
 

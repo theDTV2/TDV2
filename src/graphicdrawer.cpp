@@ -44,7 +44,7 @@ void GraphicDrawer::DrawData()
     current_y_ += 50;
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetHandlers(),Qt::blue));
     current_y_ += 50;
-    drawn_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green));
+    drawn_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true));
     current_y_ += 50;
     drawn_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::yellow));
 

@@ -12,12 +12,12 @@ void LineModel::SetOrigin(qreal x, qreal y)
     origin_y_ = y;
 }
 
-qreal LineModel::GetOriginX()
+qreal LineModel::GetOriginX() const
 {
     return origin_x_;
 }
 
-qreal LineModel::GetOriginY()
+qreal LineModel::GetOriginY() const
 {
     return origin_y_;
 }
@@ -33,7 +33,7 @@ ViewElement LineModel::GetDisplayedElement()
     return to_be_displayed_element_;
 }
 
-QString LineModel::GetLabel()
+QString LineModel::GetLabel() const
 {
     return label_;
 }
@@ -52,13 +52,49 @@ void LineModel::RefreshDrawnItems(bool use_height)
 
     QList<DataPair>* list = to_be_displayed_element_.GetList();
 
+    quint16 max = 0;
+    //If we draw height (for queues), we do that here, otherwise we skip to regular drawing
+    //If we draw height, we must assume that we are dealing with an QueueModel,
+    //otherwise height data won't be populated
+    if (use_height)
+    {
+        //Get the max height value
+
+        for (auto e : *list)
+            if (e.GetHeight() > max)
+                max = e.GetHeight();
+
+        //draw steps with max + 1 as maximum step. This is to prevent clipping
+
+
+    }
+
+
     for(auto e : *list)
     {
-        auto new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
-                                              origin_y_ - 30,
-                                              e.GetLenght(),
-                                              50);
+        QGraphicsRectItem* new_item = nullptr;
+        //We either draw regular boxes, or height boxes
+        if (max == 0)
+            new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
+                                             origin_y_ - 30,
+                                             e.GetLenght(),
+                                             60);
+        else
+        {
+            qreal offset = 60 - (60 * ((e.GetHeight()) / (double) max));
+            new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
+                                             (origin_y_ - 30) + offset,
+                                             e.GetLenght(),
+                                             60 * ((e.GetHeight()) / (double) max)); //We need to cast here to use the double "/" Operator
+
+
+
+            new_item->setToolTip("Amount of Queue Elements at this position: " + QString::number(e.GetHeight()));
+
+        }
+
         new_item->setBrush(used_brush_);
+       // new_item->
         used_view_->scene()->addItem(new_item);
 
     }
