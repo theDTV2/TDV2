@@ -42,7 +42,23 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="4">
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>400</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="3">
         <widget class="QLabel" name="debugData">
          <property name="minimumSize">
           <size>
@@ -58,25 +74,6 @@
          </property>
          <property name="text">
           <string>debugData</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="loadTDV">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>load .TDV</string>
          </property>
         </widget>
        </item>
@@ -105,32 +102,22 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Maximum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="loadTDV">
+         <property name="minimumSize">
           <size>
-           <width>400</width>
-           <height>20</height>
+           <width>100</width>
+           <height>25</height>
           </size>
          </property>
-        </spacer>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="testingButton">
          <property name="maximumSize">
           <size>
-           <width>50</width>
-           <height>16777215</height>
+           <width>100</width>
+           <height>25</height>
           </size>
          </property>
          <property name="text">
-          <string>test</string>
+          <string>load .TDV</string>
          </property>
         </widget>
        </item>

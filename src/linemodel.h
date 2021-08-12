@@ -11,7 +11,7 @@
 class LineModel
 {
 public:
-    LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view);
+    LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view, QBrush brush = Qt::black);
 
     void SetOrigin(qreal x, qreal y);
 
@@ -34,8 +34,9 @@ private:
     QString label_;
     ViewElement to_be_displayed_element_;
     QList<QGraphicsItem*> drawn_elements_;
-    QBrush used_brush_ = Qt::blue;
     QGraphicsView* used_view_;
+    QBrush used_brush_ = Qt::blue;
+
 
 };
 

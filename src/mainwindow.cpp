@@ -21,19 +21,20 @@ void MainWindow::on_loadTDV_clicked()
                                                     "Choose TimeDoctor File",
                                                     QDir::homePath(),
                                                     "*.txt *.tdi");
-
     if (fileName.isEmpty())
         return;
 
     DataReader::SetPathOfFile(fileName);
     DataReader::ReadTDVFile();
+
+    GraphicsManager::SetupScene(ui->mainView, ui->labelView);
+
 }
 
 
 void MainWindow::on_testingButton_clicked()
 {
 
-GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 
 }
 

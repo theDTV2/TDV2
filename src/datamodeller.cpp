@@ -10,6 +10,7 @@ void DataModeller::SetDataToProcess(QStringList string)
 
 void DataModeller::ProcessRawData()
 {
+
     bool done = false;
 
     while(!done)
@@ -336,4 +337,14 @@ quint64 DataModeller::ParseTick(quint64 tick)
     //If we arrive here, everything is fine, and we just return the normal tick
     last_tick_read_ = tick;
     return tick;
+}
+
+void DataModeller::ClearData()
+{
+    task_list_.clear();
+    queue_list_.clear();
+    marker_list_.clear();
+    userAgent_list_.clear();
+    handler_list_.clear();
+
 }

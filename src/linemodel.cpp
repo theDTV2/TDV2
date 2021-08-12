@@ -1,7 +1,7 @@
 #include "linemodel.h"
 
-LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view)
-    :origin_x_(x),origin_y_(y), label_(label),to_be_displayed_element_(element), used_view_(view)
+LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view,  QBrush brush)
+    :origin_x_(x),origin_y_(y), label_(label),to_be_displayed_element_(element), used_view_(view), used_brush_(brush)
 {
     RefreshDrawnItems();
 }
@@ -55,15 +55,13 @@ void LineModel::RefreshDrawnItems()
     for(auto e : *list)
     {
         auto new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
-                                              origin_y_ - 25,
+                                              origin_y_ - 30,
                                               e.GetLenght(),
                                               50);
 
         new_item->setBrush(used_brush_);
         used_view_->scene()->addItem(new_item);
 
-
-    //qDebug("%f %f",e.GetStartTime(),e.GetLenght() );
     }
 
 

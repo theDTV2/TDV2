@@ -59,6 +59,8 @@ private:
     static quint64 ParseTick(quint64 tick);
     static void DeleteTask();
     static void DeleteQueue();
+    inline static void ClearData();
+
 
     template<class T>
     static T GetVariableAtPositionInCurrentEntry(quint8 position) ;
@@ -78,7 +80,6 @@ private:
 
     //We save the last occured marker, as some operations reference it
     inline static MarkerModel* last_marker_;
-
 
 
 
