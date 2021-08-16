@@ -32,8 +32,6 @@ void AxisModel::UpdateSpacing(bool ignore_check)
     old_pos_ = right;
 
 
-
-
     for(auto e : spacer_list_)
     {
         //After removing the item from the view, we gain ownership of it, and can safely delete it
@@ -60,7 +58,7 @@ void AxisModel::UpdateSpacing(bool ignore_check)
         auto item = new QGraphicsLineItem(this->line().x1() + current, this->line().y1() - 10, this->line().x1() + current, this->line().y1() + 10,this);
         spacer_list_.append(item);
 
-        auto text_item = new QGraphicsTextItem(QString::number(current),item);
+        auto text_item = new QGraphicsTextItem(QString::number(qFloor(current)),item);
         text_item->setPos((this->line().x1() + current),this->line().y1() + 15);
         // - ((text_item->boundingRect().width() * 0.5))
         text_item->setTransform(text_item->transform().scale(1/used_view_->transform().m11(),1));

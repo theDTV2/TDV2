@@ -29,6 +29,7 @@ public:
 
 private:
 
+    static void ResizeMarkerWidth();
     static void DrawMarkers();
     static void DrawViewElementsList(QList<LineModel*> to_draw);
 
@@ -36,12 +37,9 @@ private:
     inline static QList<QGraphicsItem*> non_resizable_elements_ = QList<QGraphicsItem*>();
     inline static QGraphicsView* view_ = nullptr;
     inline static QGraphicsView* label_view_ = nullptr;
-
-    inline static QList<LineModel*> drawn_elements_  = QList<LineModel*>();
+    inline static QList<QGraphicsRectItem*> drawn_markers_ = QList<QGraphicsRectItem*>();
+    inline static QList<LineModel*> drawn_view_elements_  = QList<LineModel*>();
     inline static qreal current_y_ = 125;
-
-
-
 
     template <class T>
     static QList<LineModel*> DrawViewElementList(T list, QBrush brush = Qt::black, bool use_height = false)
@@ -57,10 +55,6 @@ private:
         }
         return return_list;
     }
-
-
-
-
 
 };
 

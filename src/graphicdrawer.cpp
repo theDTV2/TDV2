@@ -40,13 +40,13 @@ void GraphicDrawer::DrawData()
     current_y_ = 125;
 
 
-    drawn_elements_.append(DrawViewElementList(DataAccessor::GetTasks()));
+    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetTasks()));
     current_y_ += 50;
-    drawn_elements_.append(DrawViewElementList(DataAccessor::GetHandlers(),Qt::blue));
+    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetHandlers(),Qt::blue));
     current_y_ += 50;
-    drawn_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true));
+    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true));
     current_y_ += 50;
-    drawn_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::yellow));
+    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::yellow));
     current_y_ += 150;
     DrawMarkers();
 
@@ -56,16 +56,32 @@ void GraphicDrawer::DrawData()
 
 void GraphicDrawer::AdjustNonResizableElements()
 {
-    QVector2D last_zoom_step = MouseZoomHandler::GetLastZoomStep();
+    //QVector2D last_zoom_step = MouseZoomHandler::GetLastZoomStep();
 
     QTransform i_transform;
     for (auto i : non_resizable_elements_)
     {
         i_transform = i->transform();
-        i_transform.scale(last_zoom_step.x(),last_zoom_step.y());
         i->setTransform(i_transform);
     }
+    ResizeMarkerWidth();
+}
 
+void GraphicDrawer::ResizeMarkerWidth()
+{
+
+    //QVector2D last_zoom_step = MouseZoomHandler::GetLastZoomStep();
+
+    QTransform i_transform;
+    for (auto i : drawn_markers_)
+    {
+
+        i->setRect(i->rect().x(),
+                   i->rect().y(),
+                   i->rect().width() * MouseZoomHandler::GetLastZoomStep().x(),
+                   i->rect().height() * MouseZoomHandler::GetLastZoomStep().y()
+                   );
+    }
 }
 
 void GraphicDrawer::AddElementsToNonResizableList(QGraphicsItem *element)
@@ -92,8 +108,8 @@ void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
     if (label_view->scene() != nullptr)
         label_view->scene()->clear();
 
-    if (drawn_elements_.empty())
-        drawn_elements_.clear();
+    if (drawn_view_elements_.empty())
+        drawn_view_elements_.clear();
 
     label_view->setScene(new QGraphicsScene());
     label_view->setInteractive(false);
@@ -109,7 +125,8 @@ void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
     label_view->scene()->addLine(700,-1000,700,1000);
     label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() + 20,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
 
-    DrawViewElementsList(drawn_elements_);
+    DrawViewElementsList(drawn_view_elements_);
+
 
 }
 
@@ -120,37 +137,33 @@ void GraphicDrawer::AdjustLabelViewPosition()
 
     label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() + 20,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
 
-
-
-
 }
+
 
 void GraphicDrawer::DrawMarkers()
 {
 
     auto markers_to_draw = DataAccessor::GetMarkers();
-    QGraphicsEllipseItem* new_item = nullptr;
+    QGraphicsRectItem* new_item = nullptr;
 
     //Offset to draw multiple lines of markers. We support
     qreal offset = 0;
     QString tooltip = "";
-
 
     for(auto e : markers_to_draw)
     {
 
         for (auto m : e.GetEntries())
         {
-            new_item = new QGraphicsEllipseItem(m.GetPosition() - 50,
+            new_item = new QGraphicsRectItem(m.GetPosition() - 15,
                                                 current_y_ + offset,
                                                 AxisManager::GetXAxisLenght() / 500,
-                                                20);
+                                                30);
             new_item->setBrush(m.GetColor());
             view_->scene()->addItem(new_item);
 
             //Generate Tooltip
             tooltip = "Marker: " + e.GetName() + '\n';
-            tooltip += "pos: " + QString::number(m.GetPosition()) + '\n';
             //Only if we have a number, we add it to the tooltip
             if(m.GetNumber() != 0)
                 tooltip += "Number: " + QString::number(m.GetNumber()) + '\n';
@@ -170,14 +183,13 @@ void GraphicDrawer::DrawMarkers()
 
             }
 
+            drawn_markers_.append(new_item);
         }
-
-
 
         //Draw all positions for the current marker
 
         //advance offset
-        offset += 30;
+        offset += 35;
     }
 
     current_y_+=offset;
