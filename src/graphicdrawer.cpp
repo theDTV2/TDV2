@@ -157,7 +157,7 @@ void GraphicDrawer::DrawMarkers()
         {
             new_item = new QGraphicsRectItem(m.GetPosition() - 15,
                                                 current_y_ + offset,
-                                                AxisManager::GetXAxisLenght() / 500,
+                                                AxisManager::GetXAxisLenght() / 1500,
                                                 30);
             new_item->setBrush(m.GetColor());
             view_->scene()->addItem(new_item);

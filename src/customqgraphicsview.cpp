@@ -68,8 +68,8 @@ void customQGraphicsView::keyPressEvent(QKeyEvent *event)
 void customQGraphicsView::scrollContentsBy(int dx, int dy)
 {
 
-    //AxisManager::UpdateSpacing();
-    //GraphicDrawer::AdjustLabelViewPosition();
+    AxisManager::UpdateSpacing();
+
 
     QGraphicsView::scrollContentsBy(dx,dy);
 }
