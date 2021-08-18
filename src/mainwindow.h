@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "graphicsmanager.h"
+#include "about.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,11 +19,12 @@ public:
 
 
 private slots:
-    void on_loadTDV_clicked();
+    void on_actionLoad_from_TDI_File_triggered();
 
-    void on_testingButton_clicked();
+    void on_actionQuit_triggered();
 
 
+    void on_actionAbout_2_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -39,9 +39,6 @@ void customQGraphicsView::mouseMoveEvent(QMouseEvent *event)
     AxisManager::UpdateSpacing();
     GraphicDrawer::AdjustLabelViewPosition();
 
-
-   // qDebug("x: %f" ,mapToScene(event->pos()).x());
-
 }
 
 void customQGraphicsView::resizeEvent(QResizeEvent *event)
@@ -70,16 +67,15 @@ void customQGraphicsView::scrollContentsBy(int dx, int dy)
 
     AxisManager::UpdateSpacing();
 
-
     QGraphicsView::scrollContentsBy(dx,dy);
 }
-
 
 
 void customQGraphicsView::SetAwayFunction(void (*away_function)(void))
 {
     func_away_ = away_function;
 }
+
 void customQGraphicsView::SetTowardFunction(void (*toward_function)(void))
 {
     func_towards_ = toward_function;

@@ -15,7 +15,9 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_loadTDV_clicked()
+
+
+void MainWindow::on_actionLoad_from_TDI_File_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     "Choose TimeDoctor File",
@@ -28,13 +30,20 @@ void MainWindow::on_loadTDV_clicked()
     DataReader::ReadTDVFile();
 
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
-
 }
 
 
-void MainWindow::on_testingButton_clicked()
+void MainWindow::on_actionQuit_triggered()
 {
+    QApplication::quit();
+}
 
 
+
+
+void MainWindow::on_actionAbout_2_triggered()
+{
+    About* about = new About(this);
+    about->show();
 }
 
