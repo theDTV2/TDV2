@@ -19,17 +19,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionLoad_from_TDI_File_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    "Choose TimeDoctor File",
-                                                    QDir::homePath(),
-                                                    "*.txt *.tdi");
-    if (fileName.isEmpty())
-        return;
+    ProcessTDI();
 
-    DataReader::SetPathOfFile(fileName);
-    DataReader::ReadTDVFile();
-
-    GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 }
 
 
@@ -45,5 +36,20 @@ void MainWindow::on_actionAbout_2_triggered()
 {
     About* about = new About(this);
     about->show();
+}
+
+void MainWindow::ProcessTDI()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    "Choose TimeDoctor File",
+                                                    QDir::homePath(),
+                                                    "*.txt *.tdi");
+    if (fileName.isEmpty())
+        return;
+
+    DataReader::SetPathOfFile(fileName);
+    DataReader::ReadTDVFile();
+
+    GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 }
 

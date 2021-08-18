@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QThread>
+
 #include "graphicsmanager.h"
 #include "about.h"
 
@@ -28,6 +30,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    void ProcessTDI();
 
 };
 #endif // MAINWINDOW_H
