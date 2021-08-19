@@ -14,23 +14,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-
 void MainWindow::on_actionLoad_from_TDI_File_triggered()
 {
     ProcessTDI();
 
 }
 
-
 void MainWindow::on_actionQuit_triggered()
 {
     QApplication::quit();
 }
-
-
-
 
 void MainWindow::on_actionAbout_2_triggered()
 {
@@ -51,5 +44,28 @@ void MainWindow::ProcessTDI()
     DataReader::ReadTDVFile();
 
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
+
+    SetSpeedTextBox();
+
+}
+
+
+
+void MainWindow::SetSpeedTextBox()
+{
+    QString value = "";
+
+    if (GeneralData::GetSpeed() != 0)
+        value.append("Speed: " + QString::number(GeneralData::GetSpeed()) + " \n");
+
+    if (GeneralData::GetMemorySpeed() != 0)
+        value.append("Memory Speed: " + QString::number(GeneralData::GetMemorySpeed()) + " \n");
+
+    if (GeneralData::GetTime() != 0)
+        value.append("Time: " + QString::number(GeneralData::GetTime()) + " \n");
+
+
+
+    ui->logData->setText(value);
 }
 
