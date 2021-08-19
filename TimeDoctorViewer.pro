@@ -14,6 +14,7 @@ SOURCES += \
     src/axismodel.cpp \
     src/customqgraphicsview.cpp \
     src/dataaccessor.cpp \
+    src/datafactory.cpp \
     src/datamodel.cpp \
     src/datapair.cpp \
     src/dataprocessor.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     src/axismodel.h \
     src/customqgraphicsview.h \
     src/dataaccessor.h \
+    src/datafactory.h \
     src/datamodel.h \
     src/datapair.h \
     src/dataprocessor.h \

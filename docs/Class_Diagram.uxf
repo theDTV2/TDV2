@@ -104,7 +104,7 @@ _+ReadTDVFile() : void_</panel_attributes>
     </coordinates>
     <panel_attributes>DataAccessor
 --
-_selected_data_model : *QList&lt;DataModel&gt;_
+_selected_data_model : DataModel_
 --
 _+GetTasks() : QList&lt;TaskModel&gt;_
 _+GetQueues() : QList&lt;QueueModel&gt; _
@@ -916,7 +916,7 @@ m2=*</panel_attributes>
     </coordinates>
     <panel_attributes>DataFactory
 --
--data_models_ : QList&lt;DataModel&gt;-
+_-data_model_ : QList&lt;DataModel&gt;-_
 --
 _+GetTasks() : QList&lt;TaskModel&gt;_
 _+GetQueues() : QList&lt;QueueModel&gt; _
@@ -926,7 +926,9 @@ _+GetHandlers() : QList&lt;HandlerModel&gt;_
 
 
 _+AddDataModel(id : QString, model : DataModel) : void_
-_+FindDataModelById(id : QString) : *QList&lt;DataModel&gt;_
+_+GetDataModel() : *DataModel_
+_+SetDataModel(id : QString) : DataModel*_
+_+GetDataModelStrings() : QStringList_
 
 </panel_attributes>
     <additional_attributes/>
@@ -959,7 +961,7 @@ _+FindDataModelById(id : QString) : *QList&lt;DataModel&gt;_
       <x>2002</x>
       <y>616</y>
       <w>875</w>
-      <h>196</h>
+      <h>203</h>
     </coordinates>
     <panel_attributes>DataModel
 --
@@ -987,12 +989,12 @@ _+GetId() : QString_
     <id>Relation</id>
     <coordinates>
       <x>2359</x>
-      <y>805</y>
+      <y>812</y>
       <w>21</w>
-      <h>140</h>
+      <h>133</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
