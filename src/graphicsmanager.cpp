@@ -18,10 +18,12 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
     main_view->SetTowardFunction(&MouseZoomHandler::ZoomOut);
     main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
 
+
+    GraphicDrawer::Reset();
+
+
     GraphicDrawer::DrawAxis();
-
     GraphicDrawer::DrawData();
-
     GraphicDrawer::DrawLabels(label_view);
 
 }

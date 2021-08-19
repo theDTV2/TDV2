@@ -26,6 +26,7 @@ public:
     static void DrawLabels(QGraphicsView* label_view);
     static void AdjustLabelViewPosition();
 
+    static void Reset();
 
 private:
 

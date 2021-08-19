@@ -56,7 +56,6 @@ void GraphicDrawer::DrawData()
 
 void GraphicDrawer::AdjustNonResizableElements()
 {
-    //QVector2D last_zoom_step = MouseZoomHandler::GetLastZoomStep();
 
     QTransform i_transform;
     for (auto i : non_resizable_elements_)
@@ -69,8 +68,6 @@ void GraphicDrawer::AdjustNonResizableElements()
 
 void GraphicDrawer::ResizeMarkerWidth()
 {
-
-    //QVector2D last_zoom_step = MouseZoomHandler::GetLastZoomStep();
 
     QTransform i_transform;
     for (auto i : drawn_markers_)
@@ -105,21 +102,22 @@ void GraphicDrawer::RemoveElementFromResizableElements(QGraphicsItem *element)
 
 void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
 {
-    if (label_view->scene() != nullptr)
-        label_view->scene()->clear();
 
-    if (drawn_view_elements_.empty())
-        drawn_view_elements_.clear();
+    if (!label_view->scene())
+    {
 
-    label_view->setScene(new QGraphicsScene());
-    label_view->setInteractive(false);
-    label_view->setAlignment(Qt::AlignTop);
-    label_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    label_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        label_view->setScene(new QGraphicsScene());
+        label_view->setInteractive(false);
+        label_view->setAlignment(Qt::AlignTop);
+        label_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        label_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        ((customQGraphicsView*)label_view)->SetEnableKeyboardControls(false);
+        label_view_ = label_view;
+    }
 
-    ((customQGraphicsView*)label_view)->SetEnableKeyboardControls(false);
 
-    label_view_ = label_view;
+
+
 
     label_view->scene()->addLine(-700,-1000,-700,1000);
     label_view->scene()->addLine(700,-1000,700,1000);
@@ -137,6 +135,31 @@ void GraphicDrawer::AdjustLabelViewPosition()
 
     label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() + 20,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
 
+}
+
+void GraphicDrawer::Reset()
+{
+    //The main view is always passed at this point
+    if (view_->scene())
+        view_->scene()->clear();
+
+    //The label_view is only passed after the first runthrough
+    if (label_view_)
+        label_view_->scene()->clear();
+
+
+    //cleanup
+    for (auto &e : drawn_markers_)
+        delete(e);
+    drawn_markers_.clear();
+    for (auto &e : drawn_view_elements_)
+        delete(e);
+    drawn_view_elements_.clear();
+    for (auto &e : non_resizable_elements_)
+        delete(e);
+    non_resizable_elements_.clear();
+
+    current_y_ = 0;
 }
 
 

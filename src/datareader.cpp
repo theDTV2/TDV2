@@ -22,8 +22,8 @@ void DataReader::ReadTDVFile()
        file_.close();
     }
 
-    DataModeller::SetDataToProcess(read_data_);
-    DataModeller::ProcessRawData();
+    DataProcessor::SetDataToProcess(read_data_);
+    DataProcessor::ProcessRawData();
 }
 
 

@@ -1,14 +1,14 @@
-﻿#include "datamodeller.h"
+﻿#include "dataprocessor.h"
 
 
 
 
-void DataModeller::SetDataToProcess(QStringList string)
+void DataProcessor::SetDataToProcess(QStringList string)
 {
     raw_data_ = string;
 }
 
-void DataModeller::ProcessRawData()
+void DataProcessor::ProcessRawData()
 {
 
     bool done = false;
@@ -24,34 +24,34 @@ void DataModeller::ProcessRawData()
 //Maybe do some post stuff here
 }
 
-QList<TaskModel> DataModeller::GetTasks()
+QList<TaskModel> DataProcessor::GetTasks()
 {
     return task_list_;
 }
 
-QList<QueueModel> DataModeller::GetQueues()
+QList<QueueModel> DataProcessor::GetQueues()
 {
     return queue_list_;
 }
 
-QList<MarkerModel> DataModeller::GetMarkers()
+QList<MarkerModel> DataProcessor::GetMarkers()
 {
     return marker_list_;
 }
 
-QList<UserAgentModel> DataModeller::GetUserAgents()
+QList<UserAgentModel> DataProcessor::GetUserAgents()
 {
     return userAgent_list_;
 }
 
-QList<HandlerModel> DataModeller::GetHandlers()
+QList<HandlerModel> DataProcessor::GetHandlers()
 {
     return handler_list_;
 }
 
 
 
-void DataModeller::ParseEntry()
+void DataProcessor::ParseEntry()
 {
     GetNextLine();
 
@@ -121,7 +121,7 @@ void DataModeller::ParseEntry()
 
 }
 
-void DataModeller::GetNextLine()
+void DataProcessor::GetNextLine()
 {
     current_string_ = raw_data_.takeFirst();
 }
@@ -129,7 +129,7 @@ void DataModeller::GetNextLine()
 
 //Task Create : 			CRE 0 <task_number> <tick>
 //                          NAM 0 <task_number> <task_name>
-void DataModeller::CreateNewTask()
+void DataProcessor::CreateNewTask()
 {
 
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -143,7 +143,7 @@ void DataModeller::CreateNewTask()
 }
 
 //Queue Create:             CRE 3 <queue_number> <tick>
-void DataModeller::CreateNewQueue()
+void DataProcessor::CreateNewQueue()
 {
      quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
      quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -154,7 +154,7 @@ void DataModeller::CreateNewQueue()
 }
 
 //Queue Registry Add:       NAM 3 <queue_number> <queue_name>
-void DataModeller::AddQueueReg()
+void DataProcessor::AddQueueReg()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     QString queue_name = GetVariableAtPositionInCurrentEntry<QString>(3);
@@ -164,7 +164,7 @@ void DataModeller::AddQueueReg()
 }
 
 //Handler Create:           NAM 1 <irq> <name>
-void DataModeller::CreateNewHandler()
+void DataProcessor::CreateNewHandler()
 {
     quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
     QString handler_name = GetVariableAtPositionInCurrentEntry<QString>(3);
@@ -175,7 +175,7 @@ void DataModeller::CreateNewHandler()
 }
 
 //User Agent Create:        NAM 8 <id> <name>
-void DataModeller::CreateNewUserAgent()
+void DataProcessor::CreateNewUserAgent()
 {
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     QString name = GetVariableAtPositionInCurrentEntry<QString>(3);
@@ -185,7 +185,7 @@ void DataModeller::CreateNewUserAgent()
 }
 
 //Task Enter:          STA 0 <task_number> <tick>
-void DataModeller::AddTaskEnter()
+void DataProcessor::AddTaskEnter()
 {
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -196,7 +196,7 @@ void DataModeller::AddTaskEnter()
 }
 
 //Task Stop:           STO 0 <task_number> <tick>
-void DataModeller::AddTaskStop()
+void DataProcessor::AddTaskStop()
 {
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -206,7 +206,7 @@ void DataModeller::AddTaskStop()
 }
 
 //Queue Send (+ISR):   STA 3 <queue_id> <tick> <messages_amount (always 1)>
-void DataModeller::AddQueueSend()
+void DataProcessor::AddQueueSend()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -216,7 +216,7 @@ void DataModeller::AddQueueSend()
 }
 
 //Queue Receive(+ISR):	STO 3 <queue_id> <tick> <messages_amount (always 1)>
-void DataModeller::AddQueueReceive()
+void DataProcessor::AddQueueReceive()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -226,7 +226,7 @@ void DataModeller::AddQueueReceive()
 }
 
 //Marker Create: 		NAM 7 <flag_id> <name>
-void DataModeller::CreateMarker()
+void DataProcessor::CreateMarker()
 {
     quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     QString name = GetVariableAtPositionInCurrentEntry<QString>(3);
@@ -239,7 +239,7 @@ void DataModeller::CreateMarker()
 }
 
 //Marker Occurence:	OCC 7 <flag_number> <tick>
-void DataModeller::AddMarkerOccurance()
+void DataProcessor::AddMarkerOccurance()
 {
     quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -252,7 +252,7 @@ void DataModeller::AddMarkerOccurance()
 //Marker AddString			DSC 0 0 <string> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
 //Marker AddNumber	 		DSC 1 1 <number> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
 //Marker AddColor      		DSC 3 3 <color> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
-void DataModeller::AddMarkerProperty()
+void DataProcessor::AddMarkerProperty()
 {
     //No need to check both values (for now)
     quint16 ident = GetVariableAtPositionInCurrentEntry<quint16>(1);
@@ -279,7 +279,7 @@ void DataModeller::AddMarkerProperty()
 }
 
 //Handler Enter: 		STA 1 <irq> <tick>
-void DataModeller::AddHandlerEnter()
+void DataProcessor::AddHandlerEnter()
 {
     quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -290,7 +290,7 @@ void DataModeller::AddHandlerEnter()
 }
 
 //Handler Exit:		STO 1 <irq> <tick>
-void DataModeller::AddHandlerExit()
+void DataProcessor::AddHandlerExit()
 {
     quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -300,7 +300,7 @@ void DataModeller::AddHandlerExit()
 }
 
 //User Agent Begin:  	STA 8 <id> <tick>
-void DataModeller::AddUserAgentEnter()
+void DataProcessor::AddUserAgentEnter()
 {
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -310,7 +310,7 @@ void DataModeller::AddUserAgentEnter()
 }
 
 //User Agent End:   	STO 8 <id> <tick>
-void DataModeller::AddUserAgentExit()
+void DataProcessor::AddUserAgentExit()
 {
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
@@ -319,20 +319,20 @@ void DataModeller::AddUserAgentExit()
     element->AddExit(tick);
 }
 
-void DataModeller::LoadSpeed()
+void DataProcessor::LoadSpeed()
 {
     quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
     GeneralData::SetSpeed(value);
 
 }
 
-void DataModeller::LoadMemorySpeed()
+void DataProcessor::LoadMemorySpeed()
 {
     quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
     GeneralData::SetMemorySpeed(value);
 }
 
-void DataModeller::LoadTime()
+void DataProcessor::LoadTime()
 {
     quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
     GeneralData::SetTime(value);
@@ -344,13 +344,13 @@ void DataModeller::LoadTime()
  *
  */
 template<class T>
-T DataModeller::GetVariableAtPositionInCurrentEntry(quint8 position)
+T DataProcessor::GetVariableAtPositionInCurrentEntry(quint8 position)
 {
     return EntryHelper::GetVariableAtPositionInGivenEntry<T>(current_string_,position);
 }
 
 
-quint64 DataModeller::ParseTick(quint64 tick)
+quint64 DataProcessor::ParseTick(quint64 tick)
 {
     //If we already had a overflow, return the adjusted value here
     if (tick_overflow_)
@@ -368,7 +368,7 @@ quint64 DataModeller::ParseTick(quint64 tick)
     return tick;
 }
 
-void DataModeller::ClearData()
+void DataProcessor::ClearData()
 {
     task_list_.clear();
     queue_list_.clear();

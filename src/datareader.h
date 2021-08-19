@@ -7,7 +7,7 @@
 #include <QString>
 #include <QFileDialog>
 
-#include "datamodeller.h"
+#include "dataprocessor.h"
 
 
 class DataReader

@@ -3,27 +3,27 @@
 
 QList<TaskModel> DataAccessor::GetTasks()
 {
-    return DataModeller::GetTasks();
+    return DataProcessor::GetTasks();
 }
 
 QList<QueueModel> DataAccessor::GetQueues()
 {
-    return DataModeller::GetQueues();
+    return DataProcessor::GetQueues();
 }
 
 QList<MarkerModel> DataAccessor::GetMarkers()
 {
-    return DataModeller::GetMarkers();
+    return DataProcessor::GetMarkers();
 }
 
 QList<UserAgentModel> DataAccessor::GetUserAgents()
 {
-    return DataModeller::GetUserAgents();
+    return DataProcessor::GetUserAgents();
 }
 
 QList<HandlerModel> DataAccessor::GetHandlers()
 {
-    return DataModeller::GetHandlers();
+    return DataProcessor::GetHandlers();
 }
 
 qreal DataAccessor::GetXAxisLenght()

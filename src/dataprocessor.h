@@ -1,5 +1,5 @@
-#ifndef DATAMODELLER_H
-#define DATAMODELLER_H
+#ifndef DATAPROCESSOR_H
+#define DATAPROCESSOR_H
 #include <QtGlobal>
 #include <QString>
 #include <QList>
@@ -18,7 +18,7 @@
 
 
 using namespace std;
-class DataModeller
+class DataProcessor
 {
 public:
     static void SetDataToProcess(QStringList string);
@@ -79,7 +79,7 @@ private:
     inline static QList<TaskModel> task_list_ = QList<TaskModel>();
     inline static QList<QueueModel> queue_list_ = QList<QueueModel>();
     inline static QList<MarkerModel> marker_list_ = QList<MarkerModel>();
-    inline static QList<UserAgentModel> userAgent_list_ = QList<UserAgentModel>();
+    inline static QList<UserAgentModel> user_agent_list_ = QList<UserAgentModel>();
     inline static QList<HandlerModel> handler_list_ = QList<HandlerModel>();
     inline static quint64 last_tick_read_ = 0;
     inline static bool tick_overflow_ = false;
@@ -91,4 +91,4 @@ private:
 
 };
 
-#endif // DATAMODELLER_H
+#endif // DATAPROCESSOR_H

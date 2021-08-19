@@ -6,6 +6,8 @@ LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGrap
     RefreshDrawnItems(use_height);
 }
 
+
+
 void LineModel::SetOrigin(qreal x, qreal y)
 {
     origin_x_ = x;
