@@ -908,7 +908,7 @@ _+GetId() : QString_
 _+AddDataModel(id : QString, model : *DataModel, use_after_load : bool) : void_
 _+GetDataModel() : *DataModel_
 _+SetDataModel(id : QString) : void_
-_+ContainsDatamodel(id : QString) : bool_
+_+ContainsDataModel(id : QString) : bool_
 _+GetDataModelStrings() : QStringList_
 
 </panel_attributes>

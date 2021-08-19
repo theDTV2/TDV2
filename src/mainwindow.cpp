@@ -75,12 +75,16 @@ void MainWindow::UpdateSelectorBoxValues()
 
     if (DataFactory::GetDataModelStrings().count())
         ui->dataModelSelector->setEnabled(true);
+    else
+        ui->dataModelSelector->setEnabled(false);
 
 
     for(auto &e : DataFactory::GetDataModelStrings())
     {
         ui->dataModelSelector->addItem(e);
     }
+
+    ui->dataModelSelector->setCurrentText(DataAccessor::GetId());
 
 }
 
@@ -91,5 +95,7 @@ void MainWindow::on_dataModelSelector_textActivated(const QString &arg1)
 {
     DataAccessor::SelectDataModel(arg1);
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
+    SetInfoTextBox();
+
 }
 
