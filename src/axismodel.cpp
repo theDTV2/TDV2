@@ -53,14 +53,30 @@ void AxisModel::UpdateSpacing(bool ignore_check)
     current += adjusted_distance;
 
 
+    //If a value for "speed" has been set, we use it to calculate the s from the current ticks
+    quint64 divider = 0;
+    QString label;
+
+    if (GeneralData::GetSpeed())
+        divider = GeneralData::GetSpeed();
+
+
     while(current < right_max)
     {
         auto item = new QGraphicsLineItem(this->line().x1() + current, this->line().y1() - 10, this->line().x1() + current, this->line().y1() + 10,this);
         spacer_list_.append(item);
 
-        auto text_item = new QGraphicsTextItem(QString::number(qFloor(current)),item);
+
+        //generate label
+        if (divider)
+            label = QString::number(current / divider,'g',4) + 's';
+        else
+            label = QString::number(qFloor(current));
+
+
+        auto text_item = new QGraphicsTextItem(label,item);
         text_item->setPos((this->line().x1() + current),this->line().y1() + 15);
-        // - ((text_item->boundingRect().width() * 0.5))
+
         text_item->setTransform(text_item->transform().scale(1/used_view_->transform().m11(),1));
         current += adjusted_distance;
 

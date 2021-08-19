@@ -5,7 +5,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsRectItem>
 
-#include "viewelement.h"
+#include "dataaccessor.h"
 
 
 class LineModel
