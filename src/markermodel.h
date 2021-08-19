@@ -38,7 +38,6 @@ private:
    QList<MarkerEntry> entries_ = QList<MarkerEntry>();
 
 
-
 };
 
 #endif // MARKERMODEL_H

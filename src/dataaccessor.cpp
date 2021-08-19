@@ -73,7 +73,7 @@ qreal DataAccessor::GetYAxisLenght()
 }
 
 
-bool DataAccessor::SelectDataModel(QString id)
+void DataAccessor::SelectDataModel(QString id)
 {
     return DataFactory::SetDataModel(id);
 }

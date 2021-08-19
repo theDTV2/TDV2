@@ -18,7 +18,8 @@ public:
 
     static void AddDataModel(QString id, DataModel* model, bool use_after_load = false);
     static DataModel *GetDataModel();
-    static bool SetDataModel(QString id);
+    static void SetDataModel(QString id);
+    static bool ContainsDataModel(QString id);
     static QStringList GetDataModelStrings();
 
 private:

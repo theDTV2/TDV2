@@ -50,10 +50,9 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
 {
     //If an model with the same id is already in the list,
     //we adjust the name of the new element until we dont find one
-    if (!SetDataModel(id))
+    if (!ContainsDataModel(id))
     {
         data_models_.append(model);
-        qDebug("%i",data_models_.count());
 
         if (use_after_load)
             SetDataModel(id);
@@ -61,8 +60,8 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
     }
 
     int i = 1;
-    QString new_id = id;;
-    while (!SetDataModel(new_id))
+    QString new_id = id;
+    while (ContainsDataModel(new_id))
     {
         new_id = id.append(" " + QString::number(i));
 
@@ -74,16 +73,25 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
 
 }
 
-bool DataFactory::SetDataModel(QString id)
+void DataFactory::SetDataModel(QString id)
 {
     for (auto e : data_models_)
     {
         if (e->GetId() == id)
         {
-
             current_ = e;
-            return true;
+        }
+    }
 
+}
+
+bool DataFactory::ContainsDataModel(QString id)
+{
+    for (auto e : data_models_)
+    {
+        if (e->GetId() == id)
+        {
+            return true;
         }
     }
     return false;

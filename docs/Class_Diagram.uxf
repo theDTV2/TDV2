@@ -889,7 +889,7 @@ m2=*</panel_attributes>
       <x>2184</x>
       <y>931</y>
       <w>364</w>
-      <h>203</h>
+      <h>217</h>
     </coordinates>
     <panel_attributes>DataFactory
 --
@@ -907,7 +907,8 @@ _+GetId() : QString_
 
 _+AddDataModel(id : QString, model : *DataModel, use_after_load : bool) : void_
 _+GetDataModel() : *DataModel_
-_+SetDataModel(id : QString) : bool_
+_+SetDataModel(id : QString) : void_
+_+ContainsDatamodel(id : QString) : bool_
 _+GetDataModelStrings() : QStringList_
 
 </panel_attributes>
@@ -917,23 +918,23 @@ _+GetDataModelStrings() : QStringList_
     <id>Relation</id>
     <coordinates>
       <x>1414</x>
-      <y>1127</y>
+      <y>1141</y>
       <w>854</w>
-      <h>133</h>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>1200.0;10.0;1200.0;160.0;10.0;170.0</additional_attributes>
+    <additional_attributes>1200.0;10.0;1200.0;140.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>2436</x>
-      <y>1127</y>
+      <y>1141</y>
       <w>210</w>
-      <h>126</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0;280.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0;280.0;140.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

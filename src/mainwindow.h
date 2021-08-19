@@ -6,7 +6,7 @@
 
 #include "graphicsmanager.h"
 #include "about.h"
-#include "generaldata.h"
+#include "dataaccessor.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -24,17 +24,24 @@ public:
 
 private slots:
     void on_actionLoad_from_TDI_File_triggered();
-
     void on_actionQuit_triggered();
 
-
     void on_actionAbout_2_triggered();
+
+
+
+
+    void on_dataModelSelector_textActivated(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
 
     void ProcessTDI();
     void SetInfoTextBox();
+
+    void UpdateSelectorBoxValues();
+
+
 
 };
 #endif // MAINWINDOW_H

@@ -28,7 +28,8 @@ static qreal GetXAxisLenght();
 
 static qreal GetYAxisLenght();
 
-static bool SelectDataModel(QString id);
+static void SelectDataModel(QString id);
+
 
 private:
 

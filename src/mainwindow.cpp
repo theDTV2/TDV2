@@ -46,7 +46,7 @@ void MainWindow::ProcessTDI()
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 
     SetInfoTextBox();
-
+    UpdateSelectorBoxValues();
 }
 
 
@@ -64,5 +64,32 @@ void MainWindow::SetInfoTextBox()
 
 
     ui->logData->setText(value);
+
+
+}
+
+void MainWindow::UpdateSelectorBoxValues()
+{
+    ui->dataModelSelector->clear();
+
+
+    if (DataFactory::GetDataModelStrings().count())
+        ui->dataModelSelector->setEnabled(true);
+
+
+    for(auto &e : DataFactory::GetDataModelStrings())
+    {
+        ui->dataModelSelector->addItem(e);
+    }
+
+}
+
+
+
+
+void MainWindow::on_dataModelSelector_textActivated(const QString &arg1)
+{
+    DataAccessor::SelectDataModel(arg1);
+    GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 }
 
