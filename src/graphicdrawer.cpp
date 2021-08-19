@@ -131,7 +131,7 @@ void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
         label_view->setAlignment(Qt::AlignTop);
         label_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         label_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        ((customQGraphicsView*)label_view)->SetEnableKeyboardControls(false);
+
         label_view_ = label_view;
     }
 

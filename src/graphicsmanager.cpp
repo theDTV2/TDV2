@@ -17,7 +17,7 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
     main_view->SetAwayFunction(&MouseZoomHandler::ZoomIn);
     main_view->SetTowardFunction(&MouseZoomHandler::ZoomOut);
     main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
-
+    main_view->SetEnableKeyboardControls(true);
 
     GraphicDrawer::Reset();
 

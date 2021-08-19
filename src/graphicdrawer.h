@@ -8,7 +8,7 @@
 #include "mousezoomhandler.h"
 
 #include "dataaccessor.h"
-#include "customqgraphicsview.h"
+
 
 class GraphicDrawer
 {
