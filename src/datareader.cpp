@@ -23,7 +23,9 @@ void DataReader::ReadTDVFile()
     }
 
     DataProcessor::SetDataToProcess(read_data_);
-    DataProcessor::ProcessRawData();
+    DataProcessor::ProcessRawData(file_.fileName().section("/",-1,-1));
+
+    read_data_.clear();
 }
 
 

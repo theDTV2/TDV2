@@ -57,8 +57,8 @@ void AxisModel::UpdateSpacing(bool ignore_check)
     quint64 divider = 0;
     QString label;
 
-    if (GeneralData::GetSpeed())
-        divider = GeneralData::GetSpeed();
+    if (DataAccessor::GetSpeed())
+        divider = DataAccessor::GetSpeed();
 
 
     while(current < right_max)

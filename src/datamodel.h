@@ -11,7 +11,7 @@
 class DataModel
 {
 public:
-    DataModel(QString id,QList<TaskModel> tasks,  QList<QueueModel> queue, QList<MarkerModel>, QList<UserAgentModel> user_agents, QList<HandlerModel> handlers);
+    DataModel(QString id,QList<TaskModel> tasks,  QList<QueueModel> queue, QList<MarkerModel> markers, QList<UserAgentModel> user_agents, QList<HandlerModel> handlers, quint64 speed, quint64 memory_speed, quint64 time);
 
     QList<TaskModel> GetTasks();
     QList<QueueModel> GetQueues();
@@ -20,6 +20,11 @@ public:
     QList<HandlerModel> GetHandlers();
 
     QString GetId();
+    void SetId(QString id);
+
+    quint64 GetSpeed();
+    quint64 GetMemorySpeed();
+    quint64 GetTime();
 
 private:
     QString id_;
@@ -28,6 +33,9 @@ private:
     QList<MarkerModel> marker_list_ = QList<MarkerModel>();
     QList<UserAgentModel> user_agent_list_ = QList<UserAgentModel>();
     QList<HandlerModel> handler_list_ = QList<HandlerModel>();
+    quint64 speed_;
+    quint64 memory_speed_;
+    quint64 time_;
 
 };
 

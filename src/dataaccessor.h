@@ -16,11 +16,19 @@ static QList<UserAgentModel> GetUserAgents();
 
 static QList<HandlerModel> GetHandlers();
 
+static quint64 GetSpeed();
+
+static quint64 GetMemorySpeed();
+
+static quint64 GetTime();
+
+static QString GetId();
 
 static qreal GetXAxisLenght();
 
 static qreal GetYAxisLenght();
 
+static bool SelectDataModel(QString id);
 
 private:
 

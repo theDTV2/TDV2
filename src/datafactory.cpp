@@ -26,14 +26,37 @@ QList<HandlerModel> DataFactory::GetHandlers()
     return current_->GetHandlers();
 }
 
-void DataFactory::AddDataModel(QString id, DataModel model)
+quint64 DataFactory::GetSpeed()
+{
+    return current_->GetSpeed();
+}
+
+quint64 DataFactory::GetMemorySpeed()
+{
+    return current_->GetMemorySpeed();
+}
+
+quint64 DataFactory::GetTime()
+{
+    return current_->GetTime();
+}
+
+QString DataFactory::GetId()
+{
+    return current_->GetId();
+}
+
+void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load)
 {
     //If an model with the same id is already in the list,
     //we adjust the name of the new element until we dont find one
     if (!SetDataModel(id))
     {
         data_models_.append(model);
-        SetDataModel(id);
+        qDebug("%i",data_models_.count());
+
+        if (use_after_load)
+            SetDataModel(id);
         return;
     }
 
@@ -44,8 +67,10 @@ void DataFactory::AddDataModel(QString id, DataModel model)
         new_id = id.append(" " + QString::number(i));
 
     }
+    model->SetId(new_id);
     data_models_.append(model);
-    SetDataModel(id);
+    if (use_after_load)
+        SetDataModel(id);
 
 }
 
@@ -53,9 +78,10 @@ bool DataFactory::SetDataModel(QString id)
 {
     for (auto e : data_models_)
     {
-        if (e.GetId() == id)
+        if (e->GetId() == id)
         {
-            current_ = &e;
+
+            current_ = e;
             return true;
 
         }
@@ -67,6 +93,6 @@ QStringList DataFactory::GetDataModelStrings()
 {
     QStringList list;
     for (auto e : data_models_)
-        list.append(e.GetId());
+        list.append(e->GetId());
     return list;
 }

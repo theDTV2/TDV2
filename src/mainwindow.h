@@ -34,7 +34,7 @@ private:
     Ui::MainWindow *ui;
 
     void ProcessTDI();
-    void SetSpeedTextBox();
+    void SetInfoTextBox();
 
 };
 #endif // MAINWINDOW_H

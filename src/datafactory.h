@@ -11,14 +11,18 @@ public:
     static QList<UserAgentModel> GetUserAgents();
     static QList<HandlerModel> GetHandlers();
 
+    static quint64 GetSpeed();
+    static quint64 GetMemorySpeed();
+    static quint64 GetTime();
+    static QString GetId();
 
-    static void AddDataModel(QString id, DataModel model);
+    static void AddDataModel(QString id, DataModel* model, bool use_after_load = false);
     static DataModel *GetDataModel();
     static bool SetDataModel(QString id);
     static QStringList GetDataModelStrings();
 
 private:
-    static inline QList<DataModel> data_models_ = QList<DataModel>();
+    static inline QList<DataModel*> data_models_ = QList<DataModel*>();
     static inline DataModel* current_ = nullptr;
 };
 

@@ -5,9 +5,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1008</x>
-      <y>861</y>
+      <y>763</y>
       <w>413</w>
-      <h>567</h>
+      <h>665</h>
     </coordinates>
     <panel_attributes>DataProcessor
 --
@@ -17,12 +17,17 @@ _-queue_list_: QList&lt;QueueModel&gt;_
 _-masker_list_ : QList&lt;MarkerModel&gt;_
 _-user_agent_list_ : QList&lt;UserAgentModel&gt;_
 _-handler_list_ : QList&lt;HandlerModel&gt;_
+_file_name_ : QString_
+_speed_ : quint64_
+_memory_speed_ : quint64_
+_time : quint64_
+
 _-last_marker_ : QPointer&lt;MarkerModel&gt;_
 _-current_string_: QString_
 _-last_tick_read : quint64_
 --
 _+SetDataToProcess(data : QStringList) : void_
-_+ProcessRawData() : void_
+_+ProcessRawData(QString file_name) : void_
 _+GetTasks : QList&lt;TaskModel&gt;_
 _+GetQueues : QList&lt;QueueModel&gt;_
 _+GetMarkers : QList&lt;MarkerModel&gt;_
@@ -50,6 +55,7 @@ _-AddUserAgentExit() : void_
 _-LoadSpeed() : void_
 _-LoadMemorySpeed() : void_
 _-LoadTime() : void_
+_-Finalize() : void_
 
 _-DeleteTask() : void_
 _-DeleteQueue() : void_
@@ -58,14 +64,15 @@ _-GetVariableAtPositionInCurrentEntry(position : quint8) : T_
 _-GetVariableAtPositionInGivenEntry(position : quint8) : T_
 _-GetStringAtPosition(entry : QString, position: quint8) : QString_
 _-ParseTick() : quint64_
-_-ClearData() : void_</panel_attributes>
+_-ClearData() : void_
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1001</x>
-      <y>609</y>
+      <y>511</y>
       <w>196</w>
       <h>182</h>
     </coordinates>
@@ -87,7 +94,7 @@ _+ReadTDVFile() : void_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1092</x>
-      <y>784</y>
+      <y>686</y>
       <w>21</w>
       <h>91</h>
     </coordinates>
@@ -111,13 +118,17 @@ _+GetQueues() : QList&lt;QueueModel&gt; _
 _+GetMarkers() : QList&lt;MarkerModel&gt;_
 _+GetUserAgents() : QList&lt;UserAgentModel&gt;_
 _+GetHandlers() : QList&lt;HandlerModel&gt;_
+_+GetSpeed() : quint64_
+_+GetMemorySpeed() : quint64_
+_+GetTime() : quint64_
+_+GetId() : QString_
 
 _+GetXAxisLenght(): qreal_
 _+GetYAxisLenght() : qreal_
 _-GetMaxInList(list_to_search : QList&lt;T&gt;, lists : rest...) : qreal_
 _-GetMaxInList(list_to_search : QList&lt;T&gt;) : qreal_
 
-_+SelectDataModel(id : QString) : void_</panel_attributes>
+_+SelectDataModel(id : QString) : bool_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -492,7 +503,7 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1512</x>
+      <x>1498</x>
       <y>861</y>
       <w>385</w>
       <h>91</h>
@@ -512,11 +523,11 @@ _+inline FindInList(list_to_search : QList&lt;MarkerModel&gt;* , id : quint64) :
     <coordinates>
       <x>1414</x>
       <y>896</y>
-      <w>112</w>
+      <w>98</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -545,29 +556,6 @@ _+GetStringAtPosition(entry : QString, position : quint8) : QString_
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>340.0;10.0;340.0;90.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1967</x>
-      <y>91</y>
-      <w>287</w>
-      <h>231</h>
-    </coordinates>
-    <panel_attributes>GeneralData
---
-_speed_ : quint64_
-_memory_speed_ : quint64_
-_time_ : quint64_
-
---
-_+SetSpeed(value : quint64) : void_
-_+GetSpeed() : quint64_
-_+SetMemorySpeed(value : quint64) : void_
-_+GetMemorySpeed() : quint64_
-_+SetTime(value : quint64) : void_
-_+GetTime() : quint64_</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
@@ -865,24 +853,13 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1281</x>
-      <y>315</y>
-      <w>749</w>
-      <h>560</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>1050.0;10.0;1050.0;80.0;10.0;80.0;10.0;780.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>2198</x>
+      <x>2926</x>
       <y>133</y>
-      <w>1631</w>
-      <h>252</h>
+      <w>903</w>
+      <h>980</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;270.0;10.0;340.0;850.0;340.0;850.0;10.0;2310.0;10.0</additional_attributes>
+    <additional_attributes>10.0;1380.0;10.0;10.0;1270.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -912,7 +889,7 @@ m2=*</panel_attributes>
       <x>2184</x>
       <y>931</y>
       <w>364</w>
-      <h>196</h>
+      <h>203</h>
     </coordinates>
     <panel_attributes>DataFactory
 --
@@ -923,11 +900,14 @@ _+GetQueues() : QList&lt;QueueModel&gt; _
 _+GetMarkers() : QList&lt;MarkerModel&gt;_
 _+GetUserAgents() : QList&lt;UserAgentModel&gt;_
 _+GetHandlers() : QList&lt;HandlerModel&gt;_
+_+GetSpeed() : quint64_
+_+GetMemorySpeed() : quint64_
+_+GetTime() : quint64_
+_+GetId() : QString_
 
-
-_+AddDataModel(id : QString, model : DataModel) : void_
+_+AddDataModel(id : QString, model : *DataModel, use_after_load : bool) : void_
 _+GetDataModel() : *DataModel_
-_+SetDataModel(id : QString) : DataModel*_
+_+SetDataModel(id : QString) : bool_
 _+GetDataModelStrings() : QStringList_
 
 </panel_attributes>
@@ -937,31 +917,31 @@ _+GetDataModelStrings() : QStringList_
     <id>Relation</id>
     <coordinates>
       <x>1414</x>
-      <y>1120</y>
+      <y>1127</y>
       <w>854</w>
-      <h>140</h>
+      <h>133</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>1200.0;10.0;1200.0;170.0;10.0;180.0</additional_attributes>
+    <additional_attributes>1200.0;10.0;1200.0;160.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>2436</x>
-      <y>1120</y>
+      <y>1127</y>
       <w>210</w>
-      <h>133</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0;280.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0;280.0;160.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2002</x>
-      <y>616</y>
-      <w>875</w>
-      <h>203</h>
+      <x>1736</x>
+      <y>434</y>
+      <w>1064</w>
+      <h>287</h>
     </coordinates>
     <panel_attributes>DataModel
 --
@@ -971,9 +951,12 @@ _+GetDataModelStrings() : QStringList_
 -masker_list_ : QList&lt;MarkerModel&gt;
 -user_agent_list_ : QList&lt;UserAgentModel&gt;
 -handler_list_ : QList&lt;HandlerModel&gt;
+_speed_ : quint64_
+_memory_speed_ : quint64_
+_time_ : quint64_
 
 --
-DataModel(id : QString, tasks : QList&lt;TaskModel&gt;, queues : QList&lt;QueueModel&gt;, markers : QList&lt;MarkerModel&gt;, user_agents : QList&lt;UserAgentModel&gt;, handlers : QList&lt;HandlerModel&gt;)
+DataModel(id : QString, tasks : QList&lt;TaskModel&gt;, queues : QList&lt;QueueModel&gt;, markers : QList&lt;MarkerModel&gt;, user_agents : QList&lt;UserAgentModel&gt;, handlers : QList&lt;HandlerModel&gt;, speed : quint64, mem_speed : quint64, time : quint64)
 
 _+GetTasks() : QList&lt;TaskModel&gt;_
 _+GetQueues() : QList&lt;QueueModel&gt; _
@@ -981,6 +964,10 @@ _+GetMarkers() : QList&lt;MarkerModel&gt;_
 _+GetUserAgents() : QList&lt;UserAgentModel&gt;_
 _+GetHandlers() : QList&lt;HandlerModel&gt;_
 _+GetId() : QString_
+_+SetId(id : QString) : void_
+_+GetSpeed() : quint64_
+_+GetMemorySpeed() : quint64_
+_+GetTime() : quint64_
 
 </panel_attributes>
     <additional_attributes/>
@@ -988,13 +975,13 @@ _+GetId() : QString_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2359</x>
-      <y>812</y>
+      <x>2345</x>
+      <y>714</y>
       <w>21</w>
-      <h>133</h>
+      <h>231</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

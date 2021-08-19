@@ -45,25 +45,22 @@ void MainWindow::ProcessTDI()
 
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 
-    SetSpeedTextBox();
+    SetInfoTextBox();
 
 }
 
 
 
-void MainWindow::SetSpeedTextBox()
+void MainWindow::SetInfoTextBox()
 {
     QString value = "";
 
-    if (GeneralData::GetSpeed() != 0)
-        value.append("Speed: " + QString::number(GeneralData::GetSpeed()) + " \n");
 
-    if (GeneralData::GetMemorySpeed() != 0)
-        value.append("Memory Speed: " + QString::number(GeneralData::GetMemorySpeed()) + " \n");
+    if (DataAccessor::GetSpeed() != 0)
+        value.append("File: " + DataAccessor::GetId() + " \n");
 
-    if (GeneralData::GetTime() != 0)
-        value.append("Time: " + QString::number(GeneralData::GetTime()) + " \n");
-
+    if (DataAccessor::GetSpeed() != 0)
+        value.append("Speed: " + QString::number(DataAccessor::GetSpeed()) + " \n");
 
 
     ui->logData->setText(value);

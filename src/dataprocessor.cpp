@@ -8,8 +8,9 @@ void DataProcessor::SetDataToProcess(QStringList string)
     raw_data_ = string;
 }
 
-void DataProcessor::ProcessRawData()
-{
+void DataProcessor::ProcessRawData(QString file_name)
+{  
+    file_name_ = file_name;
 
     bool done = false;
 
@@ -21,7 +22,8 @@ void DataProcessor::ProcessRawData()
             done = true;
 
     }
-//Maybe do some post stuff here
+
+    Finalize();
 }
 
 QList<TaskModel> DataProcessor::GetTasks()
@@ -41,7 +43,7 @@ QList<MarkerModel> DataProcessor::GetMarkers()
 
 QList<UserAgentModel> DataProcessor::GetUserAgents()
 {
-    return userAgent_list_;
+    return user_agent_list_;
 }
 
 QList<HandlerModel> DataProcessor::GetHandlers()
@@ -53,6 +55,7 @@ QList<HandlerModel> DataProcessor::GetHandlers()
 
 void DataProcessor::ParseEntry()
 {
+
     GetNextLine();
 
 
@@ -117,7 +120,6 @@ void DataProcessor::ParseEntry()
         return LoadTime();
 
 
-    //If we arrive here, we have an disallowed input
 
 }
 
@@ -145,12 +147,12 @@ void DataProcessor::CreateNewTask()
 //Queue Create:             CRE 3 <queue_number> <tick>
 void DataProcessor::CreateNewQueue()
 {
-     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
-     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
+    quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
+    quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
-     QueueModel new_queue = QueueModel(queue_id,tick);
+    QueueModel new_queue = QueueModel(queue_id,tick);
 
-     queue_list_.append(new_queue);
+    queue_list_.append(new_queue);
 }
 
 //Queue Registry Add:       NAM 3 <queue_number> <queue_name>
@@ -181,7 +183,7 @@ void DataProcessor::CreateNewUserAgent()
     QString name = GetVariableAtPositionInCurrentEntry<QString>(3);
 
     UserAgentModel new_agent = UserAgentModel(name,id);
-    userAgent_list_.append(new_agent);
+    user_agent_list_.append(new_agent);
 }
 
 //Task Enter:          STA 0 <task_number> <tick>
@@ -305,7 +307,7 @@ void DataProcessor::AddUserAgentEnter()
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
-    UserAgentModel* element =  SearchHelper::FindInList(&userAgent_list_,id);
+    UserAgentModel* element =  SearchHelper::FindInList(&user_agent_list_,id);
     element->AddEnter(tick);
 }
 
@@ -315,27 +317,43 @@ void DataProcessor::AddUserAgentExit()
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
     quint64 tick = ParseTick(GetVariableAtPositionInCurrentEntry<quint32>(3));
 
-    UserAgentModel* element =  SearchHelper::FindInList(&userAgent_list_,id);
+    UserAgentModel* element =  SearchHelper::FindInList(&user_agent_list_,id);
     element->AddExit(tick);
 }
 
 void DataProcessor::LoadSpeed()
 {
-    quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
-    GeneralData::SetSpeed(value);
+    speed_ = GetVariableAtPositionInCurrentEntry<quint32>(1);
 
 }
 
 void DataProcessor::LoadMemorySpeed()
 {
-    quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
-    GeneralData::SetMemorySpeed(value);
+    memory_speed_ = GetVariableAtPositionInCurrentEntry<quint32>(1);
 }
 
 void DataProcessor::LoadTime()
 {
-    quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
-    GeneralData::SetTime(value);
+    time_= GetVariableAtPositionInCurrentEntry<quint32>(1);
+}
+
+void DataProcessor::Finalize()
+{
+
+    DataModel* new_model = new DataModel("File: " + file_name_,task_list_,
+                                    queue_list_,
+                                    marker_list_,
+                                    user_agent_list_,
+                                    handler_list_,
+                                    speed_,
+                                    memory_speed_,
+                                    time_);
+
+    DataFactory::AddDataModel("File: " + file_name_, new_model, true);
+
+
+    ClearData();
+
 }
 
 
@@ -373,7 +391,15 @@ void DataProcessor::ClearData()
     task_list_.clear();
     queue_list_.clear();
     marker_list_.clear();
-    userAgent_list_.clear();
+    user_agent_list_.clear();
     handler_list_.clear();
+
+    speed_ = 0;
+    memory_speed_ = 0;
+    time_ = 0;
+    last_tick_read_ = 0;
+    tick_overflow_ = 0;
+    raw_data_ = QStringList();
+    last_marker_ = nullptr;
 
 }

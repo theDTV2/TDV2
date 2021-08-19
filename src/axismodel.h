@@ -11,7 +11,7 @@
 #include <QObject>
 
 
-#include "generaldata.h"
+#include "dataaccessor.h"
 
 class AxisModel : public QGraphicsLineItem
 {

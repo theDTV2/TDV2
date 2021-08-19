@@ -15,14 +15,14 @@
 #include "searchhelper.h"
 #include "entryhelper.h"
 #include "generaldata.h"
-
+#include "datafactory.h"
 
 using namespace std;
 class DataProcessor
 {
 public:
     static void SetDataToProcess(QStringList string);
-    static void ProcessRawData();
+    static void ProcessRawData(QString file_name);
 
 
     /*
@@ -62,6 +62,8 @@ private:
     static void LoadMemorySpeed();
     static void LoadTime();
 
+    static void Finalize();
+
     static quint64 ParseTick(quint64 tick);
     static void DeleteTask();
     static void DeleteQueue();
@@ -81,11 +83,15 @@ private:
     inline static QList<MarkerModel> marker_list_ = QList<MarkerModel>();
     inline static QList<UserAgentModel> user_agent_list_ = QList<UserAgentModel>();
     inline static QList<HandlerModel> handler_list_ = QList<HandlerModel>();
+    inline static quint64 speed_ = 0;
+    inline static quint64 memory_speed_ = 0;
+    inline static quint64 time_ = 0;
+    inline static QString file_name_;
     inline static quint64 last_tick_read_ = 0;
     inline static bool tick_overflow_ = false;
 
     //We save the last occured marker, as some operations reference it
-    inline static MarkerModel* last_marker_;
+    inline static MarkerModel* last_marker_ = nullptr;
 
 
 

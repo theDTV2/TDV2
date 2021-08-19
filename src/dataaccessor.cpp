@@ -3,27 +3,47 @@
 
 QList<TaskModel> DataAccessor::GetTasks()
 {
-    return DataProcessor::GetTasks();
+    return DataFactory::GetTasks();
 }
 
 QList<QueueModel> DataAccessor::GetQueues()
 {
-    return DataProcessor::GetQueues();
+    return DataFactory::GetQueues();
 }
 
 QList<MarkerModel> DataAccessor::GetMarkers()
 {
-    return DataProcessor::GetMarkers();
+    return DataFactory::GetMarkers();
 }
 
 QList<UserAgentModel> DataAccessor::GetUserAgents()
 {
-    return DataProcessor::GetUserAgents();
+    return DataFactory::GetUserAgents();
 }
 
 QList<HandlerModel> DataAccessor::GetHandlers()
 {
-    return DataProcessor::GetHandlers();
+    return DataFactory::GetHandlers();
+}
+
+quint64 DataAccessor::GetSpeed()
+{
+    return DataFactory::GetSpeed();
+}
+
+quint64 DataAccessor::GetMemorySpeed()
+{
+    return DataFactory::GetMemorySpeed();
+}
+
+quint64 DataAccessor::GetTime()
+{
+    return DataFactory::GetTime();
+}
+
+QString DataAccessor::GetId()
+{
+    return DataFactory::GetId();
 }
 
 qreal DataAccessor::GetXAxisLenght()
@@ -50,6 +70,12 @@ qreal DataAccessor::GetYAxisLenght()
     value += GetHandlers().count() * 125;
 
     return value;
+}
+
+
+bool DataAccessor::SelectDataModel(QString id)
+{
+    return DataFactory::SetDataModel(id);
 }
 
 
