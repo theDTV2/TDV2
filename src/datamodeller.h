@@ -14,6 +14,8 @@
 #include "markermodel.h"
 #include "searchhelper.h"
 #include "entryhelper.h"
+#include "generaldata.h"
+
 
 using namespace std;
 class DataModeller
@@ -55,6 +57,10 @@ private:
     static void AddHandlerExit();
     static void AddUserAgentEnter();
     static void AddUserAgentExit();
+
+    static void LoadSpeed();
+    static void LoadMemorySpeed();
+    static void LoadTime();
 
     static quint64 ParseTick(quint64 tick);
     static void DeleteTask();

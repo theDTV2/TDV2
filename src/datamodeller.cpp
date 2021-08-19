@@ -107,6 +107,15 @@ void DataModeller::ParseEntry()
     if (current_string_.startsWith("STO 8"))
         return AddUserAgentExit();
 
+    if (current_string_.startsWith("SPEED"))
+        return LoadSpeed();
+
+    if (current_string_.startsWith("MEMSPEED"))
+        return LoadMemorySpeed();
+
+    if (current_string_.startsWith("TIME"))
+        return LoadTime();
+
 
     //If we arrive here, we have an disallowed input
 
@@ -308,6 +317,25 @@ void DataModeller::AddUserAgentExit()
 
     UserAgentModel* element =  SearchHelper::FindInList(&userAgent_list_,id);
     element->AddExit(tick);
+}
+
+void DataModeller::LoadSpeed()
+{
+    quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
+    GeneralData::SetSpeed(value);
+
+}
+
+void DataModeller::LoadMemorySpeed()
+{
+    quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
+    GeneralData::SetMemorySpeed(value);
+}
+
+void DataModeller::LoadTime()
+{
+    quint64 value = GetVariableAtPositionInCurrentEntry<quint32>(1);
+    GeneralData::SetTime(value);
 }
 
 

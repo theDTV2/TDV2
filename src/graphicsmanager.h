@@ -4,7 +4,7 @@
 #include <QGraphicsTextItem>
 
 #include "graphicdrawer.h"
-#include "axismanager.h"
+
 #include "customqgraphicsview.h"
 
 class GraphicsManager

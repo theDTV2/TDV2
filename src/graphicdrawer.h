@@ -6,7 +6,7 @@
 
 #include "linemodel.h"
 #include "mousezoomhandler.h"
-#include "axismanager.h"
+
 #include "dataaccessor.h"
 #include "customqgraphicsview.h"
 
