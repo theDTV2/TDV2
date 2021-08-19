@@ -40,6 +40,21 @@ QString LineModel::GetLabel() const
     return label_;
 }
 
+void LineModel::SetType(QString type)
+{
+    type_ = type;
+}
+
+QString LineModel::GetType()
+{
+    return type_;
+}
+
+QBrush LineModel::GetBrush()
+{
+    return used_brush_;
+}
+
 void LineModel::SetBrush(QBrush new_brush)
 {
     used_brush_ = new_brush;
@@ -78,16 +93,16 @@ void LineModel::RefreshDrawnItems(bool use_height)
         //We either draw regular boxes, or height boxes
         if (max == 0)
             new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
-                                             origin_y_ - 30,
+                                             origin_y_ - 25,
                                              e.GetLenght(),
-                                             60);
+                                             50);
         else
         {
-            qreal offset = 60 - (60 * ((e.GetHeight()) / (double) max));
+            qreal offset = 50 - (50 * ((e.GetHeight()) / (double) max));
             new_item = new QGraphicsRectItem(origin_x_ + e.GetStartTime(),
-                                             (origin_y_ - 30) + offset,
+                                             (origin_y_ - 25) + offset,
                                              e.GetLenght(),
-                                             60 * ((e.GetHeight()) / (double) max)); //We need to cast here to use the double "/" Operator
+                                             50 * ((e.GetHeight()) / (double) max)); //We need to cast here to use the double "/" Operator
 
 
 

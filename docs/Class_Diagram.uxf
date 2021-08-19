@@ -171,7 +171,7 @@ _-current_y_ : qreal_
 --
 _-DrawViewElementList() : void_
 _-DrawMarkers() : void_
-_-DrawViewElementList(list : QList&lt;LineModel*&gt;, brush : QBrush) : void_
+_-DrawViewElementList(list : QList&lt;LineModel*&gt;, brush : QBrush, use_height : bool, type : QString) : void_
 
 _+SetView(view : QGraphicsView*) : void_
 _+DrawAxis() : void_
@@ -637,7 +637,7 @@ _SetCurrentZoomToMax() : void_
       <x>4200</x>
       <y>896</y>
       <w>553</w>
-      <h>238</h>
+      <h>280</h>
     </coordinates>
     <panel_attributes>LineModel
 --
@@ -648,14 +648,18 @@ _SetCurrentZoomToMax() : void_
 -drawn_elements_ : QList&lt;QGraphicItems*&gt;
 -used_view_ : QGraphicsView*
 -used_brush_ : QBrush
+-type_ : QString
 --
 LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGraphicsView*, brush : QBrush, bool use_height)
 +SetOrigin(qreal x,qreal y) : void
 +GetOriginX() : qreal
 +GetOriginY() : qreal
 +GetLabel() : QString
++SetType(type : Qstring) : void
++GetType() : QString
 +SetDisplayedElement(to_set : ViewElement)
 +GetDisplayedElement() : ViewElement)
++GetBrush() : QBrush;
 +SetBrush(new_brush : QBrush) : void
 +RefreshDrawnItems() : void
 </panel_attributes>
@@ -877,12 +881,12 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2989</x>
-      <y>1127</y>
+      <y>1169</y>
       <w>1288</w>
-      <h>182</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;230.0;1820.0;240.0;1820.0;10.0</additional_attributes>
+    <additional_attributes>10.0;170.0;1820.0;180.0;1820.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

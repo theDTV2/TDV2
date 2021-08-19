@@ -23,6 +23,9 @@ public:
 
     QString GetLabel() const;
 
+    void SetType(QString type);
+    QString GetType();
+    QBrush GetBrush();
     void SetBrush(QBrush new_brush);
 
     void RefreshDrawnItems(bool use_height);
@@ -37,7 +40,7 @@ private:
     QGraphicsView* used_view_;
     QBrush used_brush_ = Qt::blue;
 
-
+    QString type_;
 };
 
 

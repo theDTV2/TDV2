@@ -44,7 +44,7 @@ private:
     inline static qreal current_y_ = 125;
 
     template <class T>
-    static QList<LineModel*> DrawViewElementList(T list, QBrush brush = Qt::black, bool use_height = false)
+    static QList<LineModel*> DrawViewElementList(T list, QBrush brush = Qt::black, bool use_height = false, QString type = "No Type")
     {
         LineModel* model;
         QList<LineModel*> return_list;
@@ -52,6 +52,7 @@ private:
         for (auto &e : list)
         {
             model = new LineModel(0,current_y_,e.GetName(),e,view_, brush,use_height);
+            model->SetType(type);
             return_list.append(model);
             current_y_ += 55;
         }
