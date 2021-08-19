@@ -6,6 +6,7 @@ Stats::Stats(QWidget *parent) :
     ui(new Ui::Stats)
 {
     ui->setupUi(this);
+    this->setWindowFlag(Qt::WindowCloseButtonHint, false);
 }
 
 Stats::~Stats()

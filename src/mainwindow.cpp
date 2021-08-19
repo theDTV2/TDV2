@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     Stats* stats = new Stats(this);
     stats->move(this->pos().x()+this->width()*1.2,this->pos().y()+100);
-
     stats->show();
 
 }
