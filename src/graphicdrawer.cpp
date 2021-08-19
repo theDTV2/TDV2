@@ -153,6 +153,11 @@ void GraphicDrawer::AdjustLabelViewPosition()
 
 }
 
+QList<LineModel *> GraphicDrawer::GetDrawnElements()
+{
+    return drawn_view_elements_;
+}
+
 void GraphicDrawer::Reset()
 {
     //The main view is always passed at this point

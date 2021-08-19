@@ -1,4 +1,4 @@
-QT       += core gui opengl openglwidgets
+QT       += core gui opengl openglwidgets charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,6 +32,7 @@ SOURCES += \
     src/mousezoomhandler.cpp \
     src/queuemodel.cpp \
     src/searchhelper.cpp \
+    src/stats.cpp \
     src/useragentmodel.cpp \
     src/viewelement.cpp \
     src/taskmodel.cpp
@@ -59,6 +60,7 @@ HEADERS += \
     src/mousezoomhandler.h \
     src/queuemodel.h \
     src/searchhelper.h \
+    src/stats.h \
     src/useragentmodel.h \
     src/viewelement.h \
     src/taskmodel.h

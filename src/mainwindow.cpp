@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    Stats* stats = new Stats(this);
+    stats->show();
 
 }
 

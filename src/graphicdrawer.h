@@ -25,6 +25,7 @@ public:
 
     static void DrawLabels(QGraphicsView* label_view);
     static void AdjustLabelViewPosition();
+    static QList<LineModel*> GetDrawnElements();
 
     static void Reset();
 

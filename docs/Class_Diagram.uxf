@@ -182,6 +182,7 @@ _+ResetNonResizableElements() : void_
 _+RemoveElementFromResizableElements(element: *QGraphicsItem) : void_
 _+DrawLabels(label_view : customQGraphicsView*) : void_
 _+AdjustLabelViewPosition() : void_
+_+GetDrawnElements() : QList&lt;LineModel*&gt;_
 _+Reset() : void_
 
 </panel_attributes>
@@ -633,9 +634,9 @@ _SetCurrentZoomToMax() : void_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4207</x>
-      <y>833</y>
-      <w>567</w>
+      <x>4200</x>
+      <y>896</y>
+      <w>553</w>
       <h>238</h>
     </coordinates>
     <panel_attributes>LineModel
@@ -663,8 +664,8 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>4081</x>
-      <y>980</y>
+      <x>4074</x>
+      <y>1043</y>
       <w>140</w>
       <h>21</h>
     </coordinates>
@@ -674,13 +675,13 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3913</x>
+      <x>4081</x>
       <y>630</y>
-      <w>413</w>
-      <h>133</h>
+      <w>245</w>
+      <h>196</h>
     </coordinates>
     <panel_attributes>lt=.&gt;</panel_attributes>
-    <additional_attributes>570.0;10.0;10.0;10.0;10.0;170.0</additional_attributes>
+    <additional_attributes>330.0;10.0;220.0;10.0;220.0;260.0;10.0;260.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -876,12 +877,12 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2989</x>
-      <y>1064</y>
-      <w>1295</w>
-      <h>245</h>
+      <y>1127</y>
+      <w>1288</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;320.0;1830.0;330.0;1830.0;10.0</additional_attributes>
+    <additional_attributes>10.0;230.0;1820.0;240.0;1820.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -984,5 +985,31 @@ _+GetTime() : quint64_
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*</panel_attributes>
     <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>4865</x>
+      <y>966</y>
+      <w>294</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>StatsHelper
+--
+
+--
+_+GetViewElementAtHeight(value : quint64) : ViewElement*_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4746</x>
+      <y>1008</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
   </element>
 </diagram>
