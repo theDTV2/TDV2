@@ -7,7 +7,7 @@
 #include "graphicsmanager.h"
 #include "about.h"
 #include "dataaccessor.h"
-
+//#include "stats.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

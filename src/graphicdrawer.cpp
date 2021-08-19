@@ -11,10 +11,11 @@ void GraphicDrawer::DrawViewElementsList(QList<LineModel *> to_draw)
         text_item->setPos(-500 + label_view_->rect().width()/2,e->GetOriginY());
     }
 
+
     //Adding the Markers Label manually, as it is a seperate class of item
     auto text_item = label_view_->scene()->addText("Markers");
 
-    text_item->setPos(-500 + label_view_->rect().width()/2,current_y_);
+    text_item->setPos(-500 + label_view_->rect().width()/2,current_y_-35);
 
 
 }
@@ -40,18 +41,36 @@ void GraphicDrawer::DrawData()
     current_y_ = 125;
 
 
+    if (DataAccessor::GetTasks().count() > 0)
+    {
+        drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetTasks()));
+        current_y_ += 50;
+    }
 
-    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetTasks()));
-    current_y_ += 50;
-    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetHandlers(),Qt::blue));
-    current_y_ += 50;
-    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true));
-    current_y_ += 50;
-    drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::yellow));
-    current_y_ += 150;
+    if (DataAccessor::GetHandlers().count() > 0)
+    {
+        drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetHandlers(),Qt::blue));
+        current_y_ += 50;
+    }
+
+    if (DataAccessor::GetQueues().count() > 0)
+    {
+        drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true));
+        current_y_ += 50;
+    }
+
+    if (DataAccessor::GetUserAgents().count() > 0)
+    {
+        drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::yellow));
+        current_y_ += 50;
+    }
+
+
     DrawMarkers();
 
+
     AxisManager::SetYAxis(current_y_,view_,true);
+
 
 }
 

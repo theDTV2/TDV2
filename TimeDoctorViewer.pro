@@ -65,7 +65,8 @@ HEADERS += \
 
 FORMS += \
     src/about.ui \
-    src/mainwindow.ui
+    src/mainwindow.ui \
+    src/stats.ui
 	
 INCLUDEPATH += $$PWD/src
 

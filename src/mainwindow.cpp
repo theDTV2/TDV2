@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -57,11 +59,12 @@ void MainWindow::SetInfoTextBox()
 
 
     if (DataAccessor::GetSpeed() != 0)
-        value.append("File: " + DataAccessor::GetId() + " \n");
+        value.append(DataAccessor::GetId() + " \n");
 
     if (DataAccessor::GetSpeed() != 0)
-        value.append("Speed: " + QString::number(DataAccessor::GetSpeed()) + " \n");
-
+        value.append("CPU Speed: " + QString::number(DataAccessor::GetSpeed()) + "\n");
+    if (DataAccessor::GetSpeed() != 0)
+        value.append("Memory Speed: " + QString::number(DataAccessor::GetMemorySpeed()) + " \n");
 
     ui->logData->setText(value);
 

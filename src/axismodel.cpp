@@ -41,7 +41,7 @@ void AxisModel::UpdateSpacing(bool ignore_check)
 
     spacer_list_.clear();
 
-    QVector2D source = QVector2D(this->line().x1(),this->line().y1());
+    //QVector2D source = QVector2D(this->line().x1(),this->line().y1());
 
 
     //set Min/Max right and left of viewport. (Improves performance on large viewports)
