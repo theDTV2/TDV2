@@ -58,13 +58,20 @@ void MainWindow::SetInfoTextBox()
     QString value = "";
 
 
-    if (DataAccessor::GetSpeed() != 0)
+    if (!DataAccessor::GetId().isEmpty())
         value.append(DataAccessor::GetId() + " \n");
+
 
     if (DataAccessor::GetSpeed() != 0)
         value.append("CPU Speed: " + QString::number(DataAccessor::GetSpeed()) + "\n");
+    else
+        value.append("No CPU Speed information available \n");
+
     if (DataAccessor::GetSpeed() != 0)
         value.append("Memory Speed: " + QString::number(DataAccessor::GetMemorySpeed()) + " \n");
+    else
+        value.append("No Memory Speed information available \n");
+
 
     ui->logData->setText(value);
 
