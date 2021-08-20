@@ -156,13 +156,6 @@ executions/second: zz</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QCheckBox" name="toggleSelectedLine">
-        <property name="text">
-         <string>Only show selected Line</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QCheckBox" name="toggleViewableData">
         <property name="text">
          <string>Only use visible Data</string>

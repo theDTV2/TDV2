@@ -13,7 +13,7 @@
 class StatisticHelper
 {
 public:
-    static void PopulateVariables(bool only_use_selected_viewelement, bool only_use_visible_in_viewport, QString selected_view_element_ = "");
+    static void PopulateVariables(bool only_use_visible_in_viewport, QString selected_view_element_ = "");
     static void GenerateData();
 
     static QString GetRightLabel();
@@ -37,7 +37,6 @@ private:
 
     static inline QList<QPair<QString,qreal>> data_vector_;
 
-    static inline bool only_use_selected_viewelement_;
     static inline bool only_use_visible_in_viewport_;
 
 

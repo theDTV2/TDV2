@@ -3,11 +3,8 @@
 
 
 
-void StatisticHelper::PopulateVariables(bool only_use_selected_viewelement, bool only_use_visible_in_viewport, QString selected_view_element)
+void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport, QString selected_view_element)
 {
-
-
-
     drawn_view_elements_ = GraphicDrawer::GetDrawnElements();
 
     //If there are no drawn elements, we instantly leave
@@ -19,13 +16,8 @@ void StatisticHelper::PopulateVariables(bool only_use_selected_viewelement, bool
     chart_ = new QChart();
 
 
-    only_use_selected_viewelement_ = only_use_selected_viewelement;
-    only_use_visible_in_viewport_ = only_use_visible_in_viewport;
-    if (only_use_selected_viewelement_)
-    {
-        selected_view_element_ = selected_view_element;
-    }
 
+    only_use_visible_in_viewport_ = only_use_visible_in_viewport;
     if (only_use_visible_in_viewport_)
     {
         left_boundary_ = GraphicDrawer::GetViewPortLeft();

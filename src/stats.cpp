@@ -27,8 +27,7 @@ void Stats::StartUpdate()
     if (thread_is_running_)
         return;
 
-    StatisticHelper::PopulateVariables(only_use_selected_viewelement_,
-                                       only_use_visible_in_viewport_,
+    StatisticHelper::PopulateVariables(only_use_visible_in_viewport_,
                                        GraphicDrawer::GetSelectedViewElement());
 
     future_ = QtConcurrent::run(&StatisticHelper::GenerateData);
@@ -46,12 +45,6 @@ void Stats::finishedCalculating()
 
 }
 
-
-
-void Stats::on_toggleSelectedLine_clicked(bool checked)
-{
-    only_use_selected_viewelement_ = checked;
-}
 
 void Stats::on_toggleViewableData_clicked(bool checked)
 {

@@ -44,7 +44,6 @@ private:
 
 private slots:
     void finishedCalculating();
-    void on_toggleSelectedLine_clicked(bool checked);
     void on_toggleViewableData_clicked(bool checked);
 };
 
