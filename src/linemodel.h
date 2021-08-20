@@ -23,7 +23,7 @@ public:
 
     QString GetLabel() const;
 
-    QList<QGraphicsItem*> GetDrawnElements() const;
+    QList<QGraphicsRectItem*> GetDrawnElements() const;
 
     void SetType(QString type);
     QString GetType();
@@ -38,7 +38,7 @@ private:
     qreal origin_y_;
     QString label_;
     ViewElement to_be_displayed_element_;
-    QList<QGraphicsItem*> drawn_elements_;
+    QList<QGraphicsRectItem*> drawn_elements_;
     QGraphicsView* used_view_;
     QBrush used_brush_ = Qt::blue;
 

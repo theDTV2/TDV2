@@ -6,6 +6,16 @@
 void StatisticHelper::PopulateVariables(bool only_use_selected_viewelement, bool only_use_visible_in_viewport, QString selected_view_element)
 {
 
+
+
+    drawn_view_elements_ = GraphicDrawer::GetDrawnElements();
+
+    //If there are no drawn elements, we instantly leave
+    if(drawn_view_elements_.empty())
+        return;
+
+    //Create Series & Chart in this to preven the UI-Thread from exploding
+    series_ = new QBarSeries();
     chart_ = new QChart();
 
 
@@ -13,7 +23,7 @@ void StatisticHelper::PopulateVariables(bool only_use_selected_viewelement, bool
     only_use_visible_in_viewport_ = only_use_visible_in_viewport;
     if (only_use_selected_viewelement_)
     {
-       selected_view_element_ = selected_view_element;
+        selected_view_element_ = selected_view_element;
     }
 
     if (only_use_visible_in_viewport_)
@@ -26,11 +36,32 @@ void StatisticHelper::PopulateVariables(bool only_use_selected_viewelement, bool
 
 void StatisticHelper::GenerateData()
 {
-    if (only_use_visible_in_viewport_)
+    if (drawn_view_elements_.empty())
+        return;
+
+
+    //cleanup
+    data_vector_.clear();
+
+
+    //warning is obsolete since qt6, as QVector now is an wrapper for QList
+    data_vector_ = QList<QPair<QString,qreal>>();     // clazy:exclude=inefficient-qlist-soft
+
+    for (auto e : drawn_view_elements_)
     {
-
-
+        //We only calculate load of tasks
+        if (e->GetType() == "Tasks")
+        {
+            if (only_use_visible_in_viewport_)
+                data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e)));
+            else
+                data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e,left_boundary_,right_boundary_)));
+        }
     }
+
+
+    max_value_ = AxisManager::GetXAxisLenght();
+
 
 }
 
@@ -46,44 +77,46 @@ QString StatisticHelper::GetLeftLabel()
 
 QChart *StatisticHelper::GetChart()
 {
-    /*QBarSet *set0 = new QBarSet("Jane");
-    QBarSet *set1 = new QBarSet("John");
-    QBarSet *set2 = new QBarSet("Axel");
-    QBarSet *set3 = new QBarSet("Mary");
-    QBarSet *set4 = new QBarSet("Samantha");
-
-    *set0 << QRandomGenerator::global()->bounded(256) << 2 << 3 << 4 << 5 << 6;
-    *set1 << QRandomGenerator::global()->bounded(256) << 0 << 0 << 4 << 0 << 7;
-    *set2 << QRandomGenerator::global()->bounded(256) << 5 << 8 << 13 << 8 << 5;
-    *set3 << QRandomGenerator::global()->bounded(256) << 6 << 7 << 3 << 4 << 5;
-    *set4 << QRandomGenerator::global()->bounded(256) << 7 << 5 << 3 << 1 << 2;
-    QBarSeries *series = new QBarSeries();
-    series->append(set0);
-    series->append(set1);
-    series->append(set2);
-    series->append(set3);
-    series->append(set4);
+    if (data_vector_.count() == 0)
+        return new QChart();
 
 
-    chart_->removeAllSeries();
-    chart_->addSeries(series);
-    chart_->setTitle("Simple barchart example");
+    //generate QSeries
+    for (auto &e : data_vector_)
+    {
+        QBarSet* set = new QBarSet(e.first);
+        //convert to %
+        *set << (e.second / max_value_)*100;
+        series_->append(set);
+    }
+
+
+    chart_->addSeries(series_);
+    chart_->setTitle("Load");
 
     QStringList categories;
-    categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun";
+    for (auto &e : data_vector_)
+        categories << e.first;
+
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(categories);
-    chart_->addAxis(axisX, Qt::AlignBottom);
-    series->attachAxis(axisX);
 
     QValueAxis *axisY = new QValueAxis();
-    axisY->setRange(0,256);
-    chart_->addAxis(axisY, Qt::AlignLeft);
-    series->attachAxis(axisY);
+    axisY->setRange(0,100);
 
+    chart_->addAxis(axisY, Qt::AlignLeft);
+    series_->attachAxis(axisY);
 
     chart_->legend()->setVisible(true);
     chart_->legend()->setAlignment(Qt::AlignBottom);
-*/
+
+
     return chart_;
+}
+
+qreal StatisticHelper::GetXLenght()
+{
+    if (only_use_visible_in_viewport_)
+        return right_boundary_ - left_boundary_;
+    return AxisManager::GetXAxisLenght();
 }

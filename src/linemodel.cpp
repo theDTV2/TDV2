@@ -40,7 +40,7 @@ QString LineModel::GetLabel() const
     return label_;
 }
 
-QList<QGraphicsItem *> LineModel::GetDrawnElements() const
+QList<QGraphicsRectItem*> LineModel::GetDrawnElements() const
 {
     return drawn_elements_;
 }
@@ -87,8 +87,6 @@ void LineModel::RefreshDrawnItems(bool use_height)
                 max = e.GetHeight();
 
         //draw steps with max + 1 as maximum step. This is to prevent clipping
-
-
     }
 
 
@@ -116,6 +114,7 @@ void LineModel::RefreshDrawnItems(bool use_height)
         }
 
         new_item->setBrush(used_brush_);
+        drawn_elements_.append(new_item);
         used_view_->scene()->addItem(new_item);
 
     }

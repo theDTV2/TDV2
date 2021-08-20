@@ -41,8 +41,8 @@ void Stats::StartUpdate()
 
 void Stats::finishedCalculating()
 {
-    thread_is_running_ = false;
 
+    thread_is_running_ = false;
     main_chart_view_->setChart(StatisticHelper::GetChart());
 
 }

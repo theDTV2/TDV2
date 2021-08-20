@@ -1,12 +1,12 @@
 #include "customqgraphicsview.h"
 
 customQGraphicsView::customQGraphicsView(QWidget * parent)
-: QGraphicsView(parent) {
+    : QGraphicsView(parent) {
     enable_controls_ = false;
 }
 
 customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * parent)
-: QGraphicsView(scene, parent) {}
+    : QGraphicsView(scene, parent) {}
 
 void customQGraphicsView::wheelEvent(QWheelEvent * event)
 {
@@ -49,15 +49,12 @@ void customQGraphicsView::resizeEvent(QResizeEvent *event)
 
     AxisManager::UpdateSpacing();
     GraphicDrawer::AdjustLabelViewPosition();
-
 }
 
 void customQGraphicsView::keyPressEvent(QKeyEvent *event)
 {
-
     if (enable_controls_)
     {
-
         QGraphicsView::keyPressEvent(event);
         AxisManager::UpdateSpacing();
         GraphicDrawer::AdjustLabelViewPosition();

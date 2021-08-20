@@ -236,6 +236,8 @@ void GraphicDrawer::Reset()
 
 qreal GraphicDrawer::GetViewPortLeft()
 {
+
+
     return view_->mapToScene(view_->rect().topLeft()).x();
 }
 

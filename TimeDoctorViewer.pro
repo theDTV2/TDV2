@@ -25,6 +25,7 @@ SOURCES += \
     src/graphicsmanager.cpp \
     src/handlermodel.cpp \
     src/linemodel.cpp \
+    src/linemodelhelper.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/markerentry.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     src/graphicsmanager.h \
     src/handlermodel.h \
     src/linemodel.h \
+    src/linemodelhelper.h \
     src/mainwindow.h \
     src/markerentry.h \
     src/markermodel.h \

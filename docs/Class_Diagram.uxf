@@ -636,7 +636,7 @@ _SetCurrentZoomToMax() : void_
 -origin_x_ : qreal
 -origin_y_ : qreal
 -to_be_displayed_element_ : ViewElement
--drawn_elements_ : QList&lt;QGraphicItems*&gt;
+-drawn_elements_ : QList&lt;QGraphicsRectItem*&gt;
 -used_view_ : QGraphicsView*
 -used_brush_ : QBrush
 -type_ : QString
@@ -653,6 +653,7 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
 +GetBrush() : QBrush;
 +SetBrush(new_brush : QBrush) : void
 +RefreshDrawnItems() : void
++GetDrawnElements() : QGraphicsRectItem*
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -989,7 +990,7 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>4669</x>
-      <y>588</y>
+      <y>546</y>
       <w>203</w>
       <h>21</h>
     </coordinates>
@@ -1002,7 +1003,7 @@ m2=*</panel_attributes>
       <x>4858</x>
       <y>413</y>
       <w>651</w>
-      <h>273</h>
+      <h>245</h>
     </coordinates>
     <panel_attributes>StatisticHelper
 --
@@ -1014,6 +1015,7 @@ _selected_viewelement_ : QString_
 _left_label_ : QString_
 _right_label_ : QString_
 _chart_ : QChart*_
+_series_ : QBarSeries_
 
 _only_use_selected_viewelement_ : bool_
 _only_use_visible_in_viewport_ : bool_
@@ -1025,21 +1027,22 @@ _+GenerateData() : void_
 _+GetRightLabel() : QString_
 _+GetLeftLabel() : QString_
 _+GetChart() : QChart*_
-</panel_attributes>
+
+_-GetXLenght() : qreal_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4851</x>
-      <y>896</y>
-      <w>651</w>
-      <h>273</h>
+      <x>4858</x>
+      <y>889</y>
+      <w>455</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>LineModelHelper
 --
 _+GetExecutionTimeFromLineModel(model : LineModel*) : qreal_
-_+GetExecutionTimeFromLineModel(model : LineModel*, qreal start_time, qreal end_time) : qreal_
+_+GetExecutionTimeFromLineModel(model : LineModel*, start_time : qreal, end_time : qreal) : qreal_
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -1047,22 +1050,22 @@ _+GetExecutionTimeFromLineModel(model : LineModel*, qreal start_time, qreal end_
     <id>Relation</id>
     <coordinates>
       <x>4746</x>
-      <y>1022</y>
-      <w>119</w>
+      <y>924</y>
+      <w>126</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>5110</x>
-      <y>679</y>
+      <x>5082</x>
+      <y>651</y>
       <w>21</w>
-      <h>231</h>
+      <h>252</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;340.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

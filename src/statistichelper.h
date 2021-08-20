@@ -7,7 +7,7 @@
 #include <qvalueaxis.h>
 #include <QRandomGenerator>
 
-
+#include "linemodelhelper.h"
 #include "customqgraphicsview.h"
 
 class StatisticHelper
@@ -21,6 +21,9 @@ public:
     static QChart *GetChart();
 
 private:
+
+    static qreal GetXLenght();
+
     static inline QList<LineModel*> drawn_view_elements_ = QList<LineModel*>();
     static inline qreal left_boundary_;
     static inline qreal right_boundary_;
@@ -29,9 +32,15 @@ private:
     static inline QString left_label_;
     static inline QString right_label_;
     static inline QChart* chart_;
+    static inline QBarSeries* series_ = new QBarSeries();
+    static inline qreal max_value_;
+
+    static inline QList<QPair<QString,qreal>> data_vector_;
 
     static inline bool only_use_selected_viewelement_;
     static inline bool only_use_visible_in_viewport_;
+
+
 
 };
 
