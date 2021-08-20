@@ -23,6 +23,8 @@ public:
 
     QString GetLabel() const;
 
+    QList<QGraphicsItem*> GetDrawnElements() const;
+
     void SetType(QString type);
     QString GetType();
     QBrush GetBrush();

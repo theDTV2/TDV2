@@ -40,6 +40,11 @@ QString LineModel::GetLabel() const
     return label_;
 }
 
+QList<QGraphicsItem *> LineModel::GetDrawnElements() const
+{
+    return drawn_elements_;
+}
+
 void LineModel::SetType(QString type)
 {
     type_ = type;

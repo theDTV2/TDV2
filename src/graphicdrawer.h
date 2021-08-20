@@ -32,7 +32,8 @@ public:
 
     static qreal  GetViewPortLeft();
     static qreal  GetViewPortRight();
-    static QString GetViewElementNameAtHeight(qreal y);
+    static void SetViewElementNameAtHeight(qreal y);
+    static QString GetSelectedViewElement();
 
 private:
 
@@ -47,6 +48,8 @@ private:
     inline static QList<QGraphicsRectItem*> drawn_markers_ = QList<QGraphicsRectItem*>();
     inline static QList<LineModel*> drawn_view_elements_  = QList<LineModel*>();
     inline static qreal current_y_ = 125;
+    inline static QString selected_view_element_ = "";
+
 
     template <class T>
     static QList<LineModel*> DrawViewElementList(T list, QBrush brush = Qt::black, bool use_height = false, QString type = "No Type")

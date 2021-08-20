@@ -2,10 +2,13 @@
 #define STATS_H
 
 #include <QDialog>
+#include <QChart>
 #include <QtConcurrent/QtConcurrent>
 #include <QFutureWatcher>
-
+#include <qchartview.h>
 #include "statistichelper.h"
+
+#include "graphicdrawer.h"
 
 namespace Ui {
 class Stats;
@@ -30,15 +33,19 @@ private:
     static inline QFuture<void> future_ =  QFuture<void>();
 
 
-    static void StartUpdate();
+    void StartUpdate();
+
+    static inline QChartView* main_chart_view_ = nullptr;
 
 
-public slots:
-    static void finishedCalculating();
+    bool only_use_selected_viewelement_;
+    bool only_use_visible_in_viewport_;
+
 
 private slots:
-    void on_testUpdate_clicked();
-
+    void finishedCalculating();
+    void on_toggleSelectedLine_clicked(bool checked);
+    void on_toggleViewableData_clicked(bool checked);
 };
 
 #endif // STATS_H

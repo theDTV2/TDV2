@@ -228,6 +228,7 @@ void GraphicDrawer::Reset()
     non_resizable_elements_.clear();
 
     current_y_ = 0;
+    selected_view_element_ = "";
 
 
 
@@ -243,15 +244,23 @@ qreal GraphicDrawer::GetViewPortRight()
     return view_->mapToScene(view_->rect().topRight()).x();
 }
 
-QString GraphicDrawer::GetViewElementNameAtHeight(qreal y)
+void GraphicDrawer::SetViewElementNameAtHeight(qreal y)
 {
     for (auto e : drawn_view_elements_)
     {
         if (qAbs(e->GetOriginY() - y) < LINE_HEIGHT / 2)
-            return e->GetLabel();
-
+        {
+            selected_view_element_ =  e->GetLabel();
+            break;
+        }
     }
-    return "";
+    selected_view_element_ = "";
+    return;
+}
+
+QString GraphicDrawer::GetSelectedViewElement()
+{
+    return selected_view_element_;
 }
 
 

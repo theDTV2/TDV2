@@ -127,7 +127,7 @@ executions/second: zz</string>
          <number>6</number>
         </property>
         <item row="0" column="0">
-         <widget class="QChartView" name="topLeft"/>
+         <widget class="QChartView" name="chartView"/>
         </item>
        </layout>
       </widget>

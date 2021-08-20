@@ -1,19 +1,24 @@
 #ifndef STATISTICHELPER_H
 #define STATISTICHELPER_H
-#include "customqgraphicsview.h"
-
-
 #include <QChart>
+#include <QBarSet>
+#include <QBarSeries>
+#include <qbarcategoryaxis.h>
+#include <qvalueaxis.h>
+#include <QRandomGenerator>
+
+
+#include "customqgraphicsview.h"
 
 class StatisticHelper
 {
 public:
-    static void PopulateVariables(bool only_use_selected_viewelement, bool only_use_visible_in_viewport);
+    static void PopulateVariables(bool only_use_selected_viewelement, bool only_use_visible_in_viewport, QString selected_view_element_ = "");
     static void GenerateData();
 
-    QString GetRightLabel();
-    QString GetLeftLabel();
-    QChart *GetChart();
+    static QString GetRightLabel();
+    static QString GetLeftLabel();
+    static QChart *GetChart();
 
 private:
     static inline QList<LineModel*> drawn_view_elements_ = QList<LineModel*>();

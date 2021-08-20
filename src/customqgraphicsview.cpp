@@ -77,8 +77,9 @@ void customQGraphicsView::mousePressEvent(QMouseEvent *event)
 {
     if (enable_controls_)
     {
-       selected_view_element_ = GraphicDrawer::GetViewElementNameAtHeight(mapToScene(event->pos()).y());
+        GraphicDrawer::SetViewElementNameAtHeight(mapToScene(event->pos()).y());
 
+        QGraphicsView::mousePressEvent(event);
     }
 }
 
