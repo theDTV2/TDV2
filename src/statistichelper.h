@@ -1,6 +1,6 @@
 #ifndef STATISTICHELPER_H
 #define STATISTICHELPER_H
-#include "graphicsmanager.h"
+#include "customqgraphicsview.h"
 
 
 #include <QChart>

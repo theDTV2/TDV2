@@ -2,7 +2,7 @@
 
 customQGraphicsView::customQGraphicsView(QWidget * parent)
 : QGraphicsView(parent) {
-    enable_keyboard_controls_ = false;
+    enable_controls_ = false;
 }
 
 customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * parent)
@@ -55,8 +55,9 @@ void customQGraphicsView::resizeEvent(QResizeEvent *event)
 void customQGraphicsView::keyPressEvent(QKeyEvent *event)
 {
 
-    if (enable_keyboard_controls_)
+    if (enable_controls_)
     {
+
         QGraphicsView::keyPressEvent(event);
         AxisManager::UpdateSpacing();
         GraphicDrawer::AdjustLabelViewPosition();
@@ -70,6 +71,15 @@ void customQGraphicsView::scrollContentsBy(int dx, int dy)
     AxisManager::UpdateSpacing();
 
     QGraphicsView::scrollContentsBy(dx,dy);
+}
+
+void customQGraphicsView::mousePressEvent(QMouseEvent *event)
+{
+    if (enable_controls_)
+    {
+       selected_view_element_ = GraphicDrawer::GetViewElementNameAtHeight(mapToScene(event->pos()).y());
+
+    }
 }
 
 
@@ -88,12 +98,12 @@ void customQGraphicsView::SetResizeFunction(void (*resize_function)())
     func_resize_ = resize_function;
 }
 
-void customQGraphicsView::SetEnableKeyboardControls(bool value)
+void customQGraphicsView::SetEnableControls(bool value)
 {
-    enable_keyboard_controls_ = value;
+    enable_controls_ = value;
 }
 
-bool customQGraphicsView::GetEnableKeyboardControls()
+bool customQGraphicsView::GetEnableControls()
 {
-    return enable_keyboard_controls_;
+    return enable_controls_;
 }

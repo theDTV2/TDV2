@@ -92,25 +92,25 @@ void GraphicDrawer::DrawData()
     if (DataAccessor::GetTasks().count() > 0)
     {
         drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetTasks(),Qt::red,false,"Tasks"));
-        current_y_ += 50;
+        current_y_ += LINE_HEIGHT;
     }
 
     if (DataAccessor::GetHandlers().count() > 0)
     {
         drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetHandlers(),Qt::blue,false,"Handlers"));
-        current_y_ += 50;
+        current_y_ += LINE_HEIGHT;
     }
 
     if (DataAccessor::GetQueues().count() > 0)
     {
         drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetQueues(), Qt::green,true,"Queues"));
-        current_y_ += 50;
+        current_y_ += LINE_HEIGHT;
     }
 
     if (DataAccessor::GetUserAgents().count() > 0)
     {
         drawn_view_elements_.append(DrawViewElementList(DataAccessor::GetUserAgents(), Qt::cyan,false,"User Agents"));
-        current_y_ += 50;
+        current_y_ += LINE_HEIGHT;
     }
 
 
@@ -241,6 +241,17 @@ qreal GraphicDrawer::GetViewPortLeft()
 qreal GraphicDrawer::GetViewPortRight()
 {
     return view_->mapToScene(view_->rect().topRight()).x();
+}
+
+QString GraphicDrawer::GetViewElementNameAtHeight(qreal y)
+{
+    for (auto e : drawn_view_elements_)
+    {
+        if (qAbs(e->GetOriginY() - y) < LINE_HEIGHT / 2)
+            return e->GetLabel();
+
+    }
+    return "";
 }
 
 

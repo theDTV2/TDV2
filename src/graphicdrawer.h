@@ -9,6 +9,7 @@
 
 #include "dataaccessor.h"
 
+#define LINE_HEIGHT 50
 
 class GraphicDrawer
 {
@@ -31,6 +32,7 @@ public:
 
     static qreal  GetViewPortLeft();
     static qreal  GetViewPortRight();
+    static QString GetViewElementNameAtHeight(qreal y);
 
 private:
 
@@ -57,7 +59,7 @@ private:
             model = new LineModel(0,current_y_,e.GetName(),e,view_, brush,use_height);
             model->SetType(type);
             return_list.append(model);
-            current_y_ += 55;
+            current_y_ += LINE_HEIGHT + 5;
         }
         return return_list;
     }
