@@ -186,7 +186,8 @@ void GraphicDrawer::DrawLabels(QGraphicsView *label_view)
     label_view->scene()->addLine(700,-1000,700,1000);
     label_view_->fitInView(-500,view_->mapToScene(view_->rect().topLeft()).y() + 20,200,view_->rect().height(),Qt::KeepAspectRatioByExpanding);
 
-    DrawViewElementsList(drawn_view_elements_);
+    if (!drawn_view_elements_.empty())
+        DrawViewElementsList(drawn_view_elements_);
 
 
 }

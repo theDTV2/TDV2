@@ -14,6 +14,11 @@ void DataProcessor::ProcessRawData(QString file_name)
 
     bool done = false;
 
+    //If we have no raw data, we cancel here
+    if (raw_data_.empty())
+        done = true;;
+
+
     while(!done)
     {
         ParseEntry();
@@ -23,6 +28,7 @@ void DataProcessor::ProcessRawData(QString file_name)
 
     }
 
+    //clean up
     Finalize();
 }
 
