@@ -52,16 +52,14 @@ void StatisticHelper::GenerateData()
         //We only calculate load of tasks
         if (e->GetType() == "Tasks")
         {
-            if (only_use_visible_in_viewport_)
+            if (!only_use_visible_in_viewport_)
                 data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e)));
             else
                 data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e,left_boundary_,right_boundary_)));
         }
     }
 
-
     max_value_ = AxisManager::GetXAxisLenght();
-
 
 }
 
@@ -88,6 +86,11 @@ QChart *StatisticHelper::GetChart()
         //convert to %
         *set << (e.second / max_value_)*100;
         series_->append(set);
+
+
+        //Override the raw value, so that we can use it later
+        e.second = (e.second / max_value_)*100;
+
     }
 
 
@@ -102,7 +105,18 @@ QChart *StatisticHelper::GetChart()
     axisX->append(categories);
 
     QValueAxis *axisY = new QValueAxis();
-    axisY->setRange(0,100);
+
+
+    qreal max = 0;
+    for (auto &e : data_vector_)
+    {
+        if (e.second > max)
+            max = e.second;
+    }
+
+    qDebug("%f",max);
+    //Set a slightly higher Y-Range to make it prettier
+    axisY->setRange(0,max * 1.2);
 
     chart_->addAxis(axisY, Qt::AlignLeft);
     series_->attachAxis(axisY);

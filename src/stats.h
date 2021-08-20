@@ -38,8 +38,8 @@ private:
     static inline QChartView* main_chart_view_ = nullptr;
 
 
-    bool only_use_selected_viewelement_;
-    bool only_use_visible_in_viewport_;
+    bool only_use_selected_viewelement_ = false;
+    bool only_use_visible_in_viewport_ = false;
 
 
 private slots:
