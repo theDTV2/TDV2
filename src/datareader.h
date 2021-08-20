@@ -22,7 +22,7 @@ private:
     static bool CheckLine();
 
     inline static QString path_of_file_;
-    inline static QList<QString> read_data_;
+    inline static QList<QString> read_data_ = QList<QString>();
     inline static QFile file_;
 };
 

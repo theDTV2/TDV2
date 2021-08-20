@@ -24,7 +24,6 @@ public:
     static void SetDataToProcess(QStringList string);
     static void ProcessRawData(QString file_name);
 
-
     /*
      * Return by given type
      */
