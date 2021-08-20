@@ -115,6 +115,7 @@ _+ReadTDVFile() : void_</panel_attributes>
 --
 _selected_data_model : DataModel_
 --
+
 _+GetTasks() : QList&lt;TaskModel&gt;_
 _+GetQueues() : QList&lt;QueueModel&gt; _
 _+GetMarkers() : QList&lt;MarkerModel&gt;_
@@ -129,7 +130,6 @@ _+GetXAxisLenght(): qreal_
 _+GetYAxisLenght() : qreal_
 _-GetMaxInList(list_to_search : QList&lt;T&gt;, lists : rest...) : qreal_
 _-GetMaxInList(list_to_search : QList&lt;T&gt;) : qreal_
-
 _+SelectDataModel(id : QString) : bool_</panel_attributes>
     <additional_attributes/>
   </element>
@@ -911,7 +911,7 @@ _+GetDataModel() : *DataModel_
 _+SetDataModel(id : QString) : void_
 _+ContainsDataModel(id : QString) : bool_
 _+GetDataModelStrings() : QStringList_
-
+_-mutex_ : QMutex_
 </panel_attributes>
     <additional_attributes/>
   </element>

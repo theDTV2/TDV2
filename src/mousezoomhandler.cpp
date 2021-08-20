@@ -51,7 +51,6 @@ void MouseZoomHandler::ZoomOut()
     zoom_speed_x = qMin(1.f,zoom_speed_x * (1 + zoom_speed_x));
     zoom_speed_y = qMin(1.f,zoom_speed_y * (1 + zoom_speed_y));
 
-
     AxisManager::UpdateSpacing();
 }
 

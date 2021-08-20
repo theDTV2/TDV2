@@ -1,6 +1,8 @@
 #ifndef DATAFACTORY_H
 #define DATAFACTORY_H
 #include "datamodel.h"
+#include <qmutex.h>
+
 
 class DataFactory
 {
@@ -25,6 +27,10 @@ public:
 private:
     static inline QList<DataModel*> data_models_ = QList<DataModel*>();
     static inline DataModel* current_ = nullptr;
+
+    //All data operations must await the mutex to prevent different
+    //threads from breaking something
+    static inline QMutex mutex_;
 };
 
 #endif // DATAFACTORY_H

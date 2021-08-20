@@ -1,8 +1,6 @@
 #include "statistichelper.h"
 
 
-
-
 void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport, QString selected_view_element)
 {
     drawn_view_elements_ = GraphicDrawer::GetDrawnElements();
@@ -14,8 +12,6 @@ void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport, QStri
     //Create Series & Chart in this to preven the UI-Thread from exploding
     series_ = new QBarSeries();
     chart_ = new QChart();
-
-
 
     only_use_visible_in_viewport_ = only_use_visible_in_viewport;
     if (only_use_visible_in_viewport_)
@@ -31,10 +27,8 @@ void StatisticHelper::GenerateData()
     if (drawn_view_elements_.empty())
         return;
 
-
     //cleanup
     data_vector_.clear();
-
 
     //warning is obsolete since qt6, as QVector now is an wrapper for QList
     data_vector_ = QList<QPair<QString,qreal>>();     // clazy:exclude=inefficient-qlist-soft
@@ -52,6 +46,18 @@ void StatisticHelper::GenerateData()
     }
 
     max_value_ = AxisManager::GetXAxisLenght();
+
+    if (only_use_visible_in_viewport_)
+    {
+        if (DataAccessor::GetSpeed() == 0)
+            left_label_ =  "Load between " + QString::number(left_boundary_ ,'f',0) + " ticks and " + QString::number(right_boundary_,'f',0) + " ticks.";
+
+        else
+            left_label_ =  "Load between " + QString::number((left_boundary_ / DataAccessor::GetSpeed()) * 1000,'f',1) + "ms and " + QString::number((right_boundary_ / DataAccessor::GetSpeed()) * 1000,'f',1) + "ms ";
+    }
+    else
+        left_label_ = "Load for whole Timeline";
+
 
 }
 
@@ -79,12 +85,10 @@ QChart *StatisticHelper::GetChart()
         *set << (e.second / max_value_)*100;
         series_->append(set);
 
-
         //Override the raw value, so that we can use it later
         e.second = (e.second / max_value_)*100;
 
     }
-
 
     chart_->addSeries(series_);
     chart_->setTitle("Load");
@@ -98,7 +102,6 @@ QChart *StatisticHelper::GetChart()
 
     QValueAxis *axisY = new QValueAxis();
 
-
     qreal max = 0;
     for (auto &e : data_vector_)
     {
@@ -106,7 +109,6 @@ QChart *StatisticHelper::GetChart()
             max = e.second;
     }
 
-    qDebug("%f",max);
     //Set a slightly higher Y-Range to make it prettier
     axisY->setRange(0,max * 1.2);
 
@@ -115,7 +117,6 @@ QChart *StatisticHelper::GetChart()
 
     chart_->legend()->setVisible(true);
     chart_->legend()->setAlignment(Qt::AlignBottom);
-
 
     return chart_;
 }

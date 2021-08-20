@@ -28,17 +28,26 @@ QList<HandlerModel> DataFactory::GetHandlers()
 
 quint64 DataFactory::GetSpeed()
 {
-    return current_->GetSpeed();
+    mutex_.lock();
+    quint64 var = current_->GetSpeed();
+    mutex_.unlock();
+    return var;
 }
 
 quint64 DataFactory::GetMemorySpeed()
 {
-    return current_->GetMemorySpeed();
+    mutex_.lock();
+    quint64 var = current_->GetMemorySpeed();
+    mutex_.unlock();
+    return var;
 }
 
 quint64 DataFactory::GetTime()
 {
-    return current_->GetTime();
+    mutex_.lock();
+    quint64 var = current_->GetTime();
+    mutex_.unlock();
+    return var;
 }
 
 QString DataFactory::GetId()
@@ -64,7 +73,6 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
     while (ContainsDataModel(new_id))
     {
         new_id = id.append(" " + QString::number(i));
-
     }
     model->SetId(new_id);
     data_models_.append(model);
@@ -75,6 +83,7 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
 
 void DataFactory::SetDataModel(QString id)
 {
+    mutex_.lock();
     for (auto e : data_models_)
     {
         if (e->GetId() == id)
@@ -82,25 +91,33 @@ void DataFactory::SetDataModel(QString id)
             current_ = e;
         }
     }
+    mutex_.unlock();
 
 }
 
 bool DataFactory::ContainsDataModel(QString id)
 {
+    mutex_.lock();
     for (auto e : data_models_)
     {
         if (e->GetId() == id)
         {
+            mutex_.unlock();
             return true;
         }
     }
+
+    mutex_.unlock();
     return false;
 }
 
 QStringList DataFactory::GetDataModelStrings()
 {
+    mutex_.lock();
     QStringList list;
     for (auto e : data_models_)
         list.append(e->GetId());
+
+    mutex_.unlock();
     return list;
 }

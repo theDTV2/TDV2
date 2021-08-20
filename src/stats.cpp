@@ -43,6 +43,8 @@ void Stats::finishedCalculating()
     thread_is_running_ = false;
     main_chart_view_->setChart(StatisticHelper::GetChart());
 
+    ui->leftLabel->setText(StatisticHelper::GetLeftLabel());
+    //ui->rightLabel->setText(StatisticHelper::GetRightLabel());
 }
 
 

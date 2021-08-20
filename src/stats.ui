@@ -73,8 +73,7 @@
            <number>1</number>
           </property>
           <property name="text">
-           <string>Currently showing all data
- Currently showing all tasks</string>
+           <string>Load for whole Timeline</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>

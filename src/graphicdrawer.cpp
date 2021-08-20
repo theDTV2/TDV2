@@ -236,8 +236,6 @@ void GraphicDrawer::Reset()
 
 qreal GraphicDrawer::GetViewPortLeft()
 {
-
-
     return view_->mapToScene(view_->rect().topLeft()).x();
 }
 
@@ -248,12 +246,15 @@ qreal GraphicDrawer::GetViewPortRight()
 
 void GraphicDrawer::SetViewElementNameAtHeight(qreal y)
 {
+
+
+
     for (auto e : drawn_view_elements_)
     {
         if (qAbs(e->GetOriginY() - y) < LINE_HEIGHT / 2)
         {
             selected_view_element_ =  e->GetLabel();
-            break;
+            return;
         }
     }
     selected_view_element_ = "";
@@ -262,6 +263,7 @@ void GraphicDrawer::SetViewElementNameAtHeight(qreal y)
 
 QString GraphicDrawer::GetSelectedViewElement()
 {
+    //qDebug(qUtf8Printable(selected_view_element_));
     return selected_view_element_;
 }
 
