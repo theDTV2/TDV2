@@ -143,11 +143,7 @@ _+SelectDataModel(id : QString) : bool_</panel_attributes>
 --
 
 --
-
 _+SetupScene(*main_view : customQGraphicView,*label_view : customQGraphicView) : void_
-
-
-
 
 </panel_attributes>
     <additional_attributes/>
@@ -157,7 +153,7 @@ _+SetupScene(*main_view : customQGraphicView,*label_view : customQGraphicView) :
     <coordinates>
       <x>3745</x>
       <y>749</y>
-      <w>343</w>
+      <w>350</w>
       <h>357</h>
     </coordinates>
     <panel_attributes>GraphicDrawer
@@ -184,6 +180,10 @@ _+DrawLabels(label_view : customQGraphicsView*) : void_
 _+AdjustLabelViewPosition() : void_
 _+GetDrawnElements() : QList&lt;LineModel*&gt;_
 _+Reset() : void_
+_+GetViewPortLeft() : qreal_
+_+GetViewPortRight() : qreal_
+
+
 
 </panel_attributes>
     <additional_attributes/>
@@ -679,13 +679,13 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>4081</x>
+      <x>4088</x>
       <y>630</y>
-      <w>245</w>
+      <w>238</w>
       <h>196</h>
     </coordinates>
     <panel_attributes>lt=.&gt;</panel_attributes>
-    <additional_attributes>330.0;10.0;220.0;10.0;220.0;260.0;10.0;260.0</additional_attributes>
+    <additional_attributes>320.0;10.0;210.0;10.0;210.0;260.0;10.0;260.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -991,29 +991,46 @@ m2=*</panel_attributes>
     <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>4865</x>
-      <y>966</y>
-      <w>294</w>
-      <h>105</h>
-    </coordinates>
-    <panel_attributes>StatsHelper
---
-
---
-_+GetViewElementAtHeight(value : quint64) : ViewElement*_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>4746</x>
-      <y>1008</y>
-      <w>133</w>
-      <h>21</h>
+      <x>3822</x>
+      <y>1260</y>
+      <w>21</w>
+      <h>203</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3584</x>
+      <y>1449</y>
+      <w>651</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>StatisticHelper
+--
+_drawn_view_elements_ : QList&lt;LineModel*&gt;_
+_left_boundary_ : qreal_
+_right_boundary_ : qreal_
+_selected_viewelement_ : QString_
+
+_left_label_ : QString_
+_right_label_ : QString_
+_chart_ : QChart*_
+
+_only_use_selected_viewelement_ : bool_
+_only_use_visible_in_viewport_ : bool_
+
+--
+_+PopulateVariables() : void_
+_+GenerateData() : void_
+
+_+GetRightLabel() : QString_
+_+GetLeftLabel() : QString_
+_+GetChart() : QChart*_
+</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

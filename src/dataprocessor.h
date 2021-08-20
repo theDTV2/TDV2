@@ -17,7 +17,7 @@
 #include "generaldata.h"
 #include "datafactory.h"
 
-using namespace std;
+
 class DataProcessor
 {
 public:

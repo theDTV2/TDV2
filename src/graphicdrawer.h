@@ -29,6 +29,9 @@ public:
 
     static void Reset();
 
+    static qreal  GetViewPortLeft();
+    static qreal  GetViewPortRight();
+
 private:
 
     static void ResizeMarkerWidth();

@@ -378,13 +378,13 @@ quint64 DataProcessor::ParseTick(quint64 tick)
 {
     //If we already had a overflow, return the adjusted value here
     if (tick_overflow_)
-        return numeric_limits<quint32>::max()+ tick;
+        return std::numeric_limits<quint32>::max()+ tick;
 
     //Detect overflow here
     if (tick < last_tick_read_)
     {
         tick_overflow_ = true;
-        return numeric_limits<quint32>::max()+ tick;
+        return std::numeric_limits<quint32>::max()+ tick;
     }
 
     //If we arrive here, everything is fine, and we just return the normal tick

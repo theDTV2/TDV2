@@ -32,6 +32,7 @@ SOURCES += \
     src/mousezoomhandler.cpp \
     src/queuemodel.cpp \
     src/searchhelper.cpp \
+    src/statistichelper.cpp \
     src/stats.cpp \
     src/useragentmodel.cpp \
     src/viewelement.cpp \
@@ -60,6 +61,7 @@ HEADERS += \
     src/mousezoomhandler.h \
     src/queuemodel.h \
     src/searchhelper.h \
+    src/statistichelper.h \
     src/stats.h \
     src/useragentmodel.h \
     src/viewelement.h \

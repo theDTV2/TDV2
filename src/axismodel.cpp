@@ -45,13 +45,10 @@ void AxisModel::UpdateSpacing(bool ignore_check)
 
 
     //set Min/Max right and left of viewport. (Improves performance on large viewports)
-    qreal current = qMax(0.f,left - adjusted_distance);
-    qreal right_max = qMin(right + adjusted_distance, direction_vector_.length());
-
-
+    qreal current = qMax(0.f,left - adjusted_distance * 3);
+    qreal right_max = qMin(right + adjusted_distance * 3, direction_vector_.length());
 
     current += adjusted_distance;
-
 
     //If a value for "speed" has been set, we use it to calculate the s from the current ticks
     quint64 divider = 0;
