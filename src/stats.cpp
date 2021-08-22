@@ -44,8 +44,15 @@ void Stats::StartUpdate()
 void Stats::finishedCalculating()
 {
     thread_is_running_ = false;
-    load_chart_view_->setChart(StatisticHelper::GetLoadChart());
-    stats_table_view_->setModel(StatisticHelper::GetTableModel());
+
+    QChart* new_chart = StatisticHelper::GetLoadChart();
+
+    if (new_chart != load_chart_view_->chart())
+        load_chart_view_->setChart(new_chart);
+
+
+    if (stats_table_view_->model() != StatisticHelper::GetTableModel())
+        stats_table_view_->setModel(StatisticHelper::GetTableModel());
 
     ui->mainLabel->setText(StatisticHelper::GetLeftLabel());
 
