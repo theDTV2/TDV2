@@ -8,8 +8,8 @@ public:
 
 static qreal GetExecutionTimeFromLineModel(LineModel* model, qreal start_time = 0, qreal end_time = std::numeric_limits<qreal>::max());
 static qreal GetAverageExeutionLenght(LineModel* model, qreal start_time = 0, qreal end_time = std::numeric_limits<qreal>::max());
-static quint32 GetAmountOfExecutions(LineModel* mode, qreal start_time = 0, qreal end_time = std::numeric_limits<qreal>::max());
-//static qreal GetExecutionsFrequency
+static quint32 GetAmountOfExecutions(LineModel* model, qreal start_time = 0, qreal end_time = std::numeric_limits<qreal>::max());
+
 
 private:
 
