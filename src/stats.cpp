@@ -33,7 +33,7 @@ void Stats::StartUpdate()
     StatisticHelper::PopulateVariables(only_use_visible_in_viewport_,
                                        GraphicDrawer::GetSelectedViewElement());
 
-   // future_ = QtConcurrent::run(&StatisticHelper::GenerateData);
+    future_ = QtConcurrent::run(&StatisticHelper::GenerateData);
     watcher_.setFuture(future_);
 
     thread_is_running_ = true;

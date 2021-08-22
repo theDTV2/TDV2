@@ -23,9 +23,14 @@ qreal LineModelHelper::GetExecutionTimeFromLineModel(LineModel *model, qreal sta
                 max_lenght_ = e->rect().width();
         }
 
-
-
     }
+
+
+    //If no min is set, we need to reset it.
+    if ( min_lenght_ == std::numeric_limits<qreal>::max())
+        min_lenght_ = 0;
+
+
     return result;
 }
 
@@ -34,6 +39,11 @@ qreal LineModelHelper::GetAverageExecutionLenghtAndMinMax(LineModel *model, qrea
 
     qreal counter = GetAmountOfExecutions(model,start_time, end_time);
     qreal result = GetExecutionTimeFromLineModel(model);
+
+    //Prevent div by 0 when no items are in view
+    if (result == 0)
+        return 0;
+
     return result / counter;
 
 }

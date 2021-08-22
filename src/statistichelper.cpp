@@ -67,7 +67,11 @@ void StatisticHelper::GenerateData()
                 average_lenght = LineModelHelper::GetAverageExecutionLenghtAndMinMax(e,left_boundary_,right_boundary_);
             }
 
+
+
+
             executions_per_second = (amount_of_executions / max_value_) * DataAccessor::GetSpeed();
+
 
             data_model_->AddEntry(e->GetLabel(),
                                  amount_of_executions,
