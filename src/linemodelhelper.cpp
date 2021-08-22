@@ -2,10 +2,7 @@
 
 
 
-qreal LineModelHelper::GetExecutionTimeFromLineModel(LineModel *model)
-{
-   return GetExecutionTimeFromLineModel(model,0,std::numeric_limits<qreal>::max());
-}
+
 
 qreal LineModelHelper::GetExecutionTimeFromLineModel(LineModel *model, qreal start_time, qreal end_time)
 {
@@ -20,3 +17,6 @@ qreal LineModelHelper::GetExecutionTimeFromLineModel(LineModel *model, qreal sta
     }
     return result;
 }
+
+
+

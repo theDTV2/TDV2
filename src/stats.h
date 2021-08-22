@@ -35,7 +35,8 @@ private:
 
     void StartUpdate();
 
-    static inline QChartView* main_chart_view_ = nullptr;
+    static inline QChartView* load_chart_view_ = nullptr;
+    static inline QChartView* execs_chart_view_ = nullptr;
 
 
     bool only_use_selected_viewelement_ = false;

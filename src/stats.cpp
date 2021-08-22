@@ -14,7 +14,9 @@ Stats::Stats(QWidget *parent) :
 
     connect (&watcher_, &QFutureWatcher<void>::finished, this, &Stats::finishedCalculating);
 
-    main_chart_view_ = ui->chartView;
+    load_chart_view_ = ui->leftChart;
+    execs_chart_view_ = ui->rightChart;
+
 }
 
 Stats::~Stats()
@@ -41,9 +43,10 @@ void Stats::StartUpdate()
 void Stats::finishedCalculating()
 {
     thread_is_running_ = false;
-    main_chart_view_->setChart(StatisticHelper::GetChart());
+    load_chart_view_->setChart(StatisticHelper::GetLoadChart());
 
-    ui->leftLabel->setText(StatisticHelper::GetLeftLabel());
+
+    ui->topLabel->setText(StatisticHelper::GetLeftLabel());
     //ui->rightLabel->setText(StatisticHelper::GetRightLabel());
 }
 

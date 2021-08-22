@@ -10,8 +10,8 @@ void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport, QStri
         return;
 
     //Create Series & Chart in this to preven the UI-Thread from exploding
-    series_ = new QBarSeries();
-    chart_ = new QChart();
+    load_series_ = new QBarSeries();
+    load_chart_ = new QChart();
 
     only_use_visible_in_viewport_ = only_use_visible_in_viewport;
     if (only_use_visible_in_viewport_)
@@ -28,25 +28,36 @@ void StatisticHelper::GenerateData()
         return;
 
     //cleanup
-    data_vector_.clear();
+    load_data_vector_.clear();
+    exec_data_vector_.clear();
 
     //warning is obsolete since qt6, as QVector now is an wrapper for QList
-    data_vector_ = QList<QPair<QString,qreal>>();     // clazy:exclude=inefficient-qlist-soft
+    load_data_vector_ = QList<QPair<QString,qreal>>();     // clazy:exclude=inefficient-qlist-soft
 
     for (auto e : drawn_view_elements_)
     {
         //We only calculate load of tasks
         if (e->GetType() == "Tasks")
         {
+
+            //generate data for load
             if (!only_use_visible_in_viewport_)
-                data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e)));
+                load_data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e)));
             else
-                data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e,left_boundary_,right_boundary_)));
+                load_data_vector_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e,left_boundary_,right_boundary_)));
+
+
+
+
+
         }
     }
 
     max_value_ = AxisManager::GetXAxisLenght();
 
+
+
+    //Set left label according to variables
     if (only_use_visible_in_viewport_)
     {
         if (DataAccessor::GetSpeed() == 0)
@@ -56,45 +67,45 @@ void StatisticHelper::GenerateData()
             left_label_ =  "Load between " + QString::number((left_boundary_ / DataAccessor::GetSpeed()) * 1000,'f',1) + "ms and " + QString::number((right_boundary_ / DataAccessor::GetSpeed()) * 1000,'f',1) + "ms ";
     }
     else
-        left_label_ = "Load for whole Timeline";
-
+        left_label_ = "Load for whole timeline";
 
 }
 
-QString StatisticHelper::GetRightLabel()
-{
-    return right_label_;
-}
 
 QString StatisticHelper::GetLeftLabel()
 {
     return left_label_;
 }
 
-QChart *StatisticHelper::GetChart()
+QChart *StatisticHelper::GetExecutionChart()
 {
-    if (data_vector_.count() == 0)
+    return new QChart();
+}
+
+QChart *StatisticHelper::GetLoadChart()
+{
+    //we only check load_data, as we always fill both
+    if (load_data_vector_.count() == 0)
         return new QChart();
 
-
     //generate QSeries
-    for (auto &e : data_vector_)
+    for (auto &e : load_data_vector_)
     {
         QBarSet* set = new QBarSet(e.first);
         //convert to %
         *set << (e.second / max_value_)*100;
-        series_->append(set);
+        load_series_->append(set);
 
         //Override the raw value, so that we can use it later
         e.second = (e.second / max_value_)*100;
 
     }
 
-    chart_->addSeries(series_);
-    chart_->setTitle("Load");
+    load_chart_->addSeries(load_series_);
+    load_chart_->setTitle("Load");
 
     QStringList categories;
-    for (auto &e : data_vector_)
+    for (auto &e : load_data_vector_)
         categories << e.first;
 
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
@@ -103,7 +114,7 @@ QChart *StatisticHelper::GetChart()
     QValueAxis *axisY = new QValueAxis();
 
     qreal max = 0;
-    for (auto &e : data_vector_)
+    for (auto &e : load_data_vector_)
     {
         if (e.second > max)
             max = e.second;
@@ -112,14 +123,19 @@ QChart *StatisticHelper::GetChart()
     //Set a slightly higher Y-Range to make it prettier
     axisY->setRange(0,max * 1.2);
 
-    chart_->addAxis(axisY, Qt::AlignLeft);
-    series_->attachAxis(axisY);
+    load_chart_->addAxis(axisY, Qt::AlignLeft);
+    load_series_->attachAxis(axisY);
 
-    chart_->legend()->setVisible(true);
-    chart_->legend()->setAlignment(Qt::AlignBottom);
+    load_chart_->legend()->setVisible(true);
+    load_chart_->legend()->setAlignment(Qt::AlignLeft);
 
-    return chart_;
+    return load_chart_;
 }
+
+
+
+
+
 
 qreal StatisticHelper::GetXLenght()
 {

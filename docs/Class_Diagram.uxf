@@ -677,7 +677,7 @@ LineModel(x : qreal, y : qreal, elements : QList&lt;ViewElement&gt;, view : QGra
       <h>196</h>
     </coordinates>
     <panel_attributes>lt=.&gt;</panel_attributes>
-    <additional_attributes>320.0;10.0;210.0;10.0;210.0;260.0;10.0;260.0</additional_attributes>
+    <additional_attributes>320.0;10.0;170.0;10.0;170.0;260.0;10.0;260.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -890,7 +890,7 @@ m2=*</panel_attributes>
       <x>2184</x>
       <y>931</y>
       <w>364</w>
-      <h>217</h>
+      <h>231</h>
     </coordinates>
     <panel_attributes>DataFactory
 --
@@ -919,23 +919,23 @@ _-mutex_ : QMutex_
     <id>Relation</id>
     <coordinates>
       <x>1414</x>
-      <y>1141</y>
+      <y>1155</y>
       <w>854</w>
-      <h>119</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>1200.0;10.0;1200.0;140.0;10.0;150.0</additional_attributes>
+    <additional_attributes>1200.0;10.0;1200.0;120.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>2436</x>
-      <y>1141</y>
+      <y>1155</y>
       <w>210</w>
-      <h>112</h>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0;280.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0;280.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -1012,10 +1012,12 @@ _left_boundary_ : qreal_
 _right_boundary_ : qreal_
 _selected_viewelement_ : QString_
 
-_left_label_ : QString_
-_right_label_ : QString_
-_chart_ : QChart*_
-_series_ : QBarSeries_
+_top_label_ : QString_
+
+_load_chart_ : QChart*_
+_load_series_ : QBarSeries_
+_exec_chart_ : QChart*_
+_exec_series_ : QBarSeries_
 
 _only_use_visible_in_viewport_ : bool_
 
@@ -1023,9 +1025,10 @@ _only_use_visible_in_viewport_ : bool_
 _+PopulateVariables(only_use_visible_in_viewport : bool,selected_view_element_ : QString  ) : void_
 _+GenerateData() : void_
 
-_+GetRightLabel() : QString_
+
 _+GetLeftLabel() : QString_
-_+GetChart() : QChart*_
+_+GetLoadChart() : QChart*_
+_+GetExecutionChart() : QChart*_
 
 _-GetXLenght() : qreal_</panel_attributes>
     <additional_attributes/>
@@ -1040,7 +1043,6 @@ _-GetXLenght() : qreal_</panel_attributes>
     </coordinates>
     <panel_attributes>LineModelHelper
 --
-_+GetExecutionTimeFromLineModel(model : LineModel*) : qreal_
 _+GetExecutionTimeFromLineModel(model : LineModel*, start_time : qreal, end_time : qreal) : qreal_
 </panel_attributes>
     <additional_attributes/>
