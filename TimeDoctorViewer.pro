@@ -35,6 +35,7 @@ SOURCES += \
     src/searchhelper.cpp \
     src/statistichelper.cpp \
     src/stats.cpp \
+    src/statstablemodel.cpp \
     src/useragentmodel.cpp \
     src/viewelement.cpp \
     src/taskmodel.cpp
@@ -65,6 +66,7 @@ HEADERS += \
     src/searchhelper.h \
     src/statistichelper.h \
     src/stats.h \
+    src/statstablemodel.h \
     src/useragentmodel.h \
     src/viewelement.h \
     src/taskmodel.h

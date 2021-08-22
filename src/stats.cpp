@@ -10,12 +10,13 @@ Stats::Stats(QWidget *parent) :
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Stats::StartUpdate);
-    timer->start(2000);
+    timer->start(1000);
 
     connect (&watcher_, &QFutureWatcher<void>::finished, this, &Stats::finishedCalculating);
 
     load_chart_view_ = ui->leftChart;
-    execs_chart_view_ = ui->rightChart;
+    stats_table_view_ = ui->tableView;
+    stats_table_view_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 }
 
@@ -32,7 +33,7 @@ void Stats::StartUpdate()
     StatisticHelper::PopulateVariables(only_use_visible_in_viewport_,
                                        GraphicDrawer::GetSelectedViewElement());
 
-    future_ = QtConcurrent::run(&StatisticHelper::GenerateData);
+   // future_ = QtConcurrent::run(&StatisticHelper::GenerateData);
     watcher_.setFuture(future_);
 
     thread_is_running_ = true;
@@ -44,10 +45,10 @@ void Stats::finishedCalculating()
 {
     thread_is_running_ = false;
     load_chart_view_->setChart(StatisticHelper::GetLoadChart());
+    stats_table_view_->setModel(StatisticHelper::GetTableModel());
 
+    ui->mainLabel->setText(StatisticHelper::GetLeftLabel());
 
-    ui->topLabel->setText(StatisticHelper::GetLeftLabel());
-    //ui->rightLabel->setText(StatisticHelper::GetRightLabel());
 }
 
 

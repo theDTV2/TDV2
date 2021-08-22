@@ -1001,37 +1001,29 @@ m2=*</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>4858</x>
-      <y>413</y>
+      <y>504</y>
       <w>651</w>
-      <h>392</h>
+      <h>238</h>
     </coordinates>
     <panel_attributes>StatisticHelper
 --
 _drawn_view_elements_ : QList&lt;LineModel*&gt;_
 _left_boundary_ : qreal_
 _right_boundary_ : qreal_
-_selected_viewelement_ : QString_
-
 _top_label_ : QString_
-
 _load_chart_ : QChart*_
 _load_series_ : QBarSeries_
-
+_datamodel_ : StatsTableModel*_
 _max_value_ : qreal_
-_total_execs_ : quint32_
-_load_data : QList&lt;QPair&lt;QString,qreal&gt;&gt;_
-_exec_data : QList&lt;std::tumple&lt;QString,qreal,quint32&gt;&gt;_
-
+_load_data: : QList&lt;QPair&lt;QString,qreal&gt;_
 _only_use_visible_in_viewport_ : bool_
-
 --
 _+PopulateVariables(only_use_visible_in_viewport : bool,selected_view_element_ : QString  ) : void_
 _+GenerateData() : void_
 
-
 _+GetLeftLabel() : QString_
 _+GetLoadChart() : QChart*_
-_+GetExect() : QChart*_
+_+GetStatsDataModel() : StatsTableModel_
 
 _-GetXLenght() : qreal_</panel_attributes>
     <additional_attributes/>
@@ -1047,7 +1039,8 @@ _-GetXLenght() : qreal_</panel_attributes>
     <panel_attributes>LineModelHelper
 --
 _+GetExecutionTimeFromLineModel(model : LineModel*, start_time : qreal, end_time : qreal) : qreal_
-</panel_attributes>
+_GetAverageExecutionLenght(model : LineModel*, start_time : qreal, end_time : qreal): qreal_
+GetAmountOfExecutions(model : LineModel*, start_time : qreal, end_time : qreal): qreal_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -1065,27 +1058,41 @@ _+GetExecutionTimeFromLineModel(model : LineModel*, start_time : qreal, end_time
     <id>Relation</id>
     <coordinates>
       <x>5082</x>
-      <y>798</y>
+      <y>735</y>
       <w>21</w>
-      <h>105</h>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>5425</x>
-      <y>889</y>
-      <w>483</w>
-      <h>98</h>
+      <x>4858</x>
+      <y>329</y>
+      <w>833</w>
+      <h>112</h>
     </coordinates>
-    <panel_attributes>StatsDataModel : QAbstractTableModel
+    <panel_attributes>StatsTableModel : QAbstractTableModel
 --
-rowCount(&amp;parent : const QModelIndex) const : int override
-columnCount(&amp;parent : const QModelIndex) const : int override
-data(&amp;index : const QModelIndex,role : int ) const override
-__</panel_attributes>
+-data_vector : QVector&lt;std::tuple&lt;QString,quint32,qreal, qreal, qreal, qreal&gt;&gt;
+--
++rowCount(&amp;parent : const QModelIndex) const : int override
++columnCount(&amp;parent : const QModelIndex) const : int override
++data(&amp;index : const QModelIndex,role : int ) const override
++ClearEntries(task_name : QString, number_of_executions : quint32,executions_per_second : qreal,min_exec_lenght : qreal, max_exec_lenght : qreal,  average_exec_lenght : qreal):  void
++headerData(section : int,orientation :  Qt::Orientation, role : int) const : QVariant </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>5201</x>
+      <y>434</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
 </diagram>

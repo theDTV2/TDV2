@@ -9,6 +9,8 @@
 
 #include "linemodelhelper.h"
 #include "customqgraphicsview.h"
+#include "statstablemodel.h"
+
 
 class StatisticHelper
 {
@@ -19,7 +21,8 @@ public:
 
     static QString GetLeftLabel();
     static QChart *GetLoadChart();
-    static QChart *GetExecutionChart();
+    static StatsTableModel* GetTableModel();
+
 private:
 
     static qreal GetXLenght();
@@ -27,25 +30,13 @@ private:
     static inline QList<LineModel*> drawn_view_elements_ = QList<LineModel*>();
     static inline qreal left_boundary_;
     static inline qreal right_boundary_;
-    static inline QString  selected_view_element_;
-
-    static inline QString left_label_;
-
+    static inline QString top_label_;
     static inline QChart* load_chart_;
     static inline QBarSeries* load_series_ = new QBarSeries();
-
-    static inline QChart* exec_chart_;
-    static inline QBarSeries* exec_series_ = new QBarSeries();
-
-
-
+    static inline StatsTableModel* data_model_ = new StatsTableModel();
     static inline qreal max_value_;
-    static inline QList<QPair<QString,qreal>> load_data_vector_;
-    static inline QList<QPair<QString,qreal>> exec_data_vector_;
+    static inline QList<QPair<QString,qreal>> load_data_;
     static inline bool only_use_visible_in_viewport_;
-
-
-
 
 };
 

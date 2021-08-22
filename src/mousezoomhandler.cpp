@@ -20,7 +20,6 @@ void MouseZoomHandler::ZoomIn()
         return;
     }
 
-
     current_zoom_x *= 1 + zoom_speed_x;
     current_zoom_y *= 1 + zoom_speed_y;
     main_view->scale(1 + zoom_speed_x, 1 + zoom_speed_y);
