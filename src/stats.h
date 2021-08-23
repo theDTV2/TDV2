@@ -44,6 +44,8 @@ private:
     bool only_use_visible_in_viewport_ = false;
 
 
+
+
 private slots:
     void finishedCalculating();
     void on_toggleViewableData_clicked(bool checked);

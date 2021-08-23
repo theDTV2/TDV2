@@ -72,7 +72,8 @@ void AxisModel::UpdateSpacing(bool ignore_check)
 
 
         auto text_item = new QGraphicsTextItem(label,item);
-        text_item->setPos((this->line().x1() + current),this->line().y1() + 15);
+
+        text_item->setPos((this->line().x1() + current) - (text_item->boundingRect().width() * (1/used_view_->transform().m11()) * 0.5) ,this->line().y1() + 15);
 
         text_item->setTransform(text_item->transform().scale(1/used_view_->transform().m11(),1));
         current += adjusted_distance;
