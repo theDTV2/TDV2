@@ -86,7 +86,7 @@ void GraphicDrawer::DrawAxis()
 
 void GraphicDrawer::DrawData()
 {
-    current_y_ = 125;
+    current_y_ = 100;
 
 
     if (DataAccessor::GetTasks().count() > 0)
