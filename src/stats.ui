@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>463</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>900</width>
-    <height>200</height>
+    <height>450</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -48,14 +48,14 @@
        <property name="minimumSize">
         <size>
          <width>300</width>
-         <height>200</height>
+         <height>380</height>
         </size>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Plain</enum>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="leftMargin">
@@ -74,8 +74,8 @@
          <widget class="QChartView" name="leftChart">
           <property name="minimumSize">
            <size>
-            <width>300</width>
-            <height>0</height>
+            <width>400</width>
+            <height>200</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -84,14 +84,40 @@
             <height>16777215</height>
            </size>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QTableView" name="tableView">
           <property name="font">
            <font>
             <pointsize>8</pointsize>
            </font>
+          </property>
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QTableView" name="tableView">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustToContents</enum>

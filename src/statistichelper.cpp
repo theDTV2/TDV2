@@ -149,6 +149,8 @@ QChart *StatisticHelper::GetLoadChart()
     load_chart_->legend()->setVisible(true);
     load_chart_->legend()->setAlignment(Qt::AlignLeft);
 
+
+
     return load_chart_;
 }
 

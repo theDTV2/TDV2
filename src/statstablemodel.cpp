@@ -57,7 +57,7 @@ QVariant StatsTableModel::headerData(int section, Qt::Orientation orientation, i
         case 1:
             return QVariant("#executions");
         case 2:
-            return QVariant("frequency executions");
+            return QVariant("freq. executions");
         case 3:
             return QVariant("shortest");
         case 4:
