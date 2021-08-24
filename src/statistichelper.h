@@ -15,7 +15,7 @@
 class StatisticHelper
 {
 public:
-    static void PopulateVariables(bool only_use_visible_in_viewport, QString selected_view_element_ = "");
+    static void PopulateVariables(bool only_use_visible_in_viewport,const QString& selected_view_element_ = "");
     static void GenerateData();
 
 

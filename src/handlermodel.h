@@ -13,8 +13,7 @@
 class HandlerModel : public ViewElement
 {
 public:
-    HandlerModel(QString name);
-    HandlerModel(QString name, quint16 irq);
+    HandlerModel(const QString& name, quint16 irq);
 
     void AddEnter(quint64 time);
     void AddExit(quint64 time);

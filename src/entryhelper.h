@@ -12,10 +12,10 @@ class EntryHelper
 {
 public:
 
-    static QString GetStringAtPosition(QString entry,quint8 position) ;
+    static QString GetStringAtPosition(const QString& entry,quint8 position) ;
 
     template<class T>
-    static T GetVariableAtPositionInGivenEntry(QString entry,quint8 position) ;
+    static T GetVariableAtPositionInGivenEntry(const QString& entry,quint8 position) ;
 
 };
 

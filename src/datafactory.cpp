@@ -81,7 +81,7 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
 
 }
 
-void DataFactory::SetDataModel(QString id)
+void DataFactory::SetDataModel(const QString& id)
 {
     mutex_.lock();
     for (auto e : data_models_)
@@ -95,7 +95,7 @@ void DataFactory::SetDataModel(QString id)
 
 }
 
-bool DataFactory::ContainsDataModel(QString id)
+bool DataFactory::ContainsDataModel(const QString& id)
 {
     mutex_.lock();
     for (auto e : data_models_)

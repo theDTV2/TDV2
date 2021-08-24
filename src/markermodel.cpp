@@ -1,12 +1,12 @@
 #include "markermodel.h"
 
-MarkerModel::MarkerModel(QString name, quint16 id)
+MarkerModel::MarkerModel(const QString& name, quint16 id)
     :name_(name), id_(id)
 {
 
 }
 
-void MarkerModel::SetName(QString new_name)
+void MarkerModel::SetName(const QString& new_name)
 {
     name_ = new_name;
 }

@@ -19,7 +19,7 @@ void GraphicDrawer::DrawViewElementsList(QList<LineModel *> to_draw)
         if (e->GetType() != last_type)
         {
             //If start_position has been set before, we draw a label line
-            if (start_position || (start_position && e == to_draw.last()))
+            if (start_position && e == to_draw.last())
             {
 
 
@@ -248,7 +248,6 @@ void GraphicDrawer::SetViewElementNameAtHeight(qreal y)
 {
 
 
-
     for (auto e : drawn_view_elements_)
     {
         if (qAbs(e->GetOriginY() - y) < LINE_HEIGHT / 2)
@@ -276,7 +275,7 @@ void GraphicDrawer::DrawMarkers()
 
     //Offset to draw multiple lines of markers. We support
     qreal offset = 0;
-    QString tooltip = "";
+    QString tooltip;
 
     for(auto e : markers_to_draw)
     {

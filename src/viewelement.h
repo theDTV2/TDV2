@@ -13,12 +13,12 @@
 class ViewElement
 {
 public:
-    ViewElement(QString name);
-    ViewElement(QString name, quint16 task_id);
+    ViewElement(const QString& name);
+    ViewElement(const QString& name, quint16 task_id);
     ViewElement(quint16 task_id, quint64 creation_time);
-    ViewElement(QString name, quint16 task_id, quint64 creation_time);
+    ViewElement(const QString& name, quint16 task_id, quint64 creation_time);
 
-    void SetName (QString new_name);
+    void SetName (const QString& new_name);
     const QString GetName();
 
     void ClearList();

@@ -1,7 +1,7 @@
 #include "markerentry.h"
 
 MarkerEntry::MarkerEntry(quint64 position)
-    :position_(position)
+    :position_(position), number_(0)
 {
 
 }

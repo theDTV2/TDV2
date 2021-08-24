@@ -11,11 +11,11 @@
 class TaskModel : public ViewElement
 {
 public:
-    TaskModel(QString name);
+    TaskModel(const QString& name);
 
-    TaskModel(QString name, quint16 task_id, quint64 creation_time);
+    TaskModel(const QString& name, quint16 task_id, quint64 creation_time);
 
-    void SetPriority(QString new_priority);
+    void SetPriority(const QString& new_priority);
     QString GetPrority() const;
 
     void AddStart(quint64 start_time);
@@ -23,7 +23,7 @@ public:
 
 private:
     QString priority_;
-    quint64 lenght_;
+    quint64 lenght_ = 0;
 
     quint64 start_time_ = 0;
 };

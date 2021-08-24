@@ -1,8 +1,12 @@
 #include "statistichelper.h"
 
 
-void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport, QString selected_view_element)
+void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport,const QString& selected_view_element)
 {
+
+    //This variable is needed to support selection & displaying task-specific data sometime in the future
+    Q_UNUSED(selected_view_element);
+
 
     drawn_view_elements_ = GraphicDrawer::GetDrawnElements();
 
@@ -134,11 +138,16 @@ QChart *StatisticHelper::GetLoadChart()
     QValueAxis *axisY = new QValueAxis();
 
     qreal max = 0;
-    for (auto &e : load_data_)
+    /*for (auto &e : load_data_)
     {
         if (e.second > max)
             max = e.second;
     }
+*/
+    max =  std::max_element(load_data_.begin(),
+                            load_data_.end(),
+                            [](const QPair<QString, qreal>& a,const QPair<QString, qreal>& b){return (a.second < b.second);})->second;
+
 
     //Set a slightly higher Y-Range to make it prettier
     axisY->setRange(0,max * 1.2);

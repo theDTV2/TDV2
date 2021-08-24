@@ -11,21 +11,21 @@
 class LineModel
 {
 public:
-    LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view, QBrush brush = Qt::black, bool use_height = false);
+    LineModel(qreal x, qreal y,const QString& label,const ViewElement& element, QGraphicsView* view, QBrush brush = Qt::black, bool use_height = false);
 
     void SetOrigin(qreal x, qreal y);
 
     qreal GetOriginX() const;
     qreal GetOriginY() const;
 
-    void SetDisplayedElement(ViewElement to_set);
+    void SetDisplayedElement(const ViewElement& to_set);
     ViewElement GetDisplayedElement();
 
     QString GetLabel() const;
 
     QList<QGraphicsRectItem*> GetDrawnElements() const;
 
-    void SetType(QString type);
+    void SetType(const QString& type);
     QString GetType();
     QBrush GetBrush();
     void SetBrush(QBrush new_brush);

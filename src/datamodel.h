@@ -11,7 +11,7 @@
 class DataModel
 {
 public:
-    DataModel(QString id,QList<TaskModel> tasks,  QList<QueueModel> queue, QList<MarkerModel> markers, QList<UserAgentModel> user_agents, QList<HandlerModel> handlers, quint64 speed, quint64 memory_speed, quint64 time);
+    DataModel(const QString& id,const QList<TaskModel>& tasks,const QList<QueueModel>& queue,const QList<MarkerModel>& markers,const QList<UserAgentModel>& user_agents,const QList<HandlerModel>& handlers, quint64 speed, quint64 memory_speed, quint64 time);
 
     QList<TaskModel> GetTasks();
     QList<QueueModel> GetQueues();
@@ -20,7 +20,7 @@ public:
     QList<HandlerModel> GetHandlers();
 
     QString GetId();
-    void SetId(QString id);
+    void SetId(const QString& id);
 
     quint64 GetSpeed();
     quint64 GetMemorySpeed();

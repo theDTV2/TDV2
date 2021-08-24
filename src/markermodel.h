@@ -10,9 +10,9 @@
 class MarkerModel
 {
 public:
-    MarkerModel(QString name, quint16 id);
+    MarkerModel(const QString& name, quint16 id);
 
-    void SetName(QString newName);
+    void SetName(const QString& newName);
     QString GetName() const;
     void SetId(quint64 id);
     quint64 GetId() const;

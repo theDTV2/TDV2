@@ -37,10 +37,15 @@ quint16 QueueModel::GetMaxHeight()
 {
     quint16 height = 0;
 
-    for (auto e : *GetList())
+   /* for (auto e : *GetList())
     {
         if (e.GetHeight() > height)
             height = e.GetHeight();
     }
+*/
+    height =  std::max_element(GetList()->begin(),
+                               GetList()->end(),
+                               [](const DataPair& a,const DataPair& b){return (a.GetHeight() < b.GetHeight());})->GetHeight();
+
     return height;
 }

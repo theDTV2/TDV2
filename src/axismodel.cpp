@@ -1,11 +1,13 @@
 #include "axismodel.h"
 
 AxisModel::AxisModel(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsView* used_view, QGraphicsItem* parent)
-    :QGraphicsLineItem(x1,y1,x2,y2,parent)
+    :QGraphicsLineItem(x1,y1,x2,y2,parent),  direction_vector_( QVector2D(x2 - x1,y2 - y1))
 {
     used_view_ = used_view;
+    distance_ = 0;
+    old_pos_ = 0;
 
-    direction_vector_ = QVector2D(x2 - x1,y2 - y1);
+
 }
 
 void AxisModel::UpdateSpacing(bool ignore_check)

@@ -1,16 +1,16 @@
 #include "taskmodel.h"
 
-TaskModel::TaskModel(QString name)
+TaskModel::TaskModel(const QString& name)
     : ViewElement(name)
 {
 }
 
-TaskModel::TaskModel(QString name, quint16 task_id, quint64 creation_time)
+TaskModel::TaskModel(const QString& name, quint16 task_id, quint64 creation_time)
     : ViewElement(name, task_id, creation_time)
 {
 }
 
-void TaskModel::SetPriority(QString new_priority)
+void TaskModel::SetPriority(const QString& new_priority)
 {
     priority_ = new_priority;
 }

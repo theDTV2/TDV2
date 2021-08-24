@@ -1,6 +1,6 @@
 #include "linemodel.h"
 
-LineModel::LineModel(qreal x, qreal y, QString label, ViewElement element, QGraphicsView* view,  QBrush brush, bool use_height)
+LineModel::LineModel(qreal x, qreal y,const QString& label,const ViewElement& element, QGraphicsView* view,  QBrush brush, bool use_height)
     :origin_x_(x),origin_y_(y), label_(label),to_be_displayed_element_(element), used_view_(view), used_brush_(brush)
 {
     RefreshDrawnItems(use_height);
@@ -25,7 +25,7 @@ qreal LineModel::GetOriginY() const
 }
 
 
-void LineModel::SetDisplayedElement(ViewElement to_set)
+void LineModel::SetDisplayedElement(const ViewElement& to_set)
 {
     to_be_displayed_element_ = to_set;
 }
@@ -45,7 +45,7 @@ QList<QGraphicsRectItem*> LineModel::GetDrawnElements() const
     return drawn_elements_;
 }
 
-void LineModel::SetType(QString type)
+void LineModel::SetType(const QString& type)
 {
     type_ = type;
 }
@@ -82,9 +82,18 @@ void LineModel::RefreshDrawnItems(bool use_height)
     {
         //Get the max height value
 
-        for (auto e : *list)
+
+      /*  for (auto e : *list)
             if (e.GetHeight() > max)
                 max = e.GetHeight();
+
+*/
+
+        max =  std::max_element(list->begin(),
+                                list->end(),
+                                [](const DataPair& a,const DataPair& b){return (a.GetHeight() < b.GetHeight());})->GetHeight();
+
+
 
         //draw steps with max + 1 as maximum step. This is to prevent clipping
     }

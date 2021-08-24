@@ -21,8 +21,8 @@
 class DataProcessor
 {
 public:
-    static void SetDataToProcess(QStringList string);
-    static void ProcessRawData(QString file_name);
+    static void SetDataToProcess(const QStringList& strings);
+    static void ProcessRawData(const QString& file_name);
 
     /*
      * Return by given type

@@ -13,7 +13,7 @@
 class DataReader
 {
 public:
-    static void SetPathOfFile(QString new_path);
+    static void SetPathOfFile(const QString& new_path);
     static void ReadTDVFile();
 
 

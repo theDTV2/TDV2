@@ -1,7 +1,7 @@
 #include "datamodel.h"
 
 
-DataModel::DataModel(QString id, QList<TaskModel> tasks, QList<QueueModel> queues, QList<MarkerModel> markers, QList<UserAgentModel> user_agents, QList<HandlerModel> handlers, quint64 speed, quint64 memory_speed, quint64 time)
+DataModel::DataModel(const QString& id, const QList<TaskModel> &tasks, const QList<QueueModel> &queues, const QList<MarkerModel> &markers, const QList<UserAgentModel> &user_agents, const QList<HandlerModel> &handlers, quint64 speed, quint64 memory_speed, quint64 time)
     :id_(id),task_list_(tasks),
       queue_list_(queues),
       marker_list_(markers),
@@ -44,7 +44,7 @@ QString DataModel::GetId()
     return id_;
 }
 
-void DataModel::SetId(QString id)
+void DataModel::SetId(const QString &id)
 {
     id_ = id;
 }

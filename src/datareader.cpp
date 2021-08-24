@@ -1,7 +1,7 @@
 #include "datareader.h"
 
 
-void DataReader::SetPathOfFile(QString new_path)
+void DataReader::SetPathOfFile(const QString& new_path)
 {
     path_of_file_ = new_path;
 }

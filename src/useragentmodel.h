@@ -12,8 +12,8 @@
 class UserAgentModel : public ViewElement
 {
 public:
-    UserAgentModel(QString name);
-    UserAgentModel(QString name, quint16 id);
+    UserAgentModel(const QString& name);
+    UserAgentModel(const QString& name, quint16 id);
 
     void AddEnter(quint64 time);
     void AddExit(quint64 time);

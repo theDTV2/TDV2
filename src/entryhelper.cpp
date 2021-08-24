@@ -6,7 +6,7 @@
  * specialized for QString
  */
 template<>
-QString EntryHelper::GetVariableAtPositionInGivenEntry<QString>(QString entry,quint8 position)
+QString EntryHelper::GetVariableAtPositionInGivenEntry<QString>(const QString& entry,quint8 position)
 {
 
     return GetStringAtPosition(entry, position);
@@ -17,7 +17,7 @@ QString EntryHelper::GetVariableAtPositionInGivenEntry<QString>(QString entry,qu
  * specialized for quint64 (u long long)
  */
 template<>
-quint64 EntryHelper::GetVariableAtPositionInGivenEntry<quint64>(QString entry,quint8 position)
+quint64 EntryHelper::GetVariableAtPositionInGivenEntry<quint64>(const QString& entry,quint8 position)
 {
 
     return GetStringAtPosition(entry, position).toULongLong();
@@ -29,7 +29,7 @@ quint64 EntryHelper::GetVariableAtPositionInGivenEntry<quint64>(QString entry,qu
  * specialized for quint32 (uint)
  */
 template<>
-quint32 EntryHelper::GetVariableAtPositionInGivenEntry<quint32>(QString entry,quint8 position)
+quint32 EntryHelper::GetVariableAtPositionInGivenEntry<quint32>(const QString& entry,quint8 position)
 {
 
     return GetStringAtPosition(entry, position).toULong();
@@ -41,7 +41,7 @@ quint32 EntryHelper::GetVariableAtPositionInGivenEntry<quint32>(QString entry,qu
  * specialized for quint16 (ushort)
  */
 template<>
-quint16 EntryHelper::GetVariableAtPositionInGivenEntry<quint16>(QString entry,quint8 position)
+quint16 EntryHelper::GetVariableAtPositionInGivenEntry<quint16>(const QString& entry,quint8 position)
 {
 
     return GetStringAtPosition(entry, position).toUShort();
@@ -56,7 +56,7 @@ quint16 EntryHelper::GetVariableAtPositionInGivenEntry<quint16>(QString entry,qu
  */
 
 template<>
-qint64 EntryHelper::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quint8 position)
+qint64 EntryHelper::GetVariableAtPositionInGivenEntry<qint64>(const QString& entry,quint8 position)
 {
 
     return GetStringAtPosition(entry, position).toLongLong();
@@ -69,13 +69,13 @@ qint64 EntryHelper::GetVariableAtPositionInGivenEntry<qint64>(QString entry,quin
  */
 
 template<>
-qint32 EntryHelper::GetVariableAtPositionInGivenEntry<qint32>(QString entry,quint8 position)
+qint32 EntryHelper::GetVariableAtPositionInGivenEntry<qint32>(const QString& entry,quint8 position)
 {
 
     return GetStringAtPosition(entry, position).toLong();
 
 }
-QString EntryHelper::GetStringAtPosition(QString entry, quint8 position)
+QString EntryHelper::GetStringAtPosition(const QString& entry, quint8 position)
 {
     //Iterate through Entry until we get to the desired variable
     int current_variable_position = 0;

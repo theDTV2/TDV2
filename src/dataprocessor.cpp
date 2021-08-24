@@ -3,12 +3,12 @@
 
 
 
-void DataProcessor::SetDataToProcess(QStringList string)
+void DataProcessor::SetDataToProcess(const QStringList& string)
 {
     raw_data_ = string;
 }
 
-void DataProcessor::ProcessRawData(QString file_name)
+void DataProcessor::ProcessRawData(const QString& file_name)
 {  
     file_name_ = file_name;
 
