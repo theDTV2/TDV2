@@ -2,6 +2,9 @@
 #define DATAACCESSOR_H
 #include "datafactory.h"
 
+#define LINE_HEIGHT 50
+#define LINE_SPACER 5
+
 class DataAccessor
 {
 

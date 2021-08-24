@@ -1,22 +1,39 @@
 #include "statstablemodel.h"
 
+/**
+ * Construction override of QAbstractTableModel
+ */
 StatsTableModel::StatsTableModel(QObject *parent) : QAbstractTableModel(parent)
-{
+{}
 
-}
-
+/**
+ * @brief Implements rowCount
+ * @param parent not used
+ * @return row count used in table
+ */
 int StatsTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return data_vector_.count();
 }
 
+/**
+ * @brief Implements columnCount
+ * @param parent not used
+ * @return column count used in table
+ */
 int StatsTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return 6;
 }
 
+/**
+ * @brief Implements data function. This function is called by the table view to populate the table
+ * @param index position of value in table
+ * @param role data role
+ * @return
+ */
 QVariant StatsTableModel::data(const QModelIndex &index, int role) const
 {
     //std::get doesnt like variables, so the index of each element has to be decided beforehand
@@ -47,6 +64,13 @@ QVariant StatsTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+/**
+ * @brief Implements headerData
+ * @param section header section to use
+ * @param orientation orientation to use
+ * @param role data role
+ * @return
+ */
 QVariant StatsTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation == Qt::Orientation::Horizontal && role == Qt::DisplayRole)
@@ -73,11 +97,23 @@ QVariant StatsTableModel::headerData(int section, Qt::Orientation orientation, i
 
 }
 
+/**
+ * @brief clears all data used
+ */
 void StatsTableModel::ClearEntries()
 {
     data_vector_.clear();
 }
 
+/**
+ * @brief Add entry to data_vector
+ * @param task_name Name of Task
+ * @param number_of_executions Amount of Executions
+ * @param executions_per_second Executions per Second
+ * @param min_exec_lenght Minimum Exection Lenght
+ * @param max_exec_lenght Maximum Execution Lenght
+ * @param average_exec_lenght Averag Execution Lenght
+ */
 void StatsTableModel::AddEntry(QString task_name, quint32 number_of_executions, qreal executions_per_second, qreal min_exec_lenght, qreal max_exec_lenght, qreal average_exec_lenght)
 {
     data_vector_.append(std::tuple<QString,QString,QString, QString, QString, QString>(task_name,

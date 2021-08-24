@@ -2,12 +2,19 @@
 
 
 
-
+/**
+ * @brief Sets the data to be processed
+ * @param string data to be processed
+ */
 void DataProcessor::SetDataToProcess(const QStringList& string)
 {
     raw_data_ = string;
 }
 
+/**
+ * @brief reads the data set in SetDataToProcess line by line
+ * @param name of the file, that was read from
+ */
 void DataProcessor::ProcessRawData(const QString& file_name)
 {  
     file_name_ = file_name;
@@ -32,39 +39,63 @@ void DataProcessor::ProcessRawData(const QString& file_name)
     Finalize();
 }
 
+/**
+ * @brief getter
+ * @return task list
+ */
 QList<TaskModel> DataProcessor::GetTasks()
 {
     return task_list_;
 }
 
+/**
+ * @brief getter
+ * @return queue list
+ */
 QList<QueueModel> DataProcessor::GetQueues()
 {
     return queue_list_;
 }
 
+/**
+ * @brief getter
+ * @return marker list
+ */
 QList<MarkerModel> DataProcessor::GetMarkers()
 {
     return marker_list_;
 }
 
+/**
+ * @brief getter
+ * @return user agent list
+ */
 QList<UserAgentModel> DataProcessor::GetUserAgents()
 {
     return user_agent_list_;
 }
 
+/**
+ * @brief getter
+ * @return handler list
+ */
 QList<HandlerModel> DataProcessor::GetHandlers()
 {
     return handler_list_;
 }
 
 
-
+/**
+ * @brief get a new line from the raw_data, and process it according the .tdi documentation
+ */
 void DataProcessor::ParseEntry()
 {
 
+    //load the next line to process to current_string_
     GetNextLine();
 
 
+    //Handle new entry
     if (current_string_.startsWith("CRE 0"))
         return CreateNewTask();
 
@@ -125,18 +156,21 @@ void DataProcessor::ParseEntry()
     if (current_string_.startsWith("TIME"))
         return LoadTime();
 
-
-
 }
 
+/**
+ * @brief Move new entry to current string
+ */
 void DataProcessor::GetNextLine()
 {
     current_string_ = raw_data_.takeFirst();
 }
 
-
-//Task Create : 			CRE 0 <task_number> <tick>
-//                          NAM 0 <task_number> <task_name>
+/**
+ * @brief Create new task using the given data
+ * NAM 0 <task_number> <task_name>
+ * CRE 0 <task_number> <tick>
+ */
 void DataProcessor::CreateNewTask()
 {
 
@@ -150,7 +184,10 @@ void DataProcessor::CreateNewTask()
     task_list_.append(new_task);
 }
 
-//Queue Create:             CRE 3 <queue_number> <tick>
+/**
+ * @brief Create new queue task using the given data
+ * CRE 3 <queue_number> <tick>
+ */
 void DataProcessor::CreateNewQueue()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint64>(2);
@@ -161,7 +198,10 @@ void DataProcessor::CreateNewQueue()
     queue_list_.append(new_queue);
 }
 
-//Queue Registry Add:       NAM 3 <queue_number> <queue_name>
+/**
+ * @brief Set queue name
+ * NAM 3 <queue_number> <queue_name>
+ */
 void DataProcessor::AddQueueReg()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -171,7 +211,11 @@ void DataProcessor::AddQueueReg()
     element->SetName(queue_name);
 }
 
-//Handler Create:           NAM 1 <irq> <name>
+
+/**
+ * @brief Create new handler task using the given data
+ * Handler Create:           NAM 1 <irq> <name>
+ */
 void DataProcessor::CreateNewHandler()
 {
     quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -182,7 +226,10 @@ void DataProcessor::CreateNewHandler()
 
 }
 
-//User Agent Create:        NAM 8 <id> <name>
+/**
+* @brief Create new user agent task using the given data
+* NAM 8 <id> <name>
+*/
 void DataProcessor::CreateNewUserAgent()
 {
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -192,7 +239,10 @@ void DataProcessor::CreateNewUserAgent()
     user_agent_list_.append(new_agent);
 }
 
-//Task Enter:          STA 0 <task_number> <tick>
+/**
+* @brief Add new task start
+* STA 0 <task_number> <tick>
+*/
 void DataProcessor::AddTaskEnter()
 {
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -203,7 +253,10 @@ void DataProcessor::AddTaskEnter()
 
 }
 
-//Task Stop:           STO 0 <task_number> <tick>
+/**
+* @brief Add new task stop
+* STO 0 <task_number> <tick>
+*/
 void DataProcessor::AddTaskStop()
 {
     quint16 task_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -213,7 +266,10 @@ void DataProcessor::AddTaskStop()
     element->AddStop(tick);
 }
 
-//Queue Send (+ISR):   STA 3 <queue_id> <tick> <messages_amount (always 1)>
+/**
+ * @brief Add Queue entry
+ * STA 3 <queue_id> <tick> <messages_amount (always 1)>
+ */
 void DataProcessor::AddQueueSend()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -223,7 +279,10 @@ void DataProcessor::AddQueueSend()
     element->AddQueueHeight(tick);
 }
 
-//Queue Receive(+ISR):	STO 3 <queue_id> <tick> <messages_amount (always 1)>
+/**
+ * Lower Queue entry
+ * STO 3 <queue_id> <tick> <messages_amount (always 1)>
+ */
 void DataProcessor::AddQueueReceive()
 {
     quint16 queue_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -233,7 +292,10 @@ void DataProcessor::AddQueueReceive()
     element->RemoveQueueHeight(tick);
 }
 
-//Marker Create: 		NAM 7 <flag_id> <name>
+/**
+ * @brief Create new marker with given values
+ * NAM 7 <flag_id> <name>
+ */
 void DataProcessor::CreateMarker()
 {
     quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -246,7 +308,10 @@ void DataProcessor::CreateMarker()
     last_marker_ = element;
 }
 
-//Marker Occurence:	OCC 7 <flag_number> <tick>
+/**
+ * @brief Add marker occurence
+ * OCC 7 <flag_number> <tick>
+ */
 void DataProcessor::AddMarkerOccurance()
 {
     quint16 flag_id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -257,9 +322,12 @@ void DataProcessor::AddMarkerOccurance()
 
 }
 
-//Marker AddString			DSC 0 0 <string> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
-//Marker AddNumber	 		DSC 1 1 <number> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
-//Marker AddColor      		DSC 3 3 <color> //THIS REFERENCES THE LAST MARKER, THAT OCCURED
+/**
+ * @brief Add marker property. THIS REFERENCES THE LAST MARKER, THAT OCCURED
+ * Marker AddString			DSC 0 0 <string>
+ * Marker AddNumber	 		DSC 1 1 <number>
+ * Marker AddColor      	DSC 3 3 <color>
+ */
 void DataProcessor::AddMarkerProperty()
 {
     //No need to check both values (for now)
@@ -286,7 +354,10 @@ void DataProcessor::AddMarkerProperty()
     }
 }
 
-//Handler Enter: 		STA 1 <irq> <tick>
+/**
+ * @brief Add handler entry
+ * Enter: 		STA 1 <irq> <tick>
+ */
 void DataProcessor::AddHandlerEnter()
 {
     quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -297,7 +368,10 @@ void DataProcessor::AddHandlerEnter()
 
 }
 
-//Handler Exit:		STO 1 <irq> <tick>
+/**
+ * @brief Add handler stop
+ * Enter: 		STO 1 <irq> <tick>
+ */
 void DataProcessor::AddHandlerExit()
 {
     quint16 irq = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -307,7 +381,10 @@ void DataProcessor::AddHandlerExit()
     element->AddExit(tick);
 }
 
-//User Agent Begin:  	STA 8 <id> <tick>
+/**
+ * @brief Add User agent start
+ * STA 8 <id> <tick>
+ */
 void DataProcessor::AddUserAgentEnter()
 {
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -317,7 +394,10 @@ void DataProcessor::AddUserAgentEnter()
     element->AddEnter(tick);
 }
 
-//User Agent End:   	STO 8 <id> <tick>
+/**
+ * @brief Add User agent stop
+ * STO 8 <id> <tick>
+ */
 void DataProcessor::AddUserAgentExit()
 {
     quint16 id = GetVariableAtPositionInCurrentEntry<quint16>(2);
@@ -327,22 +407,35 @@ void DataProcessor::AddUserAgentExit()
     element->AddExit(tick);
 }
 
+/**
+ * @brief Loads speed
+ */
 void DataProcessor::LoadSpeed()
 {
     speed_ = GetVariableAtPositionInCurrentEntry<quint32>(1);
 
 }
 
+/**
+ * @brief Loads Memory speed
+ */
 void DataProcessor::LoadMemorySpeed()
 {
     memory_speed_ = GetVariableAtPositionInCurrentEntry<quint32>(1);
 }
 
+/**
+ * @brief Load Time
+ */
 void DataProcessor::LoadTime()
 {
     time_= GetVariableAtPositionInCurrentEntry<quint32>(1);
 }
 
+/**
+ * @brief Takes the processed data, and creates a new DataModel using it.
+ * It is then passed to the DataFactory to be added to the model list
+ */
 void DataProcessor::Finalize()
 {
 
@@ -373,7 +466,11 @@ T DataProcessor::GetVariableAtPositionInCurrentEntry(quint8 position)
     return EntryHelper::GetVariableAtPositionInGivenEntry<T>(current_string_,position);
 }
 
-
+/**
+ * @brief In case a buffer overflow occurs in the .tdi file, we fix it by adding the quint32 value
+ * @param tick tick to set
+ * @return new tick value
+ */
 quint64 DataProcessor::ParseTick(quint64 tick)
 {
     //If we already had a overflow, return the adjusted value here
@@ -392,6 +489,9 @@ quint64 DataProcessor::ParseTick(quint64 tick)
     return tick;
 }
 
+/**
+ * @brief Resets all used variables, so that another file can be read
+ */
 void DataProcessor::ClearData()
 {
     task_list_.clear();

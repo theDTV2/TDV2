@@ -62,7 +62,7 @@ private:
             model = new LineModel(0,current_y_,e.GetName(),e,view_, brush,use_height);
             model->SetType(type);
             return_list.append(model);
-            current_y_ += LINE_HEIGHT + 5;
+            current_y_ += LINE_HEIGHT + LINE_SPACER;
         }
         return return_list;
     }

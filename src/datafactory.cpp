@@ -55,6 +55,12 @@ QString DataFactory::GetId()
     return current_->GetId();
 }
 
+/**
+ * @brief Adds the data model with the provided id to the DataModel list.
+ * @param id Id the datamodel
+ * @param model
+ * @param use_after_load
+ */
 void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load)
 {
     //If an model with the same id is already in the list,
@@ -68,6 +74,7 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
         return;
     }
 
+    //We continue generating new ids until we find one, that is not used
     int i = 1;
     QString new_id = id;
     while (ContainsDataModel(new_id))
@@ -80,7 +87,11 @@ void DataFactory::AddDataModel(QString id, DataModel* model, bool use_after_load
         SetDataModel(id);
 
 }
-
+/**
+ * @brief Set the current model to the one indentified by the id.
+ * It is assumed, that the given id exists in the datamodel
+ * @param id Which id to use when setting.
+ */
 void DataFactory::SetDataModel(const QString& id)
 {
     mutex_.lock();
@@ -95,6 +106,11 @@ void DataFactory::SetDataModel(const QString& id)
 
 }
 
+/**
+ * @brief searches for a model with the given id
+ * @param id what to search for
+ * @return true if an model with the given id is found, otherwise false
+ */
 bool DataFactory::ContainsDataModel(const QString& id)
 {
     mutex_.lock();
@@ -110,6 +126,11 @@ bool DataFactory::ContainsDataModel(const QString& id)
     mutex_.unlock();
     return false;
 }
+
+/**
+ * @brief Gets a list of Models and their identifing information
+ * @return list of model ids
+ */
 
 QStringList DataFactory::GetDataModelStrings()
 {

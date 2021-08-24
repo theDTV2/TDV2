@@ -75,6 +75,13 @@ qint32 EntryHelper::GetVariableAtPositionInGivenEntry<qint32>(const QString& ent
     return GetStringAtPosition(entry, position).toLong();
 
 }
+
+/**
+ * @brief Get the substribg string at the given position, terminated by a empty space
+ * @param entry string to search in
+ * @param position position in string, starts at 0
+ * @return
+ */
 QString EntryHelper::GetStringAtPosition(const QString& entry, quint8 position)
 {
     //Iterate through Entry until we get to the desired variable

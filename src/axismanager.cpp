@@ -1,11 +1,19 @@
 #include "axismanager.h"
 
 
+/**
+ * @brief Simple setter
+ * @param origin
+ */
 void AxisManager::SetOrigin(QVector2D origin)
 {
     origin_point_ = origin;
 }
 
+/*
+ * Creates a new AxisModel instance for the X-Axis using the given view & lenght and assigns
+ * it's reference to the x_axis_line static variable
+ * */
 AxisModel* AxisManager::SetXAxis(qreal lenght, QGraphicsView* view, bool disable_spacing)
 {
 
@@ -25,6 +33,10 @@ AxisModel* AxisManager::SetXAxis(qreal lenght, QGraphicsView* view, bool disable
     return x_axis_line_;
 }
 
+/*
+ * Creates a new AxisModel instance for the Y-Axis using the given view & lenght and assigns
+ * it's reference to the y_axis_line static variable
+ * */
 AxisModel* AxisManager::SetYAxis(qreal lenght, QGraphicsView* view, bool disable_spacing)
 {
 
@@ -43,20 +55,30 @@ AxisModel* AxisManager::SetYAxis(qreal lenght, QGraphicsView* view, bool disable
     return y_axis_line_;
 }
 
+/*
+ * Sets the pen used for Axis drawing to the given thickness
+ * */
 void AxisManager::SetPenThickness(qreal var)
 {
     pen_ = QPen(Qt::black, var);
 }
 
+/*
+ * Triggers the updating of the spacing displayed on the x-axis
+ * */
 void AxisManager::UpdateSpacing(bool ignore_check)
 {
     if (x_axis_line_ != nullptr)
     {
         x_axis_line_->UpdateSpacing(ignore_check);
-
+        y_axis_line_->UpdateSpacing(ignore_check);
     }
 }
 
+/*
+ * Sets the distance between each spacer on the x/y axis.
+ * Won't do anything on an axis, if spacing is not set
+ * */
 void AxisManager::SetLineDistance(qreal dist)
 {
     x_axis_line_->SetDistance(dist);
@@ -65,6 +87,9 @@ void AxisManager::SetLineDistance(qreal dist)
 
 }
 
+/*
+ * returns the lenght of the x-axis, if has been already created
+ * */
 qreal AxisManager::GetXAxisLenght()
 {
     if (x_axis_line_)

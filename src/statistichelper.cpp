@@ -1,6 +1,11 @@
 #include "statistichelper.h"
 
 
+/**
+ * @brief Function, that is called before the Multithread execution to prepare values for statistic data generation
+ * @param only_use_visible_in_viewport only use elements currently visible in viewport
+ * @param selected_view_element selected element.
+ */
 void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport,const QString& selected_view_element)
 {
 
@@ -28,6 +33,10 @@ void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport,const 
 
 }
 
+/**
+ * @brief Function, that is called in a seperate thread.
+ * It calculates (most of the) data used in the statistics to prevent lags in the UI drawing thread.
+ */
 void StatisticHelper::GenerateData()
 {
     if (drawn_view_elements_.empty())
@@ -51,6 +60,7 @@ void StatisticHelper::GenerateData()
         //We only calculate load of tasks
         if (e->GetType() == "Tasks")
         {
+
             //generate data for load
             if (!only_use_visible_in_viewport_)
             {
@@ -64,9 +74,7 @@ void StatisticHelper::GenerateData()
             {
 
                 max_value_ = right_boundary_ - left_boundary_;
-
                 load_data_.append(QPair<QString,qreal>(e->GetLabel(),LineModelHelper::GetExecutionTimeFromLineModel(e,left_boundary_,right_boundary_)));
-
                 amount_of_executions = LineModelHelper::GetAmountOfExecutions(e,left_boundary_,right_boundary_);
                 average_lenght = LineModelHelper::GetAverageExecutionLenghtAndMinMax(e,left_boundary_,right_boundary_);
             }
@@ -100,7 +108,10 @@ void StatisticHelper::GenerateData()
 
 }
 
-
+/**
+ * @brief getter
+ * @return string to be displayed in left Label
+ */
 QString StatisticHelper::GetLeftLabel()
 {
     return top_label_;
@@ -163,14 +174,19 @@ QChart *StatisticHelper::GetLoadChart()
     return load_chart_;
 }
 
+/**
+ * @brief getter
+ * @return generated table model
+ */
 StatsTableModel* StatisticHelper::GetTableModel()
 {
     return data_model_;
 }
 
-
-
-
+/**
+ * @brief get X Lenght
+ * @return x lenght to use for calculations
+ */
 qreal StatisticHelper::GetXLenght()
 {
     if (only_use_visible_in_viewport_)

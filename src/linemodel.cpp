@@ -1,5 +1,15 @@
 #include "linemodel.h"
 
+/**
+ * @brief Line Model used to draw viewelements. It contains a list of drawn rectangles
+ * @param x start position x
+ * @param y start position y
+ * @param label label value
+ * @param element ViewElement to display on this line
+ * @param view view to display it on
+ * @param brush brush to draw on
+ * @param use_height toggle if height is shown. (used in queues)
+ */
 LineModel::LineModel(qreal x, qreal y,const QString& label,const ViewElement& element, QGraphicsView* view,  QBrush brush, bool use_height)
     :origin_x_(x),origin_y_(y), label_(label),to_be_displayed_element_(element), used_view_(view), used_brush_(brush)
 {
@@ -7,64 +17,111 @@ LineModel::LineModel(qreal x, qreal y,const QString& label,const ViewElement& el
 }
 
 
-
+/**
+ * @brief setter
+ * @param x x to set
+ * @param y y to set
+ */
 void LineModel::SetOrigin(qreal x, qreal y)
 {
     origin_x_ = x;
     origin_y_ = y;
 }
 
+/**
+ * @brief getter
+ * @return x
+ */
 qreal LineModel::GetOriginX() const
 {
     return origin_x_;
 }
 
+/**
+ * @brief getter
+ * @return y
+ */
 qreal LineModel::GetOriginY() const
 {
     return origin_y_;
 }
 
-
+/**
+ * @brief Set ViewElement to be drawn
+ * @param to_set ViewElement to draw
+ */
 void LineModel::SetDisplayedElement(const ViewElement& to_set)
 {
     to_be_displayed_element_ = to_set;
 }
 
+/**
+ * @brief getter
+ * @return view element
+ */
 ViewElement LineModel::GetDisplayedElement()
 {
     return to_be_displayed_element_;
 }
 
+/**
+ * @brief getter
+ * @return label used for View Element
+ */
 QString LineModel::GetLabel() const
 {
     return label_;
 }
 
+/**
+ * @brief getter
+ * @return drawn elements
+ */
 QList<QGraphicsRectItem*> LineModel::GetDrawnElements() const
 {
     return drawn_elements_;
 }
 
+/**
+ * @brief setter
+ * @param type type to set
+ */
 void LineModel::SetType(const QString& type)
 {
     type_ = type;
 }
 
+/**
+ * @brief getter
+ * @return type
+ */
 QString LineModel::GetType()
 {
     return type_;
 }
 
+/**
+ * @brief getter
+ * @return brush
+ */
 QBrush LineModel::GetBrush()
 {
     return used_brush_;
 }
 
+/**
+ * @brief setter
+ * @param new_brush brush to set
+ */
 void LineModel::SetBrush(QBrush new_brush)
 {
     used_brush_ = new_brush;
 }
 
+/**
+ * @brief Uses the DataPairs in to_be_displayed_element_ to draw the elements on the y-axis
+ * @param use_height should height values be displayed?
+ */
 void LineModel::RefreshDrawnItems(bool use_height)
 {
     for(auto &e : drawn_elements_)
@@ -89,9 +146,10 @@ void LineModel::RefreshDrawnItems(bool use_height)
 
 */
 
-        max =  std::max_element(list->begin(),
-                                list->end(),
-                                [](const DataPair& a,const DataPair& b){return (a.GetHeight() < b.GetHeight());})->GetHeight();
+        if (!list->isEmpty())
+            max =  std::max_element(list->begin(),
+                                    list->end(),
+                                    [](const DataPair& a,const DataPair& b){return (a.GetHeight() < b.GetHeight());})->GetHeight();
 
 
 

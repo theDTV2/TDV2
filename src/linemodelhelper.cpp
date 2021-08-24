@@ -1,9 +1,13 @@
 #include "linemodelhelper.h"
 
 
-
-
-
+/**
+ * @brief Uses a given LineModel to calculate execution time. Only calculate values between start/end time. Also saves max/min value in static values
+ * @param model model to calculate for
+ * @param start_time start_time to calculate on
+ * @param end_time end_time to calculate on
+ * @return total execution time in time frame
+ */
 qreal LineModelHelper::GetExecutionTimeFromLineModel(LineModel *model, qreal start_time, qreal end_time)
 {
     min_lenght_ = std::numeric_limits<qreal>::max();
@@ -25,15 +29,20 @@ qreal LineModelHelper::GetExecutionTimeFromLineModel(LineModel *model, qreal sta
 
     }
 
-
     //If no min is set, we need to reset it.
     if ( min_lenght_ == std::numeric_limits<qreal>::max())
         min_lenght_ = 0;
 
-
     return result;
 }
 
+/**
+ * @brief Calculates average execution time for given model
+ * @param model model to calculate for
+ * @param start_time start_time to calculate on
+ * @param end_time end_time to calculate on
+ * @return average execution time in time frame
+ */
 qreal LineModelHelper::GetAverageExecutionLenghtAndMinMax(LineModel *model, qreal start_time, qreal end_time)
 {
 
@@ -48,7 +57,13 @@ qreal LineModelHelper::GetAverageExecutionLenghtAndMinMax(LineModel *model, qrea
 
 }
 
-
+/**
+ * @brief Counts the amount of executions in time frame.
+ * @param model model to calculate for
+ * @param start_time start_time to calculate on
+ * @param end_time end_time to calculate on
+ * @return total amount of executions in time frame
+ */
 quint32 LineModelHelper::GetAmountOfExecutions(LineModel *model, qreal start_time, qreal end_time)
 {
     qreal counter = 0;
@@ -61,11 +76,19 @@ quint32 LineModelHelper::GetAmountOfExecutions(LineModel *model, qreal start_tim
 
 }
 
+/**
+ * @brief getter for min lenght. Value is calculated at last execution of GetAverageExecutionLenghtAndMinMax
+ * @return min
+ */
 qreal LineModelHelper::GetLastMinLenght()
 {
     return min_lenght_;
 }
 
+/**
+ * @brief getter for min lenght. Value is calculated at last execution of GetAverageExecutionLenghtAndMinMax
+ * @return max
+ */
 qreal LineModelHelper::GetLastMaxLenght()
 {
     return max_lenght_;

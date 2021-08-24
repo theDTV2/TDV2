@@ -14,51 +14,91 @@ DataModel::DataModel(const QString& id, const QList<TaskModel> &tasks, const QLi
 
 }
 
+/**
+ * @brief getter
+ * @return task list
+ */
 QList<TaskModel> DataModel::GetTasks()
 {
     return task_list_;
 }
 
+/**
+ * @brief getter
+ * @return queue list
+ */
 QList<QueueModel> DataModel::GetQueues()
 {
     return queue_list_;
 }
 
+/**
+ * @brief getter
+ * @return marker list
+ */
 QList<MarkerModel> DataModel::GetMarkers()
 {
     return marker_list_;
 }
 
+/**
+ * @brief getter
+ * @return user agent list
+ */
 QList<UserAgentModel> DataModel::GetUserAgents()
 {
     return user_agent_list_;
 }
 
+/**
+ * @brief getter
+ * @return handler list
+ */
 QList<HandlerModel> DataModel::GetHandlers()
 {
     return handler_list_;
 }
 
+/**
+ * @brief getter
+ * @return id
+ */
 QString DataModel::GetId()
 {
     return id_;
 }
 
+/**
+ * @brief setter
+ * @param id id to set
+ */
 void DataModel::SetId(const QString &id)
 {
     id_ = id;
 }
 
+/**
+ * @brief getter
+ * @param speed
+ */
 quint64 DataModel::GetSpeed()
 {
     return speed_;
 }
 
+/**
+ * @brief getter
+ * @param memory speed
+ */
 quint64 DataModel::GetMemorySpeed()
 {
     return memory_speed_;
 }
 
+/**
+ * @brief getter
+ * @param time
+ */
 quint64 DataModel::GetTime()
 {
     return time_;

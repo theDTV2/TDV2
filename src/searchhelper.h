@@ -11,6 +11,9 @@ class SearchHelper
 {
 public:
 
+    /**
+     * Template function to search in ViewElement list.
+     */
     template<class T>
     inline static T* FindInList(QList<T>* list_to_search, quint64 id)
     {
@@ -29,7 +32,9 @@ public:
 
 
 
-
+    /**
+     * function to search in MarkerModel list.
+     */
     inline static MarkerModel* FindInList(QList<MarkerModel>* list_to_search, quint64 id)
     {
         int i = 0;

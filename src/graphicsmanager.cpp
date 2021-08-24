@@ -1,10 +1,12 @@
 #include "graphicsmanager.h"
 
+/**
+ * @brief Prepares scene and draws data read previously
+ * @param main_view  view to display elements in
+ * @param label_view view to display labels in
+ */
 void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphicsView *label_view)
 {
-
-
-
     QGraphicsScene* scene = new QGraphicsScene(main_view);
     main_view->setDragMode(QGraphicsView::DragMode::ScrollHandDrag);
     main_view->setResizeAnchor(QGraphicsView::ViewportAnchor::AnchorUnderMouse);
@@ -29,7 +31,10 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
 }
 
 
-
+/**
+ * @brief calls function used to resize elements after a zoom operation.
+ * This function is passed as a parameter above.
+ */
 void GraphicsManager::ResizeFunction()
 {
     GraphicDrawer::AdjustNonResizableElements();
