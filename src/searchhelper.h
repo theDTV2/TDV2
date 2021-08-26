@@ -23,8 +23,10 @@ public:
             i++;
 
         }
-        return static_cast<T*>(&(*list_to_search)[i]);
+        if (i == list_to_search->count())
+            throw "Error";
 
+        return static_cast<T*>(&(*list_to_search)[i]);
 
         //TODO: Implement proper Error Handling
         //  throw "ERROR";
