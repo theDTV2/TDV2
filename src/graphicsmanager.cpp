@@ -21,9 +21,8 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
     main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
     main_view->SetEnableControls(true);
 
+
     GraphicDrawer::Reset();
-
-
     GraphicDrawer::DrawAxis();
     GraphicDrawer::DrawData();
     GraphicDrawer::DrawLabels(label_view);
