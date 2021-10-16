@@ -94,6 +94,7 @@ void DataProcessor::ParseEntry()
     //load the next line to process to current_string_
     GetNextLine();
 
+    amount_of_lines_parsed_successfully_++;
 
     //Handle new entry
     if (current_string_.startsWith("CRE 0"))
@@ -156,6 +157,7 @@ void DataProcessor::ParseEntry()
     if (current_string_.startsWith("TIME"))
         return LoadTime();
 
+    amount_of_lines_parsed_successfully_--;
 }
 
 /**
@@ -509,3 +511,9 @@ void DataProcessor::ClearData()
     last_marker_ = nullptr;
 
 }
+
+quint32 DataProcessor::GetAmountOfLinesParsed()
+{
+    return amount_of_lines_parsed_successfully_;
+}
+

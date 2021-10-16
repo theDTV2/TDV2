@@ -103,6 +103,7 @@ QVariant StatsTableModel::headerData(int section, Qt::Orientation orientation, i
 void StatsTableModel::ClearEntries()
 {
     data_vector_.clear();
+    endResetModel();
 }
 
 /**

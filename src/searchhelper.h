@@ -15,12 +15,15 @@ public:
      * Template function to search in ViewElement list.
      * Returns nullptr, when nothing is found
      */
+
+    static inline QString error_message_to_throw_ = "Couldn't find element, that should have been previously created.";
+
     template<class T>
     inline static T* FindInList(QList<T>* list_to_search, quint64 id)
     {
         //If the list is empty, we return nullptr
         if (list_to_search->isEmpty())
-            return nullptr;
+            throw error_message_to_throw_;
 
         int i = 0;
         while ((*list_to_search)[i].GetElementId() != id)
@@ -29,7 +32,8 @@ public:
 
             //If we are over bound, we return nullptr
             if (list_to_search->count() == i)
-                return nullptr;
+                throw error_message_to_throw_;
+
         }
 
         return static_cast<T*>(&(*list_to_search)[i]);
@@ -46,7 +50,7 @@ public:
     {
         //If the list is empty, we return nullptr
         if (list_to_search->isEmpty())
-            return nullptr;
+            throw error_message_to_throw_;
 
         int i = 0;
         while ((*list_to_search)[i].GetId() != id)
@@ -55,7 +59,7 @@ public:
 
             //If we are over bound, we return nullptr
             if (list_to_search->count() == i)
-                return nullptr;
+                throw error_message_to_throw_;
         }
 
         return &(*list_to_search)[i];

@@ -33,7 +33,9 @@ public:
     static QList<MarkerModel> GetMarkers();
     static QList<UserAgentModel> GetUserAgents();
     static QList<HandlerModel> GetHandlers();
+    inline static void ClearData();
 
+    static quint32 GetAmountOfLinesParsed();
 
 private:
     static void ParseEntry();
@@ -66,7 +68,6 @@ private:
     static quint64 ParseTick(quint64 tick);
     static void DeleteTask();
     static void DeleteQueue();
-    inline static void ClearData();
 
 
     template<class T>
@@ -92,7 +93,7 @@ private:
     //We save the last occured marker, as some operations reference it
     inline static MarkerModel* last_marker_ = nullptr;
 
-
+    static inline quint32 amount_of_lines_parsed_successfully_;
 
 };
 

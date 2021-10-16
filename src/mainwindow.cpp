@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "datareader.h"
 
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -9,17 +11,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    Stats* stats = new Stats(this);
-    stats->move(this->pos().x()+this->width()*0.5,this->pos().y());
+    stats_ = new Stats(this);
+    stats_->move(this->pos().x()+this->width()*0.5,this->pos().y());
 
 
     //Setting window minimize flag
     this->setWindowFlags(this->windowFlags() | Qt::WindowMinimizeButtonHint);
-    stats->setWindowFlags(stats->windowFlags() | Qt::WindowMinimizeButtonHint);
+    stats_->setWindowFlags(stats_->windowFlags() | Qt::WindowMinimizeButtonHint);
 
     setAcceptDrops(true);
 
-    stats->show();
+    stats_->show();
 
 }
 
@@ -50,11 +52,11 @@ void MainWindow::ProcessTDIOpenFile()
 {
     QString file_name = QFileDialog::getOpenFileName(this,
                                                     "Choose TimeDoctor File",
-                                                   opened_path.absolutePath(),
+                                                   opened_path_.absolutePath(),
                                                     "*.txt *.tdi");
 
     //save previous path
-    opened_path = QFileInfo(file_name).absoluteDir();
+    opened_path_ = QFileInfo(file_name).absoluteDir();
 
 
     ProcessTDI(file_name);
@@ -69,12 +71,29 @@ void MainWindow::ProcessTDI(QString file_to_use)
         return;
 
     DataReader::SetPathOfFile(file_to_use);
+
+    try
+    {
     DataReader::ReadTDVFile();
+
+    }
+    catch(const QString exception_message)
+    {
+        QMessageBox message_box;
+        QString error_message = "Error in line "+ QString::number(DataProcessor::GetAmountOfLinesParsed())  +":\n"+ exception_message;
+        message_box.critical(0,"Error",error_message);
+
+        //Cleanup
+        DataProcessor::ClearData();
+        DataReader::ClearReadData();
+        return;
+    }
 
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
 
     SetInfoTextBox();
     UpdateSelectorBoxValues();
+
 }
 
 
@@ -97,7 +116,7 @@ void MainWindow::SetInfoTextBox()
     else
         value.append("No Memory Speed information available \n");
 
-
+    value.append("Amount of parsed data lines:  " + QString::number(DataProcessor::GetAmountOfLinesParsed()));
     ui->logData->setText(value);
 
 

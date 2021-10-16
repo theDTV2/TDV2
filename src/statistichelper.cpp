@@ -39,12 +39,13 @@ void StatisticHelper::PopulateVariables(bool only_use_visible_in_viewport,const 
  */
 void StatisticHelper::GenerateData()
 {
-    if (drawn_view_elements_.empty())
-        return;
-
     //cleanup
     load_data_.clear();
     data_model_->ClearEntries();
+
+
+    if (drawn_view_elements_.empty())
+        return;
 
 
     //warning is obsolete since qt6, as QVector now is an wrapper for QList
@@ -120,7 +121,7 @@ QString StatisticHelper::GetLeftLabel()
 QChart *StatisticHelper::GetLoadChart()
 {
     //we only check load_data, as we always fill both
-    if (load_data_.count() == 0)
+    if (load_data_.count() == 0 || drawn_view_elements_.empty())
         return new QChart();
 
     //generate QSeries

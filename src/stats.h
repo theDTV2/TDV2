@@ -23,6 +23,8 @@ public:
     explicit Stats(QWidget *parent = nullptr);
     ~Stats();
 
+
+
 private:
     Ui::Stats *ui;
 
@@ -39,6 +41,7 @@ private:
     static inline QChartView* load_chart_view_ = nullptr;
     static inline QTableView* stats_table_view_ = nullptr;
 
+    static inline bool cancel_calculation_ = false;
 
     bool only_use_selected_viewelement_ = false;
     bool only_use_visible_in_viewport_ = false;

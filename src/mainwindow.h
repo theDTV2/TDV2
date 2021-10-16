@@ -8,6 +8,7 @@
 #include "about.h"
 #include "dataaccessor.h"
 #include "stats.h"
+#include <qmessagebox.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,7 +43,9 @@ private:
 
     void UpdateSelectorBoxValues();
 
-    QDir opened_path =  QDir::homePath();
+    QDir opened_path_ =  QDir::homePath();
+
+    Stats* stats_;
 
 protected:
     void dropEvent(QDropEvent *event) override;

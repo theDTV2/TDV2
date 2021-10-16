@@ -51,8 +51,9 @@ void Stats::finishedCalculating()
         load_chart_view_->setChart(new_chart);
 
 
-    if (stats_table_view_->model() != StatisticHelper::GetTableModel())
-        stats_table_view_->setModel(StatisticHelper::GetTableModel());
+
+
+    stats_table_view_->setModel(StatisticHelper::GetTableModel());
 
     ui->mainLabel->setText(StatisticHelper::GetLeftLabel());
 
@@ -63,3 +64,5 @@ void Stats::on_toggleViewableData_clicked(bool checked)
 {
     only_use_visible_in_viewport_ = checked;
 }
+
+

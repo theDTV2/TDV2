@@ -15,7 +15,7 @@ class DataReader
 public:
     static void SetPathOfFile(const QString& new_path);
     static void ReadTDVFile();
-
+    static void ClearReadData();
 
 private:
 
