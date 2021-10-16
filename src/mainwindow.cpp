@@ -10,18 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
-    stats_ = new Stats(this);
-    stats_->move(this->pos().x()+this->width()*0.5,this->pos().y());
-
-
     //Setting window minimize flag
     this->setWindowFlags(this->windowFlags() | Qt::WindowMinimizeButtonHint);
-    stats_->setWindowFlags(stats_->windowFlags() | Qt::WindowMinimizeButtonHint);
 
     setAcceptDrops(true);
 
-    stats_->show();
 
 }
 
@@ -142,6 +135,11 @@ void MainWindow::UpdateSelectorBoxValues()
 
 }
 
+void MainWindow::EnableStatsButton()
+{
+    this->ui->showStats->setEnabled(true);
+}
+
 
 //Drag and Drop Handler
 void MainWindow::dropEvent(QDropEvent *event)
@@ -169,6 +167,19 @@ void MainWindow::on_dataModelSelector_textActivated(const QString &arg1)
     DataAccessor::SelectDataModel(arg1);
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
     SetInfoTextBox();
+}
+
+
+void MainWindow::on_showStats_clicked()
+{
+    stats_ = new Stats(this);
+    stats_->move(this->pos().x()+this->width()*0.5,this->pos().y());
+    stats_->setWindowFlags(stats_->windowFlags() | Qt::WindowMinimizeButtonHint);
+    stats_->show();
+
+    connect(stats_, &Stats::DestoryingProcess,this,&MainWindow::EnableStatsButton);
+
+    this->ui->showStats->setEnabled(false);
 
 }
 

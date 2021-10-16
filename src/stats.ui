@@ -28,6 +28,9 @@
   <property name="windowTitle">
    <string>Statistics</string>
   </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
     <number>6</number>

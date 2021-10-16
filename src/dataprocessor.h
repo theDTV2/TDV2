@@ -33,7 +33,7 @@ public:
     static QList<MarkerModel> GetMarkers();
     static QList<UserAgentModel> GetUserAgents();
     static QList<HandlerModel> GetHandlers();
-    inline static void ClearData();
+    static void ClearData();
 
     static quint32 GetAmountOfLinesParsed();
 

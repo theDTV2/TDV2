@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>374</width>
-    <height>117</height>
+    <width>388</width>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,21 +16,24 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>30</y>
-     <width>47</width>
-     <height>13</height>
+     <x>20</x>
+     <y>20</y>
+     <width>341</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="text">
-    <string>About</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A tool to visualize Tracefiles generated using&lt;/p&gt; &lt;a href=https://gitlab.com/KnarfB/timedoctor&gt;https://gitlab.com/KnarfB/timedoctor&lt;/a&gt; &lt;p&gt;Copyright (c) 2021 David Lupak under LGPL-3.0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::TextBrowserInteraction</set>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>80</y>
+     <x>140</x>
+     <y>120</y>
      <width>80</width>
      <height>21</height>
     </rect>

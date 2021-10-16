@@ -29,10 +29,11 @@ private slots:
 
     void on_actionAbout_2_triggered();
 
-
-
-
     void on_dataModelSelector_textActivated(const QString &arg1);
+
+    void on_showStats_clicked();
+    void EnableStatsButton();
+
 
 private:
     Ui::MainWindow *ui;
@@ -46,6 +47,8 @@ private:
     QDir opened_path_ =  QDir::homePath();
 
     Stats* stats_;
+
+
 
 protected:
     void dropEvent(QDropEvent *event) override;

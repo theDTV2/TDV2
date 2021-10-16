@@ -6,7 +6,7 @@ Stats::Stats(QWidget *parent) :
     ui(new Ui::Stats)
 {
     ui->setupUi(this);
-    this->setWindowFlag(Qt::WindowCloseButtonHint, false);
+    //this->setWindowFlag(Qt::WindowCloseButtonHint, false);
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Stats::StartUpdate);
@@ -23,6 +23,14 @@ Stats::Stats(QWidget *parent) :
 Stats::~Stats()
 {
     delete ui;
+}
+
+void Stats::closeEvent(QCloseEvent *event)
+{
+    emit DestoryingProcess();
+    delete this;
+
+    QWidget::closeEvent(event);
 }
 
 void Stats::StartUpdate()
@@ -49,8 +57,6 @@ void Stats::finishedCalculating()
 
     if (new_chart != load_chart_view_->chart())
         load_chart_view_->setChart(new_chart);
-
-
 
 
     stats_table_view_->setModel(StatisticHelper::GetTableModel());

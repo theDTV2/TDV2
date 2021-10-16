@@ -24,11 +24,12 @@ public:
     ~Stats();
 
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 
 private:
     Ui::Stats *ui;
-
-
 
     QChart chart_;
     static inline bool thread_is_running_ = false;
@@ -47,11 +48,15 @@ private:
     bool only_use_visible_in_viewport_ = false;
 
 
-
+signals:
+    void DestoryingProcess();
 
 private slots:
     void finishedCalculating();
     void on_toggleViewableData_clicked(bool checked);
+
+
+
 };
 
 #endif // STATS_H
