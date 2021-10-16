@@ -6,15 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1066</width>
-    <height>700</height>
+    <width>400</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>400</width>
-    <height>700</height>
+    <height>400</height>
    </size>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>Time Doctor Viewer 2</string>
@@ -135,7 +138,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>600</height>
+          <height>300</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -154,7 +157,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>600</height>
+          <height>300</height>
          </size>
         </property>
        </widget>
@@ -168,7 +171,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1066</width>
+     <width>400</width>
      <height>20</height>
     </rect>
    </property>

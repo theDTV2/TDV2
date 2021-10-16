@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowFlags(this->windowFlags() | Qt::WindowMinimizeButtonHint);
     stats->setWindowFlags(stats->windowFlags() | Qt::WindowMinimizeButtonHint);
 
+    setAcceptDrops(true);
+
     stats->show();
 
 }
@@ -28,8 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionLoad_from_TDI_File_triggered()
 {
-    ProcessTDI();
-
+    ProcessTDIOpenFile();
 }
 
 void MainWindow::on_actionQuit_triggered()
@@ -43,16 +44,31 @@ void MainWindow::on_actionAbout_2_triggered()
     about->show();
 }
 
-void MainWindow::ProcessTDI()
+
+
+void MainWindow::ProcessTDIOpenFile()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
+    QString file_name = QFileDialog::getOpenFileName(this,
                                                     "Choose TimeDoctor File",
-                                                    QDir::homePath(),
+                                                   opened_path.absolutePath(),
                                                     "*.txt *.tdi");
-    if (fileName.isEmpty())
+
+    //save previous path
+    opened_path = QFileInfo(file_name).absoluteDir();
+
+
+    ProcessTDI(file_name);
+}
+
+
+
+
+void MainWindow::ProcessTDI(QString file_to_use)
+{
+    if (file_to_use.isEmpty())
         return;
 
-    DataReader::SetPathOfFile(fileName);
+    DataReader::SetPathOfFile(file_to_use);
     DataReader::ReadTDVFile();
 
     GraphicsManager::SetupScene(ui->mainView, ui->labelView);
@@ -60,7 +76,6 @@ void MainWindow::ProcessTDI()
     SetInfoTextBox();
     UpdateSelectorBoxValues();
 }
-
 
 
 void MainWindow::SetInfoTextBox()
@@ -108,6 +123,25 @@ void MainWindow::UpdateSelectorBoxValues()
 
 }
 
+
+//Drag and Drop Handler
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    for (int i = 0; i < event->mimeData()->urls().size(); i++)
+    {
+        ProcessTDI(event->mimeData()->urls().at(i).toLocalFile());
+    }
+
+
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+
+    if (event->mimeData()->hasUrls())
+            event->acceptProposedAction();
+
+}
 
 
 

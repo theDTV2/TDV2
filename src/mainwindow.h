@@ -36,12 +36,18 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    void ProcessTDI();
+    void ProcessTDI(QString file_to_use);
+    void ProcessTDIOpenFile();
     void SetInfoTextBox();
 
     void UpdateSelectorBoxValues();
 
+    QDir opened_path =  QDir::homePath();
 
+protected:
+    void dropEvent(QDropEvent *event) override;
+
+    void dragEnterEvent(QDragEnterEvent *event) override;
 
 };
 #endif // MAINWINDOW_H
