@@ -109,7 +109,7 @@ void MainWindow::SetInfoTextBox()
     else
         value.append("No Memory Speed information available \n");
 
-    value.append("Amount of parsed data lines:  " + QString::number(DataProcessor::GetAmountOfLinesParsed()));
+    value.append("Amount of parsed data lines:  " + QString::number(DataFactory::GetAmountOfLines()));
     ui->logData->setText(value);
 
 

@@ -11,7 +11,16 @@
 class DataModel
 {
 public:
-    DataModel(const QString& id,const QList<TaskModel>& tasks,const QList<QueueModel>& queue,const QList<MarkerModel>& markers,const QList<UserAgentModel>& user_agents,const QList<HandlerModel>& handlers, quint64 speed, quint64 memory_speed, quint64 time);
+    DataModel(const QString& id,
+              const QList<TaskModel>& tasks,
+              const QList<QueueModel>& queue,
+              const QList<MarkerModel>& markers,
+              const QList<UserAgentModel>& user_agents,
+              const QList<HandlerModel>& handlers,
+              quint64 speed,
+              quint64 memory_speed,
+              quint64 time,
+              quint32 amount_of_lines);
 
     QList<TaskModel> GetTasks();
     QList<QueueModel> GetQueues();
@@ -25,6 +34,7 @@ public:
     quint64 GetSpeed();
     quint64 GetMemorySpeed();
     quint64 GetTime();
+    quint32 GetAmountOfLines();
 
 private:
     QString id_;
@@ -36,6 +46,7 @@ private:
     quint64 speed_;
     quint64 memory_speed_;
     quint64 time_;
+    quint32 amount_of_data;
 
 };
 

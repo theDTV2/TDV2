@@ -448,7 +448,8 @@ void DataProcessor::Finalize()
                                     handler_list_,
                                     speed_,
                                     memory_speed_,
-                                    time_);
+                                    time_,
+                                    amount_of_lines_parsed_successfully_);
 
     DataFactory::AddDataModel("File: " + file_name_, new_model, true);
 

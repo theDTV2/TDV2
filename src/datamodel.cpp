@@ -1,7 +1,15 @@
 #include "datamodel.h"
 
 
-DataModel::DataModel(const QString& id, const QList<TaskModel> &tasks, const QList<QueueModel> &queues, const QList<MarkerModel> &markers, const QList<UserAgentModel> &user_agents, const QList<HandlerModel> &handlers, quint64 speed, quint64 memory_speed, quint64 time)
+DataModel::DataModel(const QString& id,
+                     const QList<TaskModel> &tasks,
+                     const QList<QueueModel> &queues,
+                     const QList<MarkerModel> &markers,
+                     const QList<UserAgentModel> &user_agents,
+                     const QList<HandlerModel> &handlers,
+                     quint64 speed, quint64 memory_speed,
+                     quint64 time,
+                     quint32 amount_of_lines)
     :id_(id),task_list_(tasks),
       queue_list_(queues),
       marker_list_(markers),
@@ -9,7 +17,8 @@ DataModel::DataModel(const QString& id, const QList<TaskModel> &tasks, const QLi
       handler_list_(handlers),
       speed_(speed),
       memory_speed_(memory_speed),
-      time_(time)
+      time_(time),
+      amount_of_data(amount_of_lines)
 {
 
 }
@@ -102,4 +111,9 @@ quint64 DataModel::GetMemorySpeed()
 quint64 DataModel::GetTime()
 {
     return time_;
+}
+
+quint32 DataModel::GetAmountOfLines()
+{
+    return amount_of_data;
 }

@@ -82,6 +82,7 @@ QString DataAccessor::GetId()
     return DataFactory::GetId();
 }
 
+
 /**
  * @brief Calculates X Axis Lenghtfrom currently selected DataModel. See DataFactory::SetDataModel
  * @return X lenght

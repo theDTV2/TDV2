@@ -18,6 +18,8 @@ public:
     static quint64 GetTime();
     static QString GetId();
 
+    static quint32 GetAmountOfLines();
+
     static void AddDataModel(QString id, DataModel* model, bool use_after_load = false);
     static DataModel *GetDataModel();
     static void SetDataModel(const QString& id);

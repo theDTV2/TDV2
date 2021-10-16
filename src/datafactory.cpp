@@ -55,6 +55,14 @@ QString DataFactory::GetId()
     return current_->GetId();
 }
 
+quint32 DataFactory::GetAmountOfLines()
+{
+    mutex_.lock();
+    quint32 var = current_->GetAmountOfLines();
+    mutex_.unlock();
+    return var;
+}
+
 /**
  * @brief Adds the data model with the provided id to the DataModel list.
  * @param id Id the datamodel
