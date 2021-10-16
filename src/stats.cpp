@@ -10,7 +10,7 @@ Stats::Stats(QWidget *parent) :
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Stats::StartUpdate);
-    timer->start(1000);
+    timer->start(500);
 
     connect (&watcher_, &QFutureWatcher<void>::finished, this, &Stats::finishedCalculating);
 
@@ -27,10 +27,11 @@ Stats::~Stats()
 
 void Stats::closeEvent(QCloseEvent *event)
 {
+    Q_UNUSED(event);
+
     emit DestoryingProcess();
     delete this;
 
-    QWidget::closeEvent(event);
 }
 
 void Stats::StartUpdate()
