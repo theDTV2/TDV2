@@ -181,3 +181,10 @@ void MainWindow::on_showStats_clicked()
 
 }
 
+
+void MainWindow::on_actionSettings_triggered()
+{
+
+
+}
+

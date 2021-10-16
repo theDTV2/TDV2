@@ -35,6 +35,8 @@ private slots:
     void EnableStatsButton();
 
 
+    void on_actionSettings_triggered();
+
 private:
     Ui::MainWindow *ui;
 

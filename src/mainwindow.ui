@@ -210,7 +210,14 @@
     </property>
     <addaction name="actionAbout_2"/>
    </widget>
+   <widget class="QMenu" name="menuExtra">
+    <property name="title">
+     <string>Extra</string>
+    </property>
+    <addaction name="actionSettings"/>
+   </widget>
    <addaction name="menuLoad"/>
+   <addaction name="menuExtra"/>
    <addaction name="menuAbout"/>
   </widget>
   <action name="actionOpen_tdi">
@@ -247,6 +254,14 @@
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>
