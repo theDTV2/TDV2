@@ -3,6 +3,7 @@
 customQGraphicsView::customQGraphicsView(QWidget * parent)
     : QGraphicsView(parent) {
     enable_controls_ = false;
+
 }
 
 customQGraphicsView::customQGraphicsView(QGraphicsScene * scene, QWidget * parent)
@@ -89,7 +90,7 @@ void customQGraphicsView::scrollContentsBy(int dx, int dy)
 }
 
 /*
- * Overriden Handler for the scrollContentsBy (called each a mouse button is pressed)
+ * Overriden Handler for the mousePressEvent (called each a mouse button is pressed)
  * */
 void customQGraphicsView::mousePressEvent(QMouseEvent *event)
 {
@@ -101,7 +102,6 @@ void customQGraphicsView::mousePressEvent(QMouseEvent *event)
         QGraphicsView::mousePressEvent(event);
     }
 }
-
 
 /**
  * @brief simple setter

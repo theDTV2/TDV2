@@ -7,11 +7,13 @@
  */
 void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphicsView *label_view)
 {
-    QGraphicsScene* scene = new QGraphicsScene(main_view);
+    main_view->setScene(new QGraphicsScene());
     main_view->setDragMode(QGraphicsView::DragMode::ScrollHandDrag);
     main_view->setResizeAnchor(QGraphicsView::ViewportAnchor::AnchorUnderMouse);
     main_view->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    main_view->setScene(scene);
+
+    main_view->setInteractive(false);
+
 
     //Setting movement handlers
     GraphicDrawer::SetView(main_view);
@@ -19,6 +21,9 @@ void GraphicsManager::SetupScene(customQGraphicsView *main_view, customQGraphics
     main_view->SetAwayFunction(&MouseZoomHandler::ZoomIn);
     main_view->SetTowardFunction(&MouseZoomHandler::ZoomOut);
     main_view->SetResizeFunction(&GraphicsManager::ResizeFunction);
+
+
+
     main_view->SetEnableControls(true);
 
 
@@ -38,4 +43,5 @@ void GraphicsManager::ResizeFunction()
 {
     GraphicDrawer::AdjustNonResizableElements();
 }
+
 

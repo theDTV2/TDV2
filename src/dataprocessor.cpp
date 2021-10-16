@@ -510,6 +510,7 @@ void DataProcessor::ClearData()
     tick_overflow_ = 0;
     raw_data_ = QStringList();
     last_marker_ = nullptr;
+    amount_of_lines_parsed_successfully_ = 0;
 
 }
 

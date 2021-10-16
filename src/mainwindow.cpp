@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowFlags(this->windowFlags() | Qt::WindowMinimizeButtonHint);
 
     setAcceptDrops(true);
-
-
 }
 
 MainWindow::~MainWindow()
