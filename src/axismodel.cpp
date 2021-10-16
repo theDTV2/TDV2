@@ -80,7 +80,7 @@ void AxisModel::UpdateSpacing(bool ignore_check)
 
         //generate label
         if (divider)
-            label = QString::number((current / divider) * 1000,'g',4) + "ms";
+            label = QString::number((current / divider) * 1000,'f',0) + "ms";
         else
             label = QString::number(qFloor(current));
 
