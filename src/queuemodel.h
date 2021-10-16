@@ -11,6 +11,7 @@
 class QueueModel : public ViewElement
 {
 public:
+
     QueueModel(quint16 id, quint64 creation_time);
 
     void AddQueueHeight(quint64 newTime);
